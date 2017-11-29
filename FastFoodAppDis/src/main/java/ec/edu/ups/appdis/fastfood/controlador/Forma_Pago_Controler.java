@@ -4,13 +4,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.Forma_Pago_DAO;
 import ec.edu.ups.appdis.fastfood.modelo.Forma_Pago;
 
-
+@ManagedBean
 public class Forma_Pago_Controler {
 
 	private Forma_Pago forma_p;
@@ -55,7 +56,7 @@ public class Forma_Pago_Controler {
 	}
 	
 	public void loadForma_Pagos() {
-		forma_p = fpdao.listadoForma_Pagos();
+		forma_ps = fpdao.listadoForma_Pagos();
 	}
 	
 
