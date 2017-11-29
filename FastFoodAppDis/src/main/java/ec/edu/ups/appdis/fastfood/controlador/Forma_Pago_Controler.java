@@ -55,7 +55,7 @@ public class Forma_Pago_Controler {
 	}
 	
 	public void loadForma_Pagos() {
-		forma_p = fpdao.listadoForma_Pagos();
+		forma_ps = fpdao.listadoForma_Pagos();
 	}
 	
 
