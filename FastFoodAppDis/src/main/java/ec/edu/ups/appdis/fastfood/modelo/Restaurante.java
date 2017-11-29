@@ -1,8 +1,23 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Restaurante {
+	@Id
+	@Column(name="res_codigo")
 	private String codigo;
+	
+	@NotNull
+	@Size(min=4,max=20)
+	@Column(name="res_nombre")
 	private String nombre;
+	
+	@NotNull
+	@Size(min=4,max=20)
+	@Column(name="res_nombre")
 	private String telefono;
 	
 	//Getter and Setters
@@ -32,6 +47,11 @@ public class Restaurante {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	@Override
+	public String toString() {
+		return "Restaurante [codigo=" + codigo + ", nombre=" + nombre + ", telefono=" + telefono + "]";
 	}
 
 }

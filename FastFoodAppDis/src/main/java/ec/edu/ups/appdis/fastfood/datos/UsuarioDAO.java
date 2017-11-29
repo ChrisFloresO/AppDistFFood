@@ -5,11 +5,13 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
+
 @Stateless
 public class UsuarioDAO {
 	
 	@Inject	
 	private EntityManager em;
+	
 	public void Insertar(Usuario u) {
 		em.persist(u);	
 	}
