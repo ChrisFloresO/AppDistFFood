@@ -3,6 +3,7 @@ package ec.edu.ups.appdis.fastfood.controlador;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -10,6 +11,7 @@ import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 
+@ManagedBean
 public class DetalleControler 
 {
 	private Detalle detalle;
