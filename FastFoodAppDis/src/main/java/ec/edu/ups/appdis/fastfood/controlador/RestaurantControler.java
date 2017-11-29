@@ -5,9 +5,8 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
-import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
-import ec.edu.ups.appdis.fastfood.modelo.Usuario;
+
 @ManagedBean
 public class RestaurantControler {
 	

@@ -18,8 +18,7 @@ public class Forma_Pago_Controler {
 	private List<Forma_Pago> forma_ps;
 	private int id;
 	
-	@Inject
-    private FacesContext facesContext;
+	
 	
 	@Inject
 	private Forma_Pago_DAO fpdao;
@@ -78,7 +77,7 @@ public class Forma_Pago_Controler {
 		{
 			String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
-            facesContext.addMessage(null, m);
+            //facesContext.addMessage(null, m);
             return null;
 		}
 		

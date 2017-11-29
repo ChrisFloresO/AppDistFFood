@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
+import ec.edu.ups.appdis.fastfood.datos.DetalleDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 
@@ -17,9 +18,7 @@ public class DetalleControler
 	private Detalle detalle;
 	private List<Detalle> detalles;
 	private int id;
-	
-	@Inject
-    private FacesContext facesContext;
+   
 	
 	@Inject
 	private DetalleDAO pdao;
@@ -31,7 +30,7 @@ public class DetalleControler
 	}
 	
 	public void loadDetalles() {
-		detalles = pdao.listadoDetalles();
+		detalles = pdao.listadoDetalle();
 	}
 
 
