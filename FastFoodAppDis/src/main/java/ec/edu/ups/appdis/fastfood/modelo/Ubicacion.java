@@ -1,10 +1,13 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+@Entity
+@Table(name="tbl_ubicacion")
 public class Ubicacion {
 	@Id
 	@Column(name="ubi_codigo")

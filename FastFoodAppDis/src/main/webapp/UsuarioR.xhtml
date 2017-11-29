@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"> 
+
+<h:head></h:head> 
+<body> 
+<h1>REGISTRO USUARIO</h1>
+<h:form>
+<h:panelGrid columns="3">
+
+<h:outputLabel value="Codigo" for="codigo"/>
+<h:inputText value="#{usuarioControler.usuario.codigo}" id="codigo" />
+<h:message for="codigo"/>
+
+<h:outputLabel value="Cedula" for="cedula"/>
+<h:inputText value="#{usuarioControler.usuario.cedula}" id="cedula" />
+<h:message for="cedula"/>
+
+<h:outputLabel value="Nombres:" for="nombres"/>
+<h:inputText value="#{usuarioControler.usuario.nombre}" id="nombres" />
+<h:message for="nombres"/>
+
+<h:outputLabel value="Apellido:" for="apellido"/>
+<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" />
+<h:message for="apellido"/>
+
+<h:outputLabel value="Direccion:" for="direccion"/>
+<h:inputText value="#{usuarioControler.usuario.direccion}" id="direccion" />
+<h:message for="direccion"/>
+
+<h:outputLabel value="Telefono:" for="telefono"/>
+<h:inputText value="#{usuarioControler.usuario.telefono}" id="telefono" />
+<h:message for="email"/>
+
+<h:outputLabel value="Fecha Registro:" for="fecha"/>
+<h:inputText value="#{usuarioControler.usuario.fechaRegis}" id="fecha" >
+	<f:convertDateTime pattern="dd/MM/yyyy" />
+</h:inputText>
+<h:message for="fecha"/>
+
+<h:commandButton action="#{restaurantControler.Guardar()}" value="GUARDAR" />
+
+</h:panelGrid>
+</h:form>
+</body> 
+</html>

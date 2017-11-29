@@ -48,10 +48,6 @@ public class Usuario {
 	@Column(name="user_fechaRegis")
 	private Date fechaRegis;
 	
-public String guardar() {
-	
-	return null;
-}
 //Getters and Setters
 public String getCodigo() {
 	return codigo;
