@@ -7,7 +7,7 @@
 <h:head></h:head> 
 <body> 
 
-<h1>Ingresar Forma De Pago</h1>
+<h1>Realizar Pediod</h1>
 
 <h:form>
 	
@@ -16,24 +16,47 @@
 	<h:panelGrid columns ="3">
 	
 		<h:outputLabel value="Codigo:" for="codigo"/>
-		<h:inputText value="#{forma_Pago_Controler.forma_p.codigo}" id="codigo" />
+		<h:inputText value="#{pedidoControler.pedido.codigo}" id="codigo" />
 		<h:message  for="codigo"/>
 		
-		<h:outputLabel value="Descripcion:" for="descripcion"/>
-		<h:inputText value="#{Forma_Pago_Controler.forma_p.descripcion}" id="descripcion" />
-		<h:message  for="descripcion"/>
+		<h:outputLabel value="Ruc:" for="ruc"/>
+		<h:inputText value="#{pedidoControler.pedido.ruc}" id="nruc" />
+		<h:message  for="rcu"/>
 		
+		<h:outputLabel value="Fecha De Registro:" for="fechaNa"/>
+		<h:inputText value="#{pedidoControler.pedido.fechaNa}" id="fechaNa">
+		 	<f:convertDateTime pattern="dd/MM/yyyy" />
+		 </h:inputText>
+		<h:message  for="fechaNa"/>
 		
-		<h:commandButton action="#{Forma_Pago_Controler.guardar()}" value="Guardar" />
-	
+		<h:outputLabel value="IVA:" for="iva"/>
+		<h:inputText value="#{pedidoControler.pedido.iva}" id="iva" />
+		<h:message  for="iva"/>
+		
+		<h:commandButton action="#{pedidoControler.guardar()}" value="Pedido" />
 	
 	</h:panelGrid>
 	
+	<h:commandButton action="#{pedidoControler.addDetalle()}" value="Anadir detalle" >
+	 <f:ajax render="tbldetalles" execute="@all"/>
+	</h:commandButton>
+	
+	
+		<h:dataTable value ="#{pedidoControler.pedido.detalles}" var ="detalle" id ="detalles">
+		<h:column>
+			<f:facet name="header">Codigo</f:facet>
+			<h:inputText value="#{detalle.codigo}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Cantidad</f:facet>
+			<h:inputText value="#{detalle.cantidad}" />
+		</h:column>
+		</h:dataTable>
 	
 
 </h:form>
 <h:form>
-<h:commandButton action="listado-personas" value="Listado de personas" inmediate="true"/>	
+<h:commandButton action="Lista_P" value="Listado de Pedidos" inmediate="true"/>	
 </h:form>
 </body> 
 </html>

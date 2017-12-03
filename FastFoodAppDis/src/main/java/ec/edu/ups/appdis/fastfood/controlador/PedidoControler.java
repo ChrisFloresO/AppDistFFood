@@ -3,6 +3,7 @@ package ec.edu.ups.appdis.fastfood.controlador;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -124,7 +125,6 @@ public class PedidoControler
 	public String listadatosEditar(int codigo) 
 	{
 		pedido = pdao.leer(codigo);
-		
 		return "Pedido";
 	}
 	
