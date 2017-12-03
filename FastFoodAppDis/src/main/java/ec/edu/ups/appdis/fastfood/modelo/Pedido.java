@@ -38,11 +38,11 @@ public class Pedido
 	@NotNull
 	@Column (name="ped_iva")
 	private String iva;
-/*
+
 	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
 	@JoinColumn(name="pedidos", referencedColumnName="ped_codigo")
 	private List<Detalle> detalles;
-*/
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -74,7 +74,7 @@ public class Pedido
 	public void setIva(String iva) {
 		this.iva = iva;
 	}
-/*
+
 	public List<Detalle> getDetalles() {
 		return detalles;
 	}
@@ -94,5 +94,5 @@ public class Pedido
 		return "Pedido [codigo=" + codigo + ", ruc=" + ruc + ", fechaNa=" + fechaNa + ", iva=" + iva + ", detalles="
 				+ detalles + "]";
 	}
-*/
+
 }
