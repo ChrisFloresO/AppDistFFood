@@ -1,22 +1,23 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tbl_detalle")
 public class Detalle 
 {
 	@Id
+	@Column (name = "det_codigo",nullable = false) 
 	private int codigo;
-	
-	
-	
+
+	@NotNull
+	@Column (name="det_cantidad")
 	private int cantidad;
 
-
-	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -31,8 +32,12 @@ public class Detalle
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	@Override
+	public String toString() {
+		return "Detalle [codigo=" + codigo + ", cantidad=" + cantidad + "]";
 	}	
-	
 	
 
 }
