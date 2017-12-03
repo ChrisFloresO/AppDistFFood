@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="tbl_forma_pago")
+@Table(name="tbl_forma_pag")
 public class Forma_Pago 
 {
 	@Id
@@ -20,6 +20,7 @@ public class Forma_Pago
 	@Column (name="fp_descripcion")
 	private String descripcion;
 
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -39,7 +40,8 @@ public class Forma_Pago
 
 	@Override
 	public String toString() {
-		return "Forma_Pago [codigo=" + codigo + ", nombre=" + descripcion + "]";
+		return "Forma_Pago [codigo=" + codigo + ", descripcion=" + descripcion + "]";
 	}
 
+	
 }

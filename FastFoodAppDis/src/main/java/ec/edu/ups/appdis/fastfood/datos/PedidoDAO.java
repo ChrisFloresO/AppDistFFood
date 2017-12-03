@@ -39,7 +39,6 @@ public class PedidoDAO
 
 	public Pedido leer (int codigo) {
 		Pedido p =em.find(Pedido.class, codigo);
-		
 		return p;	
 	}
 	

@@ -17,8 +17,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import ec.ups.edu.appdis.crud.modelo.Telefono;
-
 @Entity
 @Table(name="tbl_pedido")
 public class Pedido 
@@ -29,7 +27,7 @@ public class Pedido
 	
 	@NotNull
 	@Size (min=10, max=13)
-	@Column (name="pes_ruc")
+	@Column (name="ped_ruc")
 	private String ruc;
 		
 	
@@ -42,7 +40,7 @@ public class Pedido
 	private String iva;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinColumn(name="det_ped_codigo", referencedColumnName="ped_codigo")
+	@JoinColumn(name="pedidos", referencedColumnName="ped_codigo")
 	private List<Detalle> detalles;
 
 	public int getCodigo() {
