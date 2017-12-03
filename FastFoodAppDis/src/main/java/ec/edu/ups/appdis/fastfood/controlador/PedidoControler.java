@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
 
@@ -28,6 +29,7 @@ public class PedidoControler
 	@PostConstruct
 	public void init() {
 		pedido= new Pedido();
+		pedido.addDetalle(new Detalle());
 		loadPedidos();
 	}
 	
@@ -73,6 +75,12 @@ public class PedidoControler
 		loadPedidos();
 	}
 	
+	public String addDetalle() {
+		System.out.println("aqui");
+		pedido.addDetalle(new Detalle());
+		return null;
+	}
+	
 	public String guardar() 
 	{
 		System.out.println(pedido);
@@ -84,42 +92,40 @@ public class PedidoControler
 		}
 		catch(Exception e)
 		{
-			/*String errorMessage = getRootErrorMessage(e);
+			String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
             facesContext.addMessage(null, m);
-            return null;*/
+            return null;
 		}
 		
-		return "listado-personas";
+		return "Lista_P";
 	}
 	
-	public String guardar2() 
-	{
-		System.out.println(pedido);
-		//invoque al DAO y envie la entidad a persistir
-		try 
-		{
-			if(this.id>0)
-				pdao.actualizar(pedido);
-			else
-				pdao.insertar(pedido);
-			loadPedidos();
-		}
-		catch(Exception e)
-		{
-			/*String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
-            facesContext.addMessage(null, m);
-            return null;*/
-		}
-		
-		return "listado-personas";
-	}
+	private String getRootErrorMessage(Exception e) {
+        // Default to general error message that registration failed.
+        String errorMessage = "Registration failed. See server log for more information";
+        if (e == null) {
+            // This shouldn't happen, but return the default messages
+            return errorMessage;
+        }
+
+        // Start with the exception and recurse to find the root cause
+        Throwable t = e;
+        while (t != null) {
+            // Get the message from the Throwable class instance
+            errorMessage = t.getLocalizedMessage();
+            t = t.getCause();
+        }
+        // This is the root cause message
+        return errorMessage;
+    }
+	
+	
 	public String listadatosEditar(int codigo) 
 	{
 		pedido = pdao.leer(codigo);
 		
-		return "Crearpersonaxhtml";
+		return "Pedido";
 	}
 	
 }
