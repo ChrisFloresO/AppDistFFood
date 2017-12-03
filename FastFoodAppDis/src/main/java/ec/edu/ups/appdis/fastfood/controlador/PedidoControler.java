@@ -30,7 +30,7 @@ public class PedidoControler
 	@PostConstruct
 	public void init() {
 		pedido= new Pedido();
-		pedido.addDetalle(new Detalle());
+		//pedido.addDetalle(new Detalle());
 		loadPedidos();
 	}
 	
@@ -75,13 +75,13 @@ public class PedidoControler
 		pdao.borrar(codigo);
 		loadPedidos();
 	}
-	
+	/*
 	public String addDetalle() {
 		System.out.println("aqui");
 		pedido.addDetalle(new Detalle());
 		return null;
 	}
-	
+	*/
 	public String guardar() 
 	{
 		System.out.println(pedido);
