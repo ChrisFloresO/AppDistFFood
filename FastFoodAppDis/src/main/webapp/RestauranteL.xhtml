@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+	<h:outputText value="No existe registros" 
+	rendered="#{empty restaurantControler.restaurantes}"/>
+
+	<h:dataTable value ="#{restaurantControler.restaurantes}" var="restaurante"
+		rendered="#{not empty restaurantControler.restaurantes}">
+		<h:column>
+			<f:facet name="header">Codigo</f:facet>
+			#{restaurante.codigo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{restaurante.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Tipo</f:facet>
+			#{restaurante.tipo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Telefono</f:facet>
+			#{restaurante.telefono}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{restaurantControler.listadatosEditar(restaurante.codigo)}" value="EDITAR"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{restaurantControler.Borrar(restaurante.codigo)}" value="BORRAR" />
+		</h:column>
+	
+	</h:dataTable>
+
+<h:commandButton action="RestauranteR" value="Crear Nuevo Restaurante"/>
+</h:form>
+
+</body> 
+</html>
