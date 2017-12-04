@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name="tbl_ubicacion")
 public class Ubicacion {
 	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="ubi_codigo")

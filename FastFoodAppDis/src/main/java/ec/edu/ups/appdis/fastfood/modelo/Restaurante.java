@@ -88,6 +88,7 @@ public class Restaurante {
 		if(ubicaciones==null) {
 			ubicaciones = new ArrayList();
 			
+			
 		}
 		ubicaciones.add(ubicacion);
 	}

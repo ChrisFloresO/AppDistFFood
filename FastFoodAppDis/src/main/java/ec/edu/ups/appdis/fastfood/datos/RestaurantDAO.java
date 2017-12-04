@@ -26,12 +26,12 @@ public class RestaurantDAO {
 			em.remove(leer(codigo));
 		}
 		public Restaurante leer(int  codigo) {
-			em.find(Restaurante.class, codigo);
-			return null;
+			
+			return em.find(Restaurante.class, codigo);
 		}	
 		public List<Restaurante> listadoRestaurantes()
 		{
-			//selects contra las entidades mapeadas
+			//selects contra las entidades mapeadas restaurante
 			String jppql = "SELECT r FROM Restaurante r";
 			Query query = em.createQuery(jppql,Restaurante.class);
 			@SuppressWarnings("unchecked")
