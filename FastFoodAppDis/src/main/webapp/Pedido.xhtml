@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h1>Realizar Pedido</h1>
+
+<h:form>
+	
+	<h:messages globalOnly="true"/>
+	
+	<h:panelGrid columns ="3">
+	
+		<h:outputLabel value="Codigo:" for="codigo"/>
+		<h:inputText value="#{pedidoControler.pedido.codigo}" id="codigo" />
+		<h:message  for="codigo"/>
+		
+		<h:outputLabel value="Ruc:" for="ruc"/>
+		<h:inputText value="#{pedidoControler.pedido.ruc}" id="ruc" />
+		<h:message  for="rcu"/>
+		
+		<h:outputLabel value="IVA:" for="iva"/>
+		<h:inputText value="#{pedidoControler.pedido.iva}" id="iva" />
+		<h:message  for="iva"/>
+		
+		<h:commandButton action="#{pedidoControler.guardar()}" value="Pedido" />
+	
+	</h:panelGrid>
+	
+	<h:commandButton action="#{pedidoControler.addDetalle()}" value="Anadir detalle" >
+	 <f:ajax render="tbldetalles" execute="@all"/>
+	</h:commandButton>
+	
+	
+		<h:dataTable value ="#{pedidoControler.pedido.detalles}" var ="detalle" id ="tbldetalles">
+		<h:column>
+			<f:facet name="header">Codigo</f:facet>
+			<h:inputText value="#{detalle.codigo}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Cantidad</f:facet>
+			<h:inputText value="#{detalle.cantidad}" />
+		</h:column>
+		</h:dataTable>
+	
+	
+
+</h:form>
+<h:form>
+<h:commandButton action="Lista_P" value="Listado de Pedidos" inmediate="true"/>	
+</h:form>
+</body> 
+</html>

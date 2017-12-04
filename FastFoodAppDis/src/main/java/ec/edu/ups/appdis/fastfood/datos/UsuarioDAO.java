@@ -29,6 +29,7 @@ public class UsuarioDAO {
 		em.find(Usuario.class, cedula);
 		return null;
 	}
+
 	public List<Usuario> listadoUsuario()
 	{
 		//selects contra las entidades mapeadas usuario

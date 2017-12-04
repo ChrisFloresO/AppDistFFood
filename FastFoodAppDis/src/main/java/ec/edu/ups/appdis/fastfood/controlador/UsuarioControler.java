@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
+
+
 @ManagedBean
 public class UsuarioControler {
 	private String id;
@@ -16,6 +18,7 @@ public class UsuarioControler {
 	
 	@Inject
 	private UsuarioDAO udao;
+	
 	
 	private Usuario usuario;
 	
@@ -49,12 +52,10 @@ public class UsuarioControler {
 	public void loadUsuarios() {
 		usuarios = udao.listadoUsuario();
 	}
-	//metodo para borrar
 	public void Borrar(String cedula) {
 		udao.borrar(cedula);
 		loadUsuarios();
 	}
-	
 	/*
 	 * getters and setters
 	 */
