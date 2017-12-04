@@ -5,20 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="tbl_forma_pago")
 public class Forma_Pago 
 {
 	@Id
-	@Column (name = "fp_codigo",nullable = false) 
+	@Column (name = "frp_codigo",nullable = false) 
 	private int codigo;
-	
+
 	@NotNull
-	@Size (min=4, max=20)
-	@Column (name="fp_descripcion")
-	private String descripcion;
+	@Column (name="frp_cantidad")
+	private int cantidad;
 
 	public int getCodigo() {
 		return codigo;
@@ -28,18 +26,17 @@ public class Forma_Pago
 		this.codigo = codigo;
 	}
 
-	
-	public String getDescripcion() {
-		return descripcion;
+	public int getCantidad() {
+		return cantidad;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	@Override
 	public String toString() {
-		return "Forma_Pago [codigo=" + codigo + ", nombre=" + descripcion + "]";
+		return "Forma_Pago [codigo=" + codigo + ", cantidad=" + cantidad + "]";
 	}
 
 }
