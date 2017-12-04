@@ -1,55 +1,54 @@
 package ec.edu.ups.appdis.fastfood.controlador;
 
-//franklin
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
-import ec.edu.ups.appdis.fastfood.modelo.Detalle;
-import ec.edu.ups.appdis.fastfood.modelo.Forma_Pago;
-import ec.edu.ups.appdis.fastfood.modelo.Pedido;
+import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
 @ManagedBean
-public class PedidoControler 
+public class PlatoControler 
 {
-	private Pedido pedido;
-	private List<Pedido> pedidos;
+	private Plato plato;
+	private List<Plato> platos;
 	private int id;
 
 	
 	@Inject
-	private PedidoDAO pdao;
+	private PlatoDAO pdao;
 	
 	@PostConstruct
 	public void init() {
-		pedido= new Pedido();
-		pedido.addDetalle(new Detalle());
-		loadPedidos();
+		plato= new Plato();
+		//plato.addDetalle(new Detalle());
+		loadPlatos();
 	}
 	
-	public void loadPedidos() {
-		pedidos = pdao.listadoPedidos();
+	public void loadPlatos() {
+		platos = pdao.listadoPlatos();
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public Plato getPlato() {
+		return plato;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+
+	public void setPlato(Plato plato) {
+		this.plato = plato;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
+
+	public List<Plato> getPlatos() {
+		return platos;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+
+	public void setPlatos(List<Plato> platos) {
+		this.platos = platos;
 	}
 
 	public int getId() {
@@ -61,33 +60,33 @@ public class PedidoControler
 		listadatosEditar(id);
 	}
 
-	public PedidoDAO getPdao() {
+	public PlatoDAO getPdao() {
 		return pdao;
 	}
 
-	public void setPdao(PedidoDAO pdao) {
+	public void setPdao(PlatoDAO pdao) {
 		this.pdao = pdao;
 	}
 
 	public void Boorar(int codigo) {
 		pdao.borrar(codigo);
-		loadPedidos();
+		loadPlatos();
 	}
 	
-	public String addDetalle() {
+	/*public String addDetalle() {
 		System.out.println("aqui");
 		pedido.addDetalle(new Detalle());
 		return null;
 	}
-	
+	*/
 	public String guardar() 
 	{
-		System.out.println(pedido);
+		System.out.println(plato);
 		//invoque al DAO y envie la entidad a persistir
 		try 
 		{
-			pdao.guardar(pedido);
-			loadPedidos();
+			pdao.guardar(plato);
+			loadPlatos();
 		}
 		catch(Exception e)
 		{
@@ -97,7 +96,7 @@ public class PedidoControler
             return null;
 		}
 		
-		return "Lista_P";
+		return "Lista_Plato";
 	}
 	
 	private String getRootErrorMessage(Exception e) {
@@ -122,10 +121,9 @@ public class PedidoControler
 	
 	public String listadatosEditar(int codigo) 
 	{
-		pedido = pdao.leer(codigo);
-		return "Pedido";
+		plato = pdao.leer(codigo);
+		return "Registra_Plato";
 	}
 	
-	
-	
+
 }

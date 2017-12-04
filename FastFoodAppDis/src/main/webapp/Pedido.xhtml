@@ -10,26 +10,50 @@
 <h1>Realizar Pedido</h1>
 
 <h:form>
+	<h:outputLabel value="Buscar plato:" for="buscar"/>
+	<h:inputText value="#{platoControler.plato.codigo}" id="buscar" />
+	<h:message  for="buscar"/>
+<h:commandButton action="#{platoControler.pdao.leer(buscar)}" value="Buscar" inmediate="true"/>	
+
+<h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.platos}"/>
+
+	<h:dataTable value ="#{platoControler.platos}" var="busquedas"
+		rendered="#{not empty platoControler.platos}">
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{busquedas.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{busquedas.descripcion}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Precio</f:facet>
+			#{busquedas.precio}
+		</h:column>
+		
+	</h:dataTable>
+
+
+</h:form>
+
+<h:form>
 	
 	<h:messages globalOnly="true"/>
 	
 	<h:panelGrid columns ="3">
-	
-		<h:outputLabel value="Codigo:" for="codigo"/>
-		<h:inputText value="#{pedidoControler.pedido.codigo}" id="codigo" />
-		<h:message  for="codigo"/>
-		
 		<h:outputLabel value="Ruc:" for="ruc"/>
 		<h:inputText value="#{pedidoControler.pedido.ruc}" id="ruc" />
-		<h:message  for="rcu"/>
+		<h:message  for="ruc"/>
 		
 		<h:outputLabel value="IVA:" for="iva"/>
 		<h:inputText value="#{pedidoControler.pedido.iva}" id="iva" />
 		<h:message  for="iva"/>
-		
-		<h:commandButton action="#{pedidoControler.guardar()}" value="Pedido" />
 	
+		<h:commandButton action="#{pedidoControler.guardar()}" value="Pedido" />
 	</h:panelGrid>
+	
 	
 	<h:commandButton action="#{pedidoControler.addDetalle()}" value="Anadir detalle" >
 	 <f:ajax render="tbldetalles" execute="@all"/>
@@ -46,10 +70,9 @@
 			<h:inputText value="#{detalle.cantidad}" />
 		</h:column>
 		</h:dataTable>
-	
-	
-
 </h:form>
+
+
 <h:form>
 <h:commandButton action="Lista_P" value="Listado de Pedidos" inmediate="true"/>	
 </h:form>

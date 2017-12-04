@@ -1,55 +1,59 @@
 package ec.edu.ups.appdis.fastfood.controlador;
 
-//franklin
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
 import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
-import ec.edu.ups.appdis.fastfood.modelo.Forma_Pago;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
 @ManagedBean
-public class PedidoControler 
+public class CalificacionControler 
 {
-	private Pedido pedido;
-	private List<Pedido> pedidos;
+	private Calificacion calificacion;
+	private List<Calificacion> calificaciones;
 	private int id;
 
 	
 	@Inject
-	private PedidoDAO pdao;
+	private CalificacionDAO pdao;
 	
 	@PostConstruct
 	public void init() {
-		pedido= new Pedido();
-		pedido.addDetalle(new Detalle());
-		loadPedidos();
+		calificacion= new Calificacion();
+		//pedido.addDetalle(new Detalle());
+		loadCalificaciones();
 	}
 	
-	public void loadPedidos() {
-		pedidos = pdao.listadoPedidos();
+	public void loadCalificaciones() {
+		calificaciones = pdao.listadoCalificaciones();
+	}
+	
+
+	public Calificacion getCalificacion() {
+		return calificacion;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public void setCalificacion(Calificacion calificacion) {
+		this.calificacion = calificacion;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public List<Calificacion> getCalificaciones() {
+		return calificaciones;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
+	public void setCalificaciones(List<Calificacion> calificaciones) {
+		this.calificaciones = calificaciones;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setPdao(CalificacionDAO pdao) {
+		this.pdao = pdao;
 	}
 
 	public int getId() {
@@ -61,33 +65,26 @@ public class PedidoControler
 		listadatosEditar(id);
 	}
 
-	public PedidoDAO getPdao() {
-		return pdao;
-	}
-
-	public void setPdao(PedidoDAO pdao) {
-		this.pdao = pdao;
-	}
 
 	public void Boorar(int codigo) {
 		pdao.borrar(codigo);
-		loadPedidos();
+		loadCalificaciones();
 	}
-	
+	/*
 	public String addDetalle() {
 		System.out.println("aqui");
-		pedido.addDetalle(new Detalle());
+		calificacion.addDetalle(new Detalle());
 		return null;
 	}
-	
+	*/
 	public String guardar() 
 	{
-		System.out.println(pedido);
+		System.out.println(calificacion);
 		//invoque al DAO y envie la entidad a persistir
 		try 
 		{
-			pdao.guardar(pedido);
-			loadPedidos();
+			pdao.guardar(calificacion);
+			loadCalificaciones();
 		}
 		catch(Exception e)
 		{
@@ -97,7 +94,7 @@ public class PedidoControler
             return null;
 		}
 		
-		return "Lista_P";
+		return "Votos";
 	}
 	
 	private String getRootErrorMessage(Exception e) {
@@ -122,10 +119,8 @@ public class PedidoControler
 	
 	public String listadatosEditar(int codigo) 
 	{
-		pedido = pdao.leer(codigo);
-		return "Pedido";
+		calificacion = pdao.leer(codigo);
+		return "Calificacion";
 	}
-	
-	
-	
+
 }

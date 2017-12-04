@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+
+<f:metadata>
+	<f:viewParam name="id" value="#{platoControler.id}"/>
+</f:metadata>
+
+<body> 
+
+<h1>Editar Plato</h1>
+
+<h:form>
+	
+	<h:messages globalOnly="true"/>
+	
+	<h:panelGrid columns ="3">
+	
+		<h:outputLabel value="Codigo:" for="codigo"/>
+		<h:inputText value="#{platoControler.plato.codigo}" id="codigo" />
+		<h:message  for="codigo"/>
+		
+		<h:outputLabel value="Nombre:" for="nombre"/>
+		<h:inputText value="#{platoControler.plato.nombre}" id="nombre" />
+		<h:message  for="nombre"/>
+		
+		<h:outputLabel value="Descripcion:" for="descripcion"/>
+		<h:inputText value="#{platoControler.plato.descripcion}" id="descripcion" />
+		<h:message  for="descripcion"/>
+		
+		<h:outputLabel value="Precio:" for="precio"/>
+		<h:inputText value="#{platoControler.plato.precio}" id="precio" />
+		<h:message  for="precio"/>
+		
+		<h:commandButton action="#{platoControler.guardar()}" value="Registrar Plato" />
+	
+	</h:panelGrid>
+	
+
+</h:form>
+<h:form>
+<h:commandButton action="Lista_Plato" value="Listado de Platos" inmediate="true"/>	
+</h:form>
+</body> 
+</html>
