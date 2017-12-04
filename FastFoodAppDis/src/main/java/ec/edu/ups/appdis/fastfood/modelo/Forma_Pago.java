@@ -39,6 +39,4 @@ public class Forma_Pago
 		return "Forma_Pago [codigo=" + codigo + ", cantidad=" + cantidad + "]";
 	}
 
-	
-
 }

@@ -23,12 +23,6 @@
 		<h:inputText value="#{pedidoControler.pedido.ruc}" id="ruc" />
 		<h:message  for="rcu"/>
 		
-		<h:outputLabel value="Fecha De Registro:" for="fechaNa"/>
-		<h:inputText value="#{pedidoControler.pedido.fechaNa}" id="fechaNa">
-		 	<f:convertDateTime pattern="dd/MM/yyyy" />
-		 </h:inputText>
-		<h:message  for="fechaNa"/>
-		
 		<h:outputLabel value="IVA:" for="iva"/>
 		<h:inputText value="#{pedidoControler.pedido.iva}" id="iva" />
 		<h:message  for="iva"/>
@@ -52,6 +46,7 @@
 			<h:inputText value="#{detalle.cantidad}" />
 		</h:column>
 		</h:dataTable>
+	
 	
 
 </h:form>

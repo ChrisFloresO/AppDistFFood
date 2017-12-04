@@ -30,11 +30,6 @@ public class Pedido
 	@Column (name="ped_ruc")
 	private String ruc;
 		
-	
-	@Temporal(TemporalType.DATE)
-	@Column (name="ped_fechaNa")
-	private Date fechaNa;
-	
 	@NotNull
 	@Column (name="ped_iva")
 	private String iva;
@@ -79,15 +74,18 @@ public class Pedido
 		return detalles;
 	}
 
+
 	public void setDetalles(List<Detalle> detalles) {
 		this.detalles = detalles;
 	}
+	
 	public void addDetalle(Detalle detalle) {
 		if(detalles==null) {
 			detalles = new ArrayList();
 		}
 		detalles.add(detalle);
 	}
+
 
 	@Override
 	public String toString() {
