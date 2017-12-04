@@ -45,6 +45,19 @@ public class Ubicacion {
 		this.direccion = direccion;
 	}
 	
+	
+	public double getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+	public double getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
+	}
 	@Override
 	public String toString() {
 		return "Ubicacion [codigo=" + codigo + ", direccion=" + direccion + ", latitud=" + latitud + ", longitud="

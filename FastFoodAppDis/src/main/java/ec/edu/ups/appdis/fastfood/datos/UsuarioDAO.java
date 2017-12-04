@@ -31,7 +31,7 @@ public class UsuarioDAO {
 	}
 	public List<Usuario> listadoUsuario()
 	{
-		//selects contra las entidades mapeadas
+		//selects contra las entidades mapeadas usuario
 		String jppql = "SELECT u FROM Usuario u";
 		Query query = em.createQuery(jppql,Usuario.class);
 		@SuppressWarnings("unchecked")

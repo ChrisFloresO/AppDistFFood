@@ -21,7 +21,7 @@ public class RestaurantDAO {
 		public void borrar(String  nombre) {
 			em.remove(leer(nombre));
 		}
-		public Usuario leer(String  nombre) {
+		public Restaurante leer(String  nombre) {
 			em.find(Restaurante.class, nombre);
 			return null;
 		}	
