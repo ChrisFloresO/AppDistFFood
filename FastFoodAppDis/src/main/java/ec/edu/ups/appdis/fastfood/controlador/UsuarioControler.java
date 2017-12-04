@@ -46,6 +46,7 @@ public class UsuarioControler {
 	public String listadatosEditar(String cedula) 
 	{
 		usuario = udao.leer(cedula);
+		System.out.println("Cuenca " + usuario);
 		
 		return "UsuarioR";
 	}

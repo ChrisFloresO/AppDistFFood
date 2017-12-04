@@ -26,13 +26,13 @@ public class UsuarioDAO {
 		em.remove(leer(cedula));
 	}
 	public Usuario leer(String  cedula) {
-		em.find(Usuario.class, cedula);
-		return null;
+		
+		return em.find(Usuario.class, cedula);
 	}
 
 	public List<Usuario> listadoUsuario()
 	{
-		//selects contra las entidades mapeadas usuario
+		//selects  entidades mapeadas usuario
 		String jppql = "SELECT u FROM Usuario u";
 		Query query = em.createQuery(jppql,Usuario.class);
 		@SuppressWarnings("unchecked")

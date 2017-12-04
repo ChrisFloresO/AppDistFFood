@@ -20,6 +20,7 @@ public class RestaurantControler {
 	private Restaurante restaurante;
 	private List<Restaurante> restaurantes;
 	private int id;
+	
 
 	@Inject
 	private RestaurantDAO rdao;
