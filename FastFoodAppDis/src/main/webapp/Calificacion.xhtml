@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h1>Registrar Voto</h1>
+
+<h:form>
+	
+	<h:messages globalOnly="true"/>
+	
+	<h:panelGrid columns ="3">
+
+		<h:outputLabel value="Voto:" for="voto"/>
+		<h:selectOneMenu value="#{calificacionControler.calificacion.voto}" id="voto">
+  			 <f:selectItem itemValue="5" itemLabel="5" />
+   			 <f:selectItem itemValue="4" itemLabel="4" /> 
+   			 <f:selectItem itemValue="3" itemLabel="3" />
+   			 <f:selectItem itemValue="2" itemLabel="2" />
+   			 <f:selectItem itemValue="1" itemLabel="1" />                       
+		</h:selectOneMenu>
+		<h:message  for="voto"/>
+		
+		<h:commandButton action="#{calificacionControler.guardar()}" value="Realizar Voto" />
+	
+	</h:panelGrid>
+
+</h:form>
+
+
+<h:form>
+<h:commandButton action="Lista_Voto" value="Listado de Votos" inmediate="true"/>	
+</h:form>
+</body> 
+</html>

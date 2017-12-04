@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+	<h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.platos}"/>
+
+	<h:dataTable value ="#{platoControler.platos}" var="plato"
+		rendered="#{not empty platoControler.platos}">
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{plato.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{plato.descripcion}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Precio</f:facet>
+			#{plato.precio}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
+		</h:column>
+	
+	</h:dataTable>
+
+<h:commandButton action="Registra_Plato" value="Registrar Nuevo Plato"/>
+</h:form>
+
+</body> 
+</html>

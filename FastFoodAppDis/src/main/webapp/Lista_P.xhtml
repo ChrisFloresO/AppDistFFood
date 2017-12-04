@@ -13,16 +13,8 @@
 	<h:dataTable value ="#{pedidoControler.pedidos}" var="pedido"
 		rendered="#{not empty pedidoControler.pedidos}">
 		<h:column>
-			<f:facet name="header">Codigo</f:facet>
-			#{pedido.codigo}
-		</h:column>
-		<h:column>
 			<f:facet name="header">RUC</f:facet>
 			#{pedido.ruc}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Fecha De Registro</f:facet>
-			#{pedido.fechaNa}
 		</h:column>
 		<h:column>
 			<f:facet name="header">IVA</f:facet>
