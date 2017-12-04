@@ -14,8 +14,6 @@ import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Forma_Pago;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
-
-
 @ManagedBean
 public class PedidoControler 
 {
@@ -23,8 +21,6 @@ public class PedidoControler
 	private List<Pedido> pedidos;
 	private int id;
 	
-	@Inject
-    private FacesContext facesContext;
 	
 	@Inject
 	private PedidoDAO pdao;
