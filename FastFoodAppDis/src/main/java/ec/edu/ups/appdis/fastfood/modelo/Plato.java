@@ -27,6 +27,11 @@ public class Plato
 	@NotNull
 	@Column (name="plt_precio")
 	private double precio;
+	
+	//private Restaurante restaurante;
+	
+	
+	//SELECT p FROM Plato p WHERE p.resturante.nombre = '' 
 
 	public int getCodigo() {
 		return codigo;

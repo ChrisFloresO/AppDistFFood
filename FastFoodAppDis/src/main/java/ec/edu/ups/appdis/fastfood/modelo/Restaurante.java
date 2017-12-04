@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -43,7 +44,7 @@ public class Restaurante {
 	private String tipo;
 	
 	@OneToMany(cascade= CascadeType.ALL)
-	@PrimaryKeyJoinColumn(name="restaurante", referencedColumnName="res_codigo")
+	@JoinColumn(name="restaurante", referencedColumnName="res_codigo")
 	private List<Ubicacion> ubicaciones;
 	
 	//Getter and Setters

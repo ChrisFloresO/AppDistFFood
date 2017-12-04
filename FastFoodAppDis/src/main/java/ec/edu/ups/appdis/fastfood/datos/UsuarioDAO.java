@@ -26,8 +26,8 @@ public class UsuarioDAO {
 		em.remove(leer(cedula));
 	}
 	public Usuario leer(String  cedula) {
-		em.find(Usuario.class, cedula);
-		return null;
+		
+		return em.find(Usuario.class, cedula);
 	}
 
 	public List<Usuario> listadoUsuario()

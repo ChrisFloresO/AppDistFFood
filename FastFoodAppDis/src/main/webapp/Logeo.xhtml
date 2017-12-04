@@ -60,23 +60,23 @@
 			<div class="sign-up-htm">
 				<div class="group">
 					<label for="user" class="label">Nombre</label>
-					 <h:inputText value="#{datos.usuario.nombre}" id="user" type="text" class="input" />
+					 <h:inputText value="#{datos.usuario.nombre}" id="user" type="text" class="input" />	 
 				</div>
 				<div class="group">
 					<label for="user" class="label">Apellido</label>
 					<h:inputText value="#{datos.usuario.apellido}" id="apellido" type="text" class="input" />
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Contraseña</label>
-					<h:inputSecret value="#{datos.usuario.clave}" id="pass" type="password" class="input" data-type="password"/>
-					
-				</div>
-				
-				<div class="group">
 					<label for="pass" class="label">Correo Electrónico</label>
 					<h:inputText value="#{datos.usuario.correo}" id="mail" type="text" class="input" />
 					
 				</div>
+				<div class="group">
+					<label for="pass" class="label">Contraseña</label>
+					<h:inputSecret value="#{datos.usuario.clave}" id="pass" type="password" class="input" data-type="password"/>
+				</div>
+				
+				
 				<div class="group">
 				<h:commandButton value="Registrarse" action="#{datos.guardar()}" class="button"/>
 					

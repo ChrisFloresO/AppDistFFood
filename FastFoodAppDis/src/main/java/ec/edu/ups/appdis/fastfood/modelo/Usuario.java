@@ -41,7 +41,7 @@ public class Usuario {
 	@Column (name="user_email")
 	private String email;
 	
-	@Email
+	@Size(min=4,max=10)
 	@Column (name="user_contrasena")
 	private String contrasena;
 	
