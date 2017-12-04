@@ -1,17 +1,24 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name="tbl_restaurante")
@@ -20,7 +27,7 @@ public class Restaurante {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="res_codigo")
-	private String codigo;
+	private int codigo;
 	
 	@NotNull
 	@Size(min=4,max=20)
@@ -35,22 +42,23 @@ public class Restaurante {
 	@Column(name="res_tipoRes",length=30)
 	private String tipo;
 	
-	@OneToOne(cascade= {CascadeType.ALL},fetch=FetchType.EAGER)
+	@OneToMany(cascade= CascadeType.ALL)
 	@PrimaryKeyJoinColumn(name="restaurante", referencedColumnName="res_codigo")
-	private Ubicacion ubicacion;
+	private List<Ubicacion> ubicaciones;
 	
 	//Getter and Setters
-	public String mostrarinformacion() {
-		return null;
-	}
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+
+
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -68,16 +76,6 @@ public class Restaurante {
 		this.telefono = telefono;
 	}
 
-	
-
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-	
 	public String getTipo() {
 		return tipo;
 	}
@@ -85,11 +83,26 @@ public class Restaurante {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	//To String para sacar datos
+	public void addUbicacion(Ubicacion ubicacion) {
+		if(ubicaciones==null) {
+			ubicaciones = new ArrayList();
+			
+		}
+		ubicaciones.add(ubicacion);
+	}
+	
+	public List<Ubicacion> getUbicaciones() {
+		return ubicaciones;
+	}
+
+	public void setUbicaciones(List<Ubicacion> ubicaciones) {
+		this.ubicaciones = ubicaciones;
+	}
+
 	@Override
 	public String toString() {
 		return "Restaurante [codigo=" + codigo + ", nombre=" + nombre + ", telefono=" + telefono + ", tipo=" + tipo
-				+ ", ubicacion=" + ubicacion + "]";
+				+ ", ubicaciones=" + ubicaciones + "]";
 	}
 
 }

@@ -22,26 +22,30 @@
 <h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono" />
 <h:message for="telefono"/>
 
-<h2>DATOS UBICACION</h2>
-		
-	  <h:dataTable value="#{datos.huecas.ubicacion}" var="ubicacion">
-	<h:column>
-	<f:facet name="header">Ubicacion</f:facet>
-	<h:inputText value="#{ubicacion.direccion}" />
-	
-	</h:column>
-	<h:column>
-	<f:facet  name="header">Latitud</f:facet>
-	<h:inputText id="la" value="#{ubicacion.latitud}" />
-	
-	</h:column>
-	<h:column>
-	<f:facet name="header">Longitud</f:facet>
-	<h:inputText id="lo" value="#{ubicacion.longitud}" />
-	</h:column>
-	</h:dataTable>
+<h1>DATOS UBICACION</h1>
 
-<h:commandButton action="#{restaurantControler.Guardar()}" value="GUARDAR" />
+
+<h:commandButton action="#{restaurantControler.addUbicacione()}" value="Sucursales" >
+	<f:ajax render="Restaurante" execute="@all"></f:ajax>
+	</h:commandButton>
+		
+<h:dataTable value ="#{restaurantControler.restaurante.ubicaciones}" var ="ubicacion" id= "Restaurante">
+		
+		<h:column>
+			<f:facet name="header">Direccion</f:facet>
+			<h:inputText value="#{ubicacion.direccion}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Latitud</f:facet>
+			<h:inputText value="#{ubicacion.latitud}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Longitud</f:facet>
+			<h:inputText value="#{ubicacion.longitud}" />
+		</h:column>
+		</h:dataTable>
+
+<h:commandButton action="#{restaurantControler.guardar()}" value="GUARDAR" />
 
 </h:panelGrid>
 </h:form>

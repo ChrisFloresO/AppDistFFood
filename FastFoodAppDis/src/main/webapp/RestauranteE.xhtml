@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+
+<f:metadata>
+	<f:viewParam name="id" value="#{restaurantControler.id}"/>
+</f:metadata>
+
+<body> 
+
+<h1>Editar Restaurante</h1>
+
+<h:form>
+	
+	<h:messages globalOnly="true"/>
+	
+	<h:inputText value="#{restaurantControler.id}" />
+	
+	<h:panelGrid columns ="3">
+	
+		<h:outputLabel value="Nombre:" for="nombre"/>
+		<h:inputText value="#{restaurantControler.restaurante.nombre}" id="nombre" />
+		<h:message  for="nombre"/>
+		
+		<h:outputLabel value="Tipo:" for="tipo"/>
+		<h:inputText value="#{restaurantControler.restaurante.tipo}" id="tipo" />
+		<h:message  for="tipo"/>
+		
+		<h:outputLabel value="Telefono:" for="telefono"/>
+		<h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono" />
+		<h:message  for="telefono"/>
+		
+<h1>Editar Datos Ubicacion</h1>	
+
+	</h:panelGrid>
+		<h:dataTable value ="#{restaurantControler.restaurante.ubicaciones}" var ="ubicacion">
+		<h:column>
+			<f:facet name="header">Direccion</f:facet>
+			<h:inputText value="#{ubicacion.direccion}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Latitud</f:facet>
+			<h:inputText value="#{ubicacion.latitud}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Longitud</f:facet>
+			<h:inputText value="#{ubicacion.longitud}" />
+		</h:column>
+		</h:dataTable>
+	
+
+</h:form>
+<h:form>
+<h:commandButton action="#{personaControler.guardar()}" value="GUARDAR" />
+<h:commandButton action="RestauranteL" value="Listado Restaurantes" inmediate="true"/>	
+</h:form>
+</body> 
+</html>
