@@ -12,15 +12,14 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+
 @Entity
 @Table(name="tbl_usuario")
 public class Usuario {
 	
 	@Id
-	@Column(name="user_codigo")
-	private String codigo;
-	
-	
+	@Size(min=9,max=10)
 	@Column(name="user_cedula",length=10)
 	private String cedula;
 	
@@ -33,28 +32,22 @@ public class Usuario {
 	@Size(min=4,max=20)
 	@Column(name="user_apellido")
 	private String apellido;
-	
-	@NotNull
-	@Size(min=20,max=40)
-	@Column(name="user_direccion")
-	private String direccion;
-	
+		
 	@NotNull
 	@Size(min=4,max=20)
 	@Column(name="user_telefono")
 	private String telefono;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="user_fechaRegis")
-	private Date fechaRegis;
+	@Email
+	@Column (name="user_email")
+	private String email;
+	
+	@Email
+	@Column (name="user_contrasena")
+	private String contrasena;
 	
 //Getters and Setters
-public String getCodigo() {
-	return codigo;
-}
-public void setCodigo(String codigo) {
-	this.codigo = codigo;
-}
+
 public String getCedula() {
 	return cedula;
 }
@@ -73,28 +66,32 @@ public String getApellido() {
 public void setApellido(String apellido) {
 	this.apellido = apellido;
 }
-public String getDireccion() {
-	return direccion;
-}
-public void setDireccion(String direccion) {
-	this.direccion = direccion;
-}
+
 public String getTelefono() {
 	return telefono;
 }
 public void setTelefono(String telefono) {
 	this.telefono = telefono;
 }
-public Date getFechaRegis() {
-	return fechaRegis;
+
+
+public String getEmail() {
+	return email;
 }
-public void setFechaRegis(Date fechaRegis) {
-	this.fechaRegis = fechaRegis;
+public void setEmail(String email) {
+	this.email = email;
+}
+public String getContrasena() {
+	return contrasena;
+}
+public void setContrasena(String contrasena) {
+	this.contrasena = contrasena;
 }
 @Override
 public String toString() {
-	return "Usuario [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
-			+ ", direccion=" + direccion + ", telefono=" + telefono + ", fechaRegis=" + fechaRegis + "]";
+	return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
+			+ ", telefono=" + telefono + ", email=" + email + ", contrasena=" + contrasena
+			+ "]";
 }
 
 

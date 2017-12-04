@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+	<h:outputText value="No existe usuarios registros" 
+	rendered="#{empty usuarioControler.usuarios}"/>
+
+	<h:dataTable value ="#{usuarioControler.usuarios}" var="usuario"
+		rendered="#{not empty usuarioControler.usuarios}">
+		
+		<h:column>
+			<f:facet name="header">Cedula</f:facet>
+			#{usuario.cedula}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{usuario.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Apellido</f:facet>
+			#{usuario.apellido}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Telefono</f:facet>
+			#{usuario.telefono}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+			#{usuario.email}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Contrasena</f:facet>
+			#{usuario.contrasena}
+		</h:column>
+	
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{usuarioControler.listadatosEditar(usuario.cedula)}" value="Editar"/>
+			<a href="UsuarioE.xhtml">Editar</a>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{usuarioControler.Borrar(usuario.cedula)}" value="Borrar" />
+		</h:column>
+	
+	</h:dataTable>
+
+<h:commandButton action="UsuarioR" value="Crear una nuevo Usuario"/>
+</h:form>
+
+</body> 
+</html>

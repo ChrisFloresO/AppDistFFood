@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+
+<f:metadata>
+	<f:viewParam name="id" value="#{usuarioControler.id}"/>
+</f:metadata>
+
+<body> 
+
+<h1>Editar Usuario</h1>
+
+<h:form>
+	
+	<h:messages globalOnly="true"/>
+	
+	<h:inputText value="#{usuarioControler.id}" />
+	
+	<h:panelGrid columns ="3">
+	
+		<h:outputLabel value="Cedula:" for="cedula"/>
+		<h:inputText value="#{usuarioControler.usuario.cedula}" id="cedula" />
+		<h:message  for="cedula"/>
+		
+		<h:outputLabel value="Nombre:" for="nombre"/>
+		<h:inputText value="#{usuarioControler.usuario.nombre}" id="nombre" />
+		<h:message  for="nombre"/>
+		
+		<h:outputLabel value="Apellido:" for="apellido"/>
+		<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" />
+		<h:message  for="apellido"/>
+		
+		<h:outputLabel value="Telefono:" for="telefono"/>
+		<h:inputText value="#{usuarioControler.usuario.telefono}" id="telefono" />
+		<h:message  for="telefono"/>
+		
+		<h:outputLabel value="Email:" for="email"/>
+		<h:inputText value="#{usuarioControler.usuario.email}" id="email" />
+		<h:message  for="email"/>
+		
+		<h:outputLabel value="Contrasena" for="contrasena"/>
+		<h:inputText value="#{usuarioControler.usuario.contrasena}" id="contrasena" />
+		<h:message  for="contrasena"/>
+		
+		<h:commandButton action="#{personaControler.guardar()}" value="Guardar" />
+	</h:panelGrid>
+	
+</h:form>
+<h:form>
+<h:commandButton action="UsuarioL" value="Listado de Usuarios" inmediate="true"/>	
+</h:form>
+
+</body> 
+</html>

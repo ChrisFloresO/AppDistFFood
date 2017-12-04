@@ -18,8 +18,6 @@ public class RestaurantControler {
 	private RestaurantDAO rdao;
 	private Restaurante restaurante;
 	
-	
-	
 	@PostConstruct		
 	public void init() {
 		restaurante=new Restaurante();

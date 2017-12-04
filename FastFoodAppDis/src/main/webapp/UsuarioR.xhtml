@@ -11,10 +11,6 @@
 <h:form>
 <h:panelGrid columns="3">
 
-<h:outputLabel value="Codigo" for="codigo"/>
-<h:inputText value="#{usuarioControler.usuario.codigo}" id="codigo" />
-<h:message for="codigo"/>
-
 <h:outputLabel value="Cedula" for="cedula"/>
 <h:inputText value="#{usuarioControler.usuario.cedula}" id="cedula" />
 <h:message for="cedula"/>
@@ -27,21 +23,19 @@
 <h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" />
 <h:message for="apellido"/>
 
-<h:outputLabel value="Direccion:" for="direccion"/>
-<h:inputText value="#{usuarioControler.usuario.direccion}" id="direccion" />
-<h:message for="direccion"/>
-
 <h:outputLabel value="Telefono:" for="telefono"/>
 <h:inputText value="#{usuarioControler.usuario.telefono}" id="telefono" />
+<h:message for="telefono"/>
+
+<h:outputLabel value="Email:" for="email"/>
+<h:inputText value="#{usuarioControler.usuario.email}" id="email" />
 <h:message for="email"/>
 
-<h:outputLabel value="Fecha Registro:" for="fecha"/>
-<h:inputText value="#{usuarioControler.usuario.fechaRegis}" id="fecha" >
-	<f:convertDateTime pattern="dd/MM/yyyy" />
-</h:inputText>
-<h:message for="fecha"/>
+<h:outputLabel value="Contrasena" for="contrasena"/>
+<h:inputText value="#{usuarioControler.usuario.contrasena}" id="contrasena" />
+<h:message for="contrasena"/>
 
-<h:commandButton action="#{restaurantControler.Guardar()}" value="GUARDAR" />
+<h:commandButton action="#{usuarioControler.Guardar()}" value="GUARDAR" />
 
 </h:panelGrid>
 </h:form>

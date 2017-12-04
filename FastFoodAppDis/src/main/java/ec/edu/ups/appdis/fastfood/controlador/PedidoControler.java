@@ -19,8 +19,7 @@ public class PedidoControler
 	private List<Pedido> pedidos;
 	private int id;
 	
-	@Inject
-    private FacesContext facesContext;
+	
 	
 	@Inject
 	private PedidoDAO pdao;

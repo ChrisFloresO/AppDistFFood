@@ -10,17 +10,36 @@
 <h:form>
 <h:panelGrid columns="3">
 
-<h:outputLabel value="Codigo" for="codigo"/>
-<h:inputText value="#{restaurantControler.restaurante.codigo}" id="codigo" />
-<h:message for="cedula"/>
-
 <h:outputLabel value="Nombres:" for="nombres"/>
 <h:inputText value="#{restaurantControler.restaurante.nombre}" id="nombres" />
 <h:message for="nombres"/>
 
+<h:outputLabel value="Tipo:" for="tipo"/>
+<h:inputText value="#{restaurantControler.restaurante.tipo}" id="tipo" />
+<h:message for="tipo"/>
+
 <h:outputLabel value="Telefono:" for="telefono"/>
 <h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono" />
-<h:message for="email"/>
+<h:message for="telefono"/>
+
+<h2>Datos de la Ubicación</h2>
+		
+	  <h:dataTable value="#{datos.huecas.ubicacion}" var="ubicacion">
+	<h:column>
+	<f:facet name="header">Ubicacion</f:facet>
+	<h:inputText value="#{ubicacion.direccion}" />
+	
+	</h:column>
+	<h:column>
+	<f:facet  name="header">Latitud</f:facet>
+	<h:inputText id="la" value="#{ubicacion.latitud}" />
+	
+	</h:column>
+	<h:column>
+	<f:facet name="header">Longitud</f:facet>
+	<h:inputText id="lo" value="#{ubicacion.longitud}" />
+	</h:column>
+	</h:dataTable>
 
 <h:commandButton action="#{restaurantControler.Guardar()}" value="GUARDAR" />
 

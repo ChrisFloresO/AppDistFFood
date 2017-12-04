@@ -17,8 +17,7 @@ public class CalificacionControler
 	private List<Calificacion> calificaciones;
 	private int id;
 	
-	@Inject
-    private FacesContext facesContext;
+	
 	
 	@Inject
 	private CalificacionDAO pdao;

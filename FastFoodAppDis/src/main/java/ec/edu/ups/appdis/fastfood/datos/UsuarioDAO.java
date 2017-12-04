@@ -1,10 +1,14 @@
 package ec.edu.ups.appdis.fastfood.datos;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
+
 
 @Stateless
 public class UsuarioDAO {
@@ -24,6 +28,15 @@ public class UsuarioDAO {
 	public Usuario leer(String  cedula) {
 		em.find(Usuario.class, cedula);
 		return null;
+	}
+	public List<Usuario> listadoUsuario()
+	{
+		//selects contra las entidades mapeadas
+		String jppql = "SELECT u FROM Usuario u";
+		Query query = em.createQuery(jppql,Usuario.class);
+		@SuppressWarnings("unchecked")
+		List<Usuario> listado =query.getResultList();
+		return listado;
 	}
 
 }
