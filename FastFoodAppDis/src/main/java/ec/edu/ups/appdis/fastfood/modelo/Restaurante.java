@@ -85,7 +85,7 @@ public class Restaurante {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
+	//To String para sacar datos
 	@Override
 	public String toString() {
 		return "Restaurante [codigo=" + codigo + ", nombre=" + nombre + ", telefono=" + telefono + ", tipo=" + tipo
