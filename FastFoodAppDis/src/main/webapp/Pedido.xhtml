@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       template="blank.xhtml">
 	
-	<ui:define name ="titulo">Pagina de prueba</ui:define>
+	<ui:define name ="titulo">PEDIDO</ui:define>
 	
 	<ui:define name ="contenido"> 
 	
@@ -94,7 +94,12 @@
 		<h:dataTable value ="#{pedidoControler.pedido.detalles}" var ="detalle" id ="tbldetalles">
 		<h:column>
 			<f:facet name="header">Codigo</f:facet>
-			<h:inputText value="#{detalle.codigo}" />
+			<h:inputText value="#{detalle.codigo}" id ="detalleid" />
+		</h:column>
+		<h:column>
+			<h:commandButton action="#{detalle.disminuir()}" value="-" >
+			<f:ajax  render = "r" />
+			</h:commandButton>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Cantidad</f:facet>

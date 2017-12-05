@@ -1,12 +1,19 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head>Listado De Pedidos</h:head> 
-<body> 
-<h:form>
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+	
+	<ui:define name ="titulo">Pagina de prueba</ui:define>
+	
+	<ui:define name ="contenido"> 
+	
+	<h:form>
+	<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Listado De Pedidos</h3>
+            </div>
+    </div>     
 	<h:outputText value="No existe registros" 
 	rendered="#{empty pedidoControler.pedidos}"/>
 
@@ -30,8 +37,15 @@
 		</h:column>
 	
 	</h:dataTable>
+<div class="box-footer">
+              
+              	<h:commandButton action="Inicio" class="btn btn-info pull-right" id="btn" value="Realizar un nueva Busqueda" />
+              
+              </div>
 
-<h:commandButton action="Inicio" value="Realizar un nuevo Pedido"/>
-</h:form>
-</body> 
-</html>
+		
+	</h:form>
+	
+	</ui:define>
+	
+	</ui:composition>

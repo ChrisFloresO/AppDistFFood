@@ -64,6 +64,11 @@
 			<h:inputText value="#{detalle.codigo}" />
 		</h:column>
 		<h:column>
+			<h:commandButton action="#{detalle.disminuir()}" value="-" >
+			<f:ajax  render = "r" />
+			</h:commandButton>
+		</h:column>
+		<h:column>
 			<f:facet name="header">Cantidad</f:facet>
 			<h:inputText value="#{detalle.cantidad}" id ="r"/>
 		</h:column>
