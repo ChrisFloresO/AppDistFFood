@@ -22,10 +22,10 @@ public class UsuarioDAO {
 	public void actualizar(Usuario u) {
 		em.merge(u);
 	}
-	public void borrar(String  cedula) {
+	public void borrar(int  cedula) {
 		em.remove(leer(cedula));
 	}
-	public Usuario leer(String  cedula) {
+	public Usuario leer(int  cedula) {
 		
 		return em.find(Usuario.class, cedula);
 	}
@@ -38,6 +38,31 @@ public class UsuarioDAO {
 		@SuppressWarnings("unchecked")
 		List<Usuario> listado =query.getResultList();
 		return listado;
+	}
+public List<Usuario> getUsuariosLogin(String correo,String clave){
+		
+		
+		String sql = "SELECT u FROM Usuario u "
+				+ "WHERE email = ? "
+				+" AND contrasena = ?";
+	
+	Query q = em.createQuery(sql,Usuario.class);
+	q.setParameter(1, correo);
+	q.setParameter(2, clave);
+	List<Usuario> personas = q.getResultList();
+	return personas;
+	}
+	
+    public List<Usuario> getUsuariosLoginRC(String correo){
+		
+		
+		String sql = "SELECT u FROM Usuario u "
+				+ "WHERE email = ? ";
+	
+	Query q = em.createQuery(sql,Usuario.class);
+	q.setParameter(1, correo);
+	List<Usuario> personas = q.getResultList();
+	return personas;
 	}
 
 }
