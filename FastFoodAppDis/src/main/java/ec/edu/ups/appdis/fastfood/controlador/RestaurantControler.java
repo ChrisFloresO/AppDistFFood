@@ -13,6 +13,10 @@ import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Ubicacion;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
 
 @ManagedBean
 @ViewScoped

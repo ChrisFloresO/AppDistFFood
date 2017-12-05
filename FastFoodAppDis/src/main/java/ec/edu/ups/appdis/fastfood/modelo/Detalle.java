@@ -6,6 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Entity
 @Table(name="tbl_detalle")
 public class Detalle 

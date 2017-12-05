@@ -14,6 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Entity
 @Table(name="tbl_plato")
 public class Plato 

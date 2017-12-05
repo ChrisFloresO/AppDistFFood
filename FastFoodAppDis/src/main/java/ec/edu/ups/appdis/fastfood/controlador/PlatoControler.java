@@ -78,6 +78,14 @@ public class PlatoControler
 		return null;
 	}
 	*/
+	/**
+	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
+	 * que tiene el metodo guardar que se le pasa el parametro calificacion (objeto de la clase
+	 * plato) y recarga el metodo loadCalificaciones, retornando un String (Lista_Plato), siendo este
+	 * un nombre de un archivo html.
+	 * 
+	 * @return Lista_Plato
+	 */
 	public String guardar() 
 	{
 		System.out.println(plato);
@@ -98,6 +106,13 @@ public class PlatoControler
 		return "Lista_Plato";
 	}
 	
+	/**
+	 * este metodo se genera cuando al invocar el metodo guardar no se puede guardar;
+	 * este metodo nos mostrara la causa por que no se guardo
+	 * reciviendo un parametro de excepcion (e) y retornara un String con la informacion del error
+	 * @param e
+	 * @return
+	 */
 	private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.
         String errorMessage = "Registration failed. See server log for more information";
@@ -117,23 +132,53 @@ public class PlatoControler
         return errorMessage;
     }
 	
-	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
+	 * y nos retornara un String (Editar_Plato) que es un nombre de una pagina Xhtml
+	 * @param codigo
+	 * @return
+	 */
 	public String listadatosEditar(int codigo) 
 	{
 		plato = pdao.leer(codigo);
 		return "Editar_Plato";
 	}
 	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
+	 * y nos retornara un String (Pedido) que es un nombre de una pagina Xhtml
+	 * @param codigo
+	 * @return
+	 */
 	public String listadatosB(int codigo) 
 	{
 		plato = pdao.leer(codigo);
 		return "Pedido";
 	}
 	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
+	 * y nos retornara un String (Calificacion) que es un nombre de una pagina Xhtml
+	 * @param codigo
+	 * @return
+	 */
 	public String listadatosC(int codigo) 
 	{
 		plato = pdao.leer(codigo);
 		return "Calificacion";
 	}
+	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
+	 * y nos retornara un String (Calificacion) que es un nombre de una pagina Xhtml
+	 * @param codigo
+	 * @return
+	 */
+	public String listadatosU() 
+	{
+		//plato = pdao.leer(codigo);
+		return "UbicacionP";
+	}
+	
 	
 }
