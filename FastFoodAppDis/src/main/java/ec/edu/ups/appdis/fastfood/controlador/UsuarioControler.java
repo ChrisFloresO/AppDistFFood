@@ -54,7 +54,7 @@ public class UsuarioControler {
 		usuario = udao.leer(codigo);
 		System.out.println("Cuenca " + usuario);
 		
-		return "UsuarioR";
+		return "UsuarioE";
 	}
 	public void loadUsuarios() {
 		usuarios = udao.listadoUsuario();

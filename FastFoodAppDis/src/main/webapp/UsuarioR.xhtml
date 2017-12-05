@@ -1,49 +1,89 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a4j="http://richfaces.org/a4j"> 
+      template="blank.xhtml">
+	
+	<ui:define name ="titulo">FAST FOOD</ui:define>
+	
+	<ui:define name ="contenido"> 
+	
+	<h:form>
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Registrar Usuario</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+              <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Cedula</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{usuarioControler.usuario.cedula}" class="form-control" id="cedula">
+					</h:inputText>
+					<h:message for="nombre" errorClass ="Invalid"/>
+                  </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{usuarioControler.usuario.nombre}" class="form-control" id="nombre">
+					</h:inputText>
+					<h:message for="nombre" errorClass ="Invalid"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Apellido</label>
 
-<h:head></h:head> 
-<body> 
-<h2>REGISTRO USUARIO</h2>
-<h:form>
-<h:panelGrid columns="3">
-
-<h:outputLabel value="Cedula" for="cedula"/>
-<h:inputText value="#{usuarioControler.usuario.cedula}" id="cedula" />
-<h:message for="cedula"/>
-
-<h:outputLabel value="Nombres:" for="nombres"/>
-<h:inputText value="#{usuarioControler.usuario.nombre}" id="nombres" />
-<h:message for="nombres"/>
-
-<h:outputLabel value="Apellido:" for="apellido"/>
-<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" />
-<h:message for="apellido"/>
-
-<h:outputLabel value="Telefono:" for="telefono"/>
-<h:inputText value="#{usuarioControler.usuario.telefono}" id="telefono" />
-<h:message for="telefono"/>
-
-
-<h:outputLabel value="Email:" for="email"/>
-<h:inputText value="#{usuarioControler.usuario.email}" id="email" />
-<h:message for="email"/>
-
-<h:outputLabel value="Contrasena" for="contrasena"/>
-<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena" type="password" class="input" data-type="password" />
-<h:message for="contrasena"/>
-
-<h:outputLabel value="Rol" for="rol"/>
-<h:inputText value="#{usuarioControler.usuario.rol}" id="rol" />
-<h:message for="rol"/>
-
-<h:commandButton action="#{usuarioControler.Guardar()}" value="GUARDAR" />
-<h:commandButton action="Logeo" value="LOGEO" />
-
-</h:panelGrid>
-</h:form>
-</body> 
-</html>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido"  class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{usuarioControler.usuario.telefono}" class="form-control" id="telefono">
+					</h:inputText>
+					<h:message for="nombre" errorClass ="Invalid"/>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{usuarioControler.usuario.email}" class="form-control" id="email">
+					</h:inputText>
+					<h:message for="email" errorClass ="Invalid"/>
+                  </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Contrasena</label>
+                  <div class="col-sm-10">
+                  	<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena"  class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Rol</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{usuarioControler.usuario.rol}" class="form-control" id="rol">
+					</h:inputText>
+					<h:message for="rol" errorClass ="Invalid"/>
+                  </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+              	<h:commandButton action="#{usuarioControler.Guardar()}" class="btn btn-info pull-right" id="btn" value="REGISTRAR USUARIO" />
+              </div>
+              
+              <!-- /.box-footer -->
+          </div>           
+          </div>
+          </div>
+          </div>
+	</h:form>
+	<h:form>
+           <div class="box-footer">
+              	<h:commandButton action="Logeo" class="btn btn-info pull-right" id="btn1" value="LOGEARSE" />
+              </div>
+              </h:form>
+	
+	</ui:define>
+	
+	</ui:composition>

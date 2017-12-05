@@ -1,8 +1,6 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
