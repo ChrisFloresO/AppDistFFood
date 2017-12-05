@@ -15,7 +15,7 @@ import ec.edu.ups.appdis.fastfood.modelo.Ubicacion;
 
 
 @ManagedBean
-@ViewScoped
+
 public class RestaurantControler {
 	private Restaurante restaurante;
 	private List<Restaurante> restaurantes;
@@ -27,7 +27,6 @@ public class RestaurantControler {
 	
 	@Inject
     private FacesContext facesContext;
-	
 	
 	
 	@PostConstruct		
@@ -52,8 +51,6 @@ public class RestaurantControler {
 	public void loadRestaurantes() {
 		restaurantes = rdao.listadoRestaurantes();
 	}
-	
-
 	public List<Restaurante> getRestaurantes() {
 		return restaurantes;
 	}
@@ -69,7 +66,7 @@ public class RestaurantControler {
 	{
 		
 		restaurante = rdao.leer(codigo);
-		System.out.println("Cuenca " + restaurante);
+		System.out.println("Restaurante " + restaurante);
 		
 		return "RestauranteE";
 	}
@@ -85,7 +82,7 @@ public class RestaurantControler {
 	
 	public String guardar() 
 	{
-		System.out.println(restaurante);
+		//System.out.println(restaurante);
 		//invoque al DAO y envie la entidad a persistir
 		try 
 		{
@@ -127,9 +124,4 @@ public class RestaurantControler {
         return errorMessage;
     }
 	
-	
-	
-	
-	
-
 }

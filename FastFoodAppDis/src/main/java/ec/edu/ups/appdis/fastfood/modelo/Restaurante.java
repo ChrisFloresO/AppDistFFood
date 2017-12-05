@@ -53,13 +53,9 @@ public class Restaurante {
 		return codigo;
 	}
 
-
-
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -87,8 +83,6 @@ public class Restaurante {
 	public void addUbicacion(Ubicacion ubicacion) {
 		if(ubicaciones==null) {
 			ubicaciones = new ArrayList();
-			
-			
 		}
 		ubicaciones.add(ubicacion);
 	}

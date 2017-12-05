@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 
@@ -17,7 +18,12 @@ public class UsuarioDAO {
 	private EntityManager em;
 	
 	public void Insertar(Usuario u) {
-		em.persist(u);	
+		Usuario u1 = leer(u.getId());
+		if(u1==null)
+			Insertar(u);
+		else
+			actualizar(u);
+			
 	}
 	public void actualizar(Usuario u) {
 		em.merge(u);
@@ -54,15 +60,13 @@ public List<Usuario> getUsuariosLogin(String correo,String clave){
 	}
 	
     public List<Usuario> getUsuariosLoginRC(String correo){
-		
-		
 		String sql = "SELECT u FROM Usuario u "
 				+ "WHERE email = ? ";
-	
 	Query q = em.createQuery(sql,Usuario.class);
 	q.setParameter(1, correo);
 	List<Usuario> personas = q.getResultList();
 	return personas;
 	}
+    
 
 }
