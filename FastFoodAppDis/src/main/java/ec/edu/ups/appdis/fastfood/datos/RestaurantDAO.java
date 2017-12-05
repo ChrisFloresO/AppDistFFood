@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
@@ -17,7 +18,11 @@ public class RestaurantDAO {
 		private EntityManager em;
 		
 		public void Insertar(Restaurante r) {
-			em.persist(r);	
+			Restaurante r1 = leer(r.getCodigo());
+			if(r1==null)
+				Insertar(r);
+			else
+				actualizar(r);
 		}
 		public void actualizar(Restaurante r) {
 			em.merge(r);
@@ -27,9 +32,8 @@ public class RestaurantDAO {
 		}
 		
 		public Restaurante leer(int  codigo) {
-			Restaurante r=new Restaurante();
-			r=em.find(Restaurante.class, codigo);
-			return r;
+			
+			return em.find(Restaurante.class, codigo);
 		}	
 		
 		public List<Restaurante> listadoRestaurantes()
