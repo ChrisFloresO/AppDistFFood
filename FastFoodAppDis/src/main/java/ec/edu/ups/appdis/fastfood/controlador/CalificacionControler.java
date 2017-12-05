@@ -94,7 +94,7 @@ public class CalificacionControler
             return null;
 		}
 		
-		return "Votos";
+		return "Inicio";
 	}
 	
 	private String getRootErrorMessage(Exception e) {

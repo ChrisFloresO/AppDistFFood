@@ -1,58 +1,91 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+	
+	<ui:define name ="titulo">Pagina de prueba</ui:define>
+	
+	<ui:define name ="contenido"> 
+	
 <f:metadata>
 	<f:viewParam name="id" value="#{platoControler.id}"/>
 </f:metadata>
-
-<body> 
-
-<h1>Realizar Pedido</h1>
-
 <h:form>
-<h:panelGrid columns ="3">
 	
-		<h:outputLabel value="Codigo:" for="codigo"/>
-		<h:outputLabel value="#{platoControler.plato.codigo}" id="codigo" />
-		<h:message  for="codigo"/>
-		
-		<h:outputLabel value="Nombre:" for="nombre"/>
-		<h:outputLabel value="#{platoControler.plato.nombre}" id="nombre" />
-		<h:message  for="nombre"/>
-		
-		<h:outputLabel value="Descripcion:" for="descripcion"/>
-		<h:outputLabel value="#{platoControler.plato.descripcion}" id="descripcion" />
-		<h:message  for="descripcion"/>
-		
-		<h:outputLabel value="Precio:" for="precio"/>
-		<h:outputLabel value="#{platoControler.plato.precio}" id="precio" />
-		<h:message  for="precio"/>
-	
-	</h:panelGrid>
+	<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">PLATO</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">codigo</label>
 
+                  <div class="col-sm-10">
+                  	<h:outputLabel value="#{platoControler.plato.codigo}" class="form-control" id="codigo">
+					</h:outputLabel>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nombre</label>
+
+                  <div class="col-sm-10">
+                  	<h:outputLabel value="#{platoControler.plato.nombre}" id="nombre"  class="form-control" />
+                  </div>
+                </div>
+                
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Descripcion</label>
+
+                  <div class="col-sm-10">
+                  	<h:outputLabel value="#{platoControler.plato.descripcion}" id="descripcion"  class="form-control" />
+                  </div>
+                </div>
+                
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">precio</label>
+
+                  <div class="col-sm-10">
+                  	<h:outputLabel value="#{platoControler.plato.precio}" id="precio"  class="form-control" />
+                  </div>
+                </div>
+                
+              </div>
+
+ </div>
 </h:form>
 
 <h:form>
-	
-	<h:messages globalOnly="true"/>
-	
-	<h:panelGrid columns ="3">
-		<h:outputLabel value="Ruc:" for="ruc"/>
-		<h:inputText value="#{pedidoControler.pedido.ruc}" id="ruc" />
-		<h:message  for="ruc"/>
-		
-		<h:outputLabel value="IVA:" for="iva"/>
-		<h:inputText value="#{pedidoControler.pedido.iva}" id="iva" />
-		<h:message  for="iva"/>
-	
-		<h:commandButton action="#{pedidoControler.guardar()}" value="Pedido" />
-	</h:panelGrid>
-	
-	
+
+
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">PEDIDO</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Ruc</label>
+
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{pedidoControler.pedido.ruc}" class="form-control" id="ruc">
+					</h:inputText>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">IVA</label>
+
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{pedidoControler.pedido.iva}" id="iva"  class="form-control" />
+                  </div>
+                </div>
+                
+              </div>
+              
+              	
 	<h:commandButton action="#{pedidoControler.addDetalle()}" value="Anadir detalle" >
 	 <f:ajax render="tbldetalles" execute="@all"/>
 	</h:commandButton>
@@ -74,12 +107,25 @@
 		</h:column>
 		
 		</h:dataTable>
-</h:form>
-
-
-<h:form>
-<h:commandButton action="Lista_P" value="Listado de Pedidos" inmediate="true"/>	
-<h:commandButton action="Inicio" value="Regresar" inmediate="true"/>	
-</h:form>
-</body> 
-</html>
+		
+          </div>
+          </h:form>
+         
+          
+          <h:form>
+           <!-- /.box-body -->
+              <div class="box-footer">
+              	<h:commandButton action="Lista_P" class="btn btn-info pull-right" id="btn" value="Listado de Pedidos" />
+				<h:commandButton action="Inicio" class="btn btn-info pull-right" id="btn1" value="Regresar" />
+              </div>
+              <!-- /.box-footer -->
+	</h:form>
+	 <h:form>
+          <div class="box-footer">
+              <h:commandButton action="{pedidoControler.guardar()}" class="btn btn-info pull-right" id="btn0" value="Pedido" />
+        	</div>
+          </h:form>
+	
+	</ui:define>
+	
+	</ui:composition>
