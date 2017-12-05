@@ -20,6 +20,10 @@ public class Calificacion {
 	@NotNull
 	@Column (name="cal_voto")
 	private String voto;
+	
+	@NotNull
+	@Column (name="cal_coemntario")
+	private String comentario;
 
 
 	public int getCodigo() {
@@ -37,10 +41,19 @@ public class Calificacion {
 	public void setVoto(String voto) {
 		this.voto = voto;
 	}
+	
+
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
 
 	@Override
 	public String toString() {
-		return "Calificacion [codigo=" + codigo + ", voto=" + voto + "]";
+		return "Calificacion [codigo=" + codigo + ", voto=" + voto + ", comentario=" + comentario + "]";
 	}
 	
 	

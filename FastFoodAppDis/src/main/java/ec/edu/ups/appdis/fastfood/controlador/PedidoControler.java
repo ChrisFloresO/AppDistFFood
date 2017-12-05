@@ -6,13 +6,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
-
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
+
 
 @ManagedBean
 public class PedidoControler 

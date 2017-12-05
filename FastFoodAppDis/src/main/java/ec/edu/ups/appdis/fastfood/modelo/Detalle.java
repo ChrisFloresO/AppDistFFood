@@ -45,5 +45,15 @@ public class Detalle
 		return null;
 		
 	}
+	
+	public String disminuir() 
+	{
+		if(cantidad>0) {
+		this.cantidad=cantidad -1;
+		}else
+			this.cantidad=0;
+		return null;
+		
+	}
 
 }
