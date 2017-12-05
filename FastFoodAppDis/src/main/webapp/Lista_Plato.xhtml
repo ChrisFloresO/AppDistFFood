@@ -1,21 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
-<body> 
-<h:form>
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+	
+	<ui:define name ="titulo">Pagina de prueba</ui:define>
+	
+	<ui:define name ="contenido"> 
+	
+	<h:form>
+	<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Lista de Plato</h3>
+            </div>
+    </div>     
 	<h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
 	<h:dataTable value ="#{platoControler.platos}" var="plato"
 		rendered="#{not empty platoControler.platos}">
+
 		<h:column>
 			<f:facet name="header">Codigo</f:facet>
+			
 			#{plato.codigo}
+			 
 		</h:column>
+       
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			#{plato.nombre}
@@ -38,9 +49,15 @@
 		</h:column>
 	
 	</h:dataTable>
+<div class="box-footer">
+              
+              	<h:commandButton action="Registra_Plato" class="btn btn-info pull-right" id="btn" value="Registrar Nuevo Plato" />
+              
+              </div>
 
-<h:commandButton action="Registra_Plato" value="Registrar Nuevo Plato"/>
-</h:form>
-
-</body> 
-</html>
+		
+	</h:form>
+	
+	</ui:define>
+	
+	</ui:composition>

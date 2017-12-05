@@ -39,9 +39,10 @@ public class Plato
 	@OneToOne
 	private Restaurante restaurante;
 	
-	
 	//SELECT p FROM Plato p WHERE p.resturante.nombre = '' 
 
+	
+	//gets and sets
 	public int getCodigo() {
 		return codigo;
 	}

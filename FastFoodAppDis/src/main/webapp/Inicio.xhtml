@@ -1,21 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+	
+	<ui:define name ="titulo">Pagina de prueba</ui:define>
+	
+	<ui:define name ="contenido"> 
+	
+	<h:form>
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Busqueda</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Buscar Plato</label>
 
-<h:head></h:head> 
-<body> 
-<h1>Fast Food</h1>
-<h:form>
-	<h:outputLabel value="Buscar plato:" for="buscar"/>
-	<h:inputText value="#{platoControler.plato.codigo}" id="busca" />
-	<h:message  for="busca"/>
-<h:commandButton action="#{platoControler.pdao.leer(busca)}" value="Buscar" inmediate="true">
-<f:ajax  render = "tabla" />
-</h:commandButton>	
-
-<h:outputText value="No existe registros" 
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{platoControler.plato.codigo}" class="form-control" id="busca">
+					</h:inputText>
+					<h:message for="busca" errorClass ="Invalid"/>
+                  </div>
+                </div>
+              </div>
+     		 <!-- /.box-body -->
+              <div class="box-footer">
+              
+              	<h:commandButton action="#{platoControler.pdao.leer(busca)}" class="btn btn-info pull-right" id="btn" value="Buscar" />
+				
+              </div>
+              <!-- /.box-footer -->
+              
+              <h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
 	<h:dataTable value ="#{platoControler.platos}" var="busquedas"
@@ -40,10 +59,17 @@
 			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo)}" value="Pedir"/>
 		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo)}" value="Votar"/>
+		</h:column>
 		
 	</h:dataTable>
-
-
-</h:form>
-</body> 
-</html>
+              
+        
+          </div>
+	</h:form>
+	
+	</ui:define>
+	
+	</ui:composition>

@@ -130,7 +130,10 @@ public class PlatoControler
 		return "Pedido";
 	}
 	
+	public String listadatosC(int codigo) 
+	{
+		plato = pdao.leer(codigo);
+		return "Calificacion";
+	}
 	
-	
-
 }

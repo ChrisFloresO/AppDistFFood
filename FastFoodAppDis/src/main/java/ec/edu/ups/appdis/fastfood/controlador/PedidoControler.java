@@ -22,7 +22,6 @@ public class PedidoControler
 	private int id;
 
 
-	
 	@Inject
 	private PedidoDAO pdao;
 	
