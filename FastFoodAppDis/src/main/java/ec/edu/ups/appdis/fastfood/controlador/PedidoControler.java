@@ -21,6 +21,7 @@ public class PedidoControler
 	private List<Pedido> pedidos;
 	private int id;
 
+
 	
 	@Inject
 	private PedidoDAO pdao;
@@ -125,7 +126,6 @@ public class PedidoControler
 		pedido = pdao.leer(codigo);
 		return "Pedido";
 	}
-	
 	
 	
 }

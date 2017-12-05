@@ -5,36 +5,34 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head></h:head> 
+<f:metadata>
+	<f:viewParam name="id" value="#{platoControler.id}"/>
+</f:metadata>
+
 <body> 
 
 <h1>Realizar Pedido</h1>
 
 <h:form>
-	<h:outputLabel value="Buscar plato:" for="buscar"/>
-	<h:inputText value="#{platoControler.plato.codigo}" id="buscar" />
-	<h:message  for="buscar"/>
-<h:commandButton action="#{platoControler.pdao.leer(buscar)}" value="Buscar" inmediate="true"/>	
-
-<h:outputText value="No existe registros" 
-	rendered="#{empty platoControler.platos}"/>
-
-	<h:dataTable value ="#{platoControler.platos}" var="busquedas"
-		rendered="#{not empty platoControler.platos}">
-		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			#{busquedas.nombre}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
-			#{busquedas.descripcion}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Precio</f:facet>
-			#{busquedas.precio}
-		</h:column>
+<h:panelGrid columns ="3">
+	
+		<h:outputLabel value="Codigo:" for="codigo"/>
+		<h:outputLabel value="#{platoControler.plato.codigo}" id="codigo" />
+		<h:message  for="codigo"/>
 		
-	</h:dataTable>
-
+		<h:outputLabel value="Nombre:" for="nombre"/>
+		<h:outputLabel value="#{platoControler.plato.nombre}" id="nombre" />
+		<h:message  for="nombre"/>
+		
+		<h:outputLabel value="Descripcion:" for="descripcion"/>
+		<h:outputLabel value="#{platoControler.plato.descripcion}" id="descripcion" />
+		<h:message  for="descripcion"/>
+		
+		<h:outputLabel value="Precio:" for="precio"/>
+		<h:outputLabel value="#{platoControler.plato.precio}" id="precio" />
+		<h:message  for="precio"/>
+	
+	</h:panelGrid>
 
 </h:form>
 
@@ -67,14 +65,21 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header">Cantidad</f:facet>
-			<h:inputText value="#{detalle.cantidad}" />
+			<h:inputText value="#{detalle.cantidad}" id ="r"/>
 		</h:column>
+		<h:column>
+			<h:commandButton action="#{detalle.aumentar()}" value="+" >
+			<f:ajax  render = "r" />
+			</h:commandButton>
+		</h:column>
+		
 		</h:dataTable>
 </h:form>
 
 
 <h:form>
 <h:commandButton action="Lista_P" value="Listado de Pedidos" inmediate="true"/>	
+<h:commandButton action="Inicio" value="Regresar" inmediate="true"/>	
 </h:form>
 </body> 
 </html>
