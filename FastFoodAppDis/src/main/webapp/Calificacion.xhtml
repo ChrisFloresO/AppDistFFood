@@ -62,7 +62,7 @@
 	
 	<h:panelGrid columns ="3">
 
-		<h:outputLabel value="Voto:" for="voto"/>
+		<h:outputLabel value="Calificacion:" for="voto"/>
 		<h:selectOneMenu value="#{calificacionControler.calificacion.voto}" id="voto">
   			 <f:selectItem itemValue="5" itemLabel="5" />
    			 <f:selectItem itemValue="4" itemLabel="4" /> 
@@ -71,11 +71,16 @@
    			 <f:selectItem itemValue="1" itemLabel="1" />                       
 		</h:selectOneMenu>
 		<h:message  for="voto"/>
+		
+		<h:outputLabel value="Comentario" for="comentario"/>
+		<h:inputText value="#{calificacionControler.calificacion.comentario}" id="comentario" />
+		<h:message  for="comentario"/>
 	
 	</h:panelGrid>
+		
               <div class="box-footer">
               	<h:commandButton action="#{calificacionControler.guardar()}" class="btn btn-info pull-right" id="btn" value="Realizar Voto" />
-				
+				<h:commandButton action="Inicio" class="btn btn-info pull-right" id="btn1" value="REGRESAR" />
               </div>
               <!-- /.box-footer -->
         
