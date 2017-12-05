@@ -33,10 +33,15 @@
 <h:message for="email"/>
 
 <h:outputLabel value="Contrasena" for="contrasena"/>
-<h:inputText value="#{usuarioControler.usuario.contrasena}" id="contrasena" />
+<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena" type="password" class="input" data-type="password" />
 <h:message for="contrasena"/>
 
+<h:outputLabel value="Rol" for="rol"/>
+<h:inputText value="#{usuarioControler.usuario.rol}" id="rol" />
+<h:message for="rol"/>
+
 <h:commandButton action="#{usuarioControler.Guardar()}" value="GUARDAR" />
+<h:commandButton action="Logeo" value="LOGEO" />
 
 </h:panelGrid>
 </h:form>

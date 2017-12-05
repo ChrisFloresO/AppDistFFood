@@ -10,33 +10,26 @@
   
 	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
 	<link rel="stylesheet" href="resources/assets/css/style_login.css"/>
-  
-  
 </h:head> 
-
 <body > 
 <div class="login-wrap">
-
 	<div class="login-html">
-	
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked="checked" /><label for="tab-1" class="tab">Loguearse</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab">Registrarse</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab"></label>
 		<div class="login-form">
 		<h:form id="login">
 			<div class="sign-in-htm">
 				<div class="group">
 					<label for="user" class="label">Correo</label>
-					<h:inputText value="#{datos.correoIngresado}" id="usuario" type="text" class="input" />
+					<h:inputText value="#{usuarioControler.correoI}" id="usuario" type="text" class="input" />
 					<h:message for="usuario"/>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Contraseña</label>
-					<h:inputSecret value="#{datos.claveIngresado}" id="clave" type="password" class="input" data-type="password" />
+					<h:inputSecret value="#{usuarioControler.claveI}" id="clave" type="password" class="input" data-type="password" />
 					<h:message for="clave"/>
 				</div>
-				
 				<div class="group">
-					
 					<h:outputLabel value="Recordarme :" for="rememberMe" />
 					<h:selectBooleanCheckbox id="rememberMe" class="icon"/>
 					
@@ -48,11 +41,11 @@
 				</h:panelGrid>
 				
 				<div class="group">
-				<h:commandButton value="LOGIN" action="#{datos.listar()}" class="button"/>
+				<h:commandButton value="LOGIN" action="#{usuarioControler.listar()}" class="button"/>
 				</div>
 				<div class="hr"></div>
 				<div class="group">
-					<h:commandButton value="OLVIDO SU CONTRASEÑA" action="recuperar_contrasenia" class="button"/>
+					<h:commandButton value="REGISTRARSE" action="UsuarioR" class="button"/>
 				</div>
 			</div>
 			</h:form>
@@ -60,26 +53,26 @@
 			<div class="sign-up-htm">
 				<div class="group">
 					<label for="user" class="label">Nombre</label>
-					 <h:inputText value="#{datos.usuario.nombre}" id="user" type="text" class="input" />	 
+					 <h:inputText value="#{usuarioControler.usuario.nombre}" id="user" type="text" class="input" />	 
 				</div>
 				<div class="group">
 					<label for="user" class="label">Apellido</label>
-					<h:inputText value="#{datos.usuario.apellido}" id="apellido" type="text" class="input" />
+					<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" type="text" class="input" />
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Correo Electrónico</label>
-					<h:inputText value="#{datos.usuario.correo}" id="mail" type="text" class="input" />
-					
+					<h:inputText value="#{usuarioControler.usuario.email}" id="email" type="text" class="input" />
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Contraseña</label>
-					<h:inputSecret value="#{datos.usuario.clave}" id="pass" type="password" class="input" data-type="password"/>
+					<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="pass" type="password" class="input" data-type="password"/>
 				</div>
-				
-				
 				<div class="group">
-				<h:commandButton value="Registrarse" action="#{datos.guardar()}" class="button"/>
-					
+					<label for="pass" class="label">Telefono</label>
+					<h:inputText value="#{usuarioControler.usuario.telefono}" id="telefono" type="text" class="input" />
+				</div>
+				<div class="group">
+				<h:commandButton value="Registrarse" action="#{usuarioControler.Guardar()}" class="button"/>
 				</div>
 				
 			</div>
