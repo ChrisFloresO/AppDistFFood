@@ -1,26 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+      
+      <ui:define name ="titulo">FAST FOOD</ui:define>
+	<ui:define name ="contenido"> 
+	
 <f:metadata>
-	<f:viewParam name="id" value="#{usuarioControler.id}"/>
+	<f:viewParam name="id" value="#{restaurantControler.id}"/>
 </f:metadata>
-
-<body> 
-
-<h2>EDITAR USUARIO</h2>
 
 <h:form>
 	
 	<h:messages globalOnly="true"/>
 	
-	<h:inputText value="#{usuarioControler.id}" />
-	
 	<h:panelGrid columns ="3">
+		 
+		 <h:outputLabel value="Id:" for="id"/>
+		<h:inputText value="#{usuarioControler.usuario.id}" id="id" />
+		<h:message  for="id"/>
 	
 		<h:outputLabel value="Cedula:" for="cedula"/>
 		<h:inputText value="#{usuarioControler.usuario.cedula}" id="cedula" />
@@ -46,7 +45,11 @@
 		<h:inputText value="#{usuarioControler.usuario.contrasena}" id="contrasena" />
 		<h:message  for="contrasena"/>
 		
-		<h:commandButton action="#{personaControler.guardar()}" value="Guardar" />
+		<h:outputLabel value="Rol" for="rol"/>
+		<h:inputText value="#{usuarioControler.usuario.rol}" id="rol" />
+		<h:message  for="rol"/>
+		
+		<h:commandButton action="#{usuarioControler.Guardar()}" value="Guardar" />
 		
 		<h:commandButton action="UsuarioL" value="Regresar" />
 	</h:panelGrid>
@@ -56,5 +59,7 @@
 <h:commandButton action="UsuarioL" value="Listado de Usuarios" inmediate="true"/>	
 </h:form>
 
-</body> 
-</html>
+	
+	</ui:define>
+	
+	</ui:composition>

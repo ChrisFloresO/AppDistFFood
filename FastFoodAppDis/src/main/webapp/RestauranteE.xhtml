@@ -1,62 +1,104 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+	
+	<ui:define name ="titulo">FAST FOOD</ui:define>
+	
+	<ui:define name ="contenido"> 
 
 <f:metadata>
 	<f:viewParam name="id" value="#{restaurantControler.id}"/>
 </f:metadata>
 
-<body> 
 
-<h1>Editar Restaurante</h1>
 
 <h:form>
-	
-	<h:messages globalOnly="true"/>
-	
-	<h:inputText value="#{restaurantControler.id}" />
-	
-	<h:panelGrid columns ="3">
-	
-		<h:outputLabel value="Nombre:" for="nombre"/>
-		<h:inputText value="#{restaurantControler.restaurante.nombre}" id="nombre" />
-		<h:message  for="nombre"/>
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Editar Restaurante</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Codigo</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{restaurantControler.restaurante.codigo}" class="form-control" id="codigo">
+					</h:inputText>
+					<h:message for="codigo" errorClass ="Invalid"/>
+                  </div>
+              <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{restaurantControler.restaurante.nombre}" class="form-control" id="nombre">
+					</h:inputText>
+					<h:message for="nombre" errorClass ="Invalid"/>
+                  </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tipo</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{restaurantControler.restaurante.tipo}" class="form-control" id="tipo">
+					</h:inputText>
+					<h:message for="tipo" errorClass ="Invalid"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Telefono</label>
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono"  class="form-control" />
+                  	<h:message for="telefono" errorClass ="Invalid"/>
+                  </div>
+                </div>
 		
-		<h:outputLabel value="Tipo:" for="tipo"/>
-		<h:inputText value="#{restaurantControler.restaurante.tipo}" id="tipo" />
-		<h:message  for="tipo"/>
-		
-		<h:outputLabel value="Telefono:" for="telefono"/>
-		<h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono" />
-		<h:message  for="telefono"/>
-		
-<h1>Editar Datos Ubicacion</h1>	
+<h3>Editar Datos Ubicacion</h3>	
 
-	</h:panelGrid>
-		<h:dataTable value ="#{restaurantControler.restaurante.ubicaciones}" var ="ubicacion">
-		<h:column>
-			<f:facet name="header">Direccion</f:facet>
-			<h:inputText value="#{ubicacion.direccion}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Latitud</f:facet>
-			<h:inputText value="#{ubicacion.latitud}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Longitud</f:facet>
-			<h:inputText value="#{ubicacion.longitud}" />
-		</h:column>
-		</h:dataTable>
-	
+	<h:commandButton action="#{restaurantControler.addUbicacione()}" value="Anadir Sucursal" >
+			<f:ajax render="Restaurante" execute="@all"></f:ajax>
+			</h:commandButton>
+				
+			<h:dataTable value ="#{restaurantControler.restaurante.ubicaciones}" var ="ubicacion" id= "Restaurante">
+				
+				<h:column>
+					<f:facet name="header">Direccion</f:facet>
+					<h:inputText value="#{ubicacion.direccion}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Latitud</f:facet>
+					<h:inputText value="#{ubicacion.latitud}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Longitud</f:facet>
+					<h:inputText value="#{ubicacion.longitud}" />
+				</h:column>
+				</h:dataTable>
+				<div class="box-footer">
+              	<h:commandButton action="#{restaurantControler.guardar()}" class="btn btn-info pull-right" id="btn1" value="GUARDAR" />
+              </div>
+				
+		          </div>           
+		          </div>
+		          </div>
+		          </div>
+              </h:form>
+              <h:form>
+              <div class="box-footer">
+              <h:commandButton action="RestauranteL" class="btn btn-info pull-right" id="btn2" value="LISTADO RESTAURANTE"/>	
+              </div>
+		</h:form>
+	</ui:define>
+	</ui:composition>
 
-</h:form>
-<h:form>
-<h:commandButton action="#{personaControler.guardar()}" value="GUARDAR" />
-<h:commandButton action="RestauranteL" value="Listado Restaurantes" inmediate="true"/>	
-</h:form>
-</body> 
-</html>
+ 
+
+
+
+
+	
+	
+                
+               
+
+
+			

@@ -65,6 +65,14 @@ public class RestaurantControler {
 	public int getId() {
 		return id;
 	}
+	public String listadatosEditar(int codigo) 
+	{
+		
+		restaurante = rdao.leer(codigo);
+		System.out.println("Cuenca " + restaurante);
+		
+		return "RestauranteE";
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -120,12 +128,7 @@ public class RestaurantControler {
     }
 	
 	
-	public String listadatosEditar(int codigo) 
-	{
-		restaurante = rdao.leer(codigo);
-		
-		return "RestauranteR";
-	}
+	
 	
 	
 

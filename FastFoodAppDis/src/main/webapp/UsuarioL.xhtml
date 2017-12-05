@@ -1,19 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="blank.xhtml">
+      
+      <ui:define name ="titulo">FAST FOOD</ui:define>
+	
+	<ui:define name ="contenido"> 
 
-<h:head></h:head> 
-<body> 
-<h2>LISTADO USUARIO</h2>
 <h:form>
 	<h:outputText value="No existe usuarios registros" 
 	rendered="#{empty usuarioControler.usuarios}"/>
 
 	<h:dataTable value ="#{usuarioControler.usuarios}" var="usuario"
 		rendered="#{not empty usuarioControler.usuarios}">
-		
+		<h:column>
+			<f:facet name="header">Id</f:facet>
+			#{usuario.id}
+		</h:column>
 		<h:column>
 			<f:facet name="header">Cedula</f:facet>
 			#{usuario.cedula}
@@ -43,18 +47,22 @@
 	
 		<h:column>
 			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{usuarioControler.listadatosEditar(usuario.cedula)}" value="Editar"/>
-			<a href="UsuarioE">Editar</a>
+			<h:commandButton action="#{usuarioControler.listadatosEditar(usuario.id)}" value="Editar"/>
+			<a href="UsuarioE.xhtml">Editar</a>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{usuarioControler.Borrar(usuario.cedula)}" value="Borrar" />
+			<h:commandButton action="#{usuarioControler.Borrar(usuario.id)}" value="Borrar" />
 		</h:column>
 	
 	</h:dataTable>
 
-<h:commandButton action="UsuarioR" value="Crear una nuevo Usuario"/>
+	
+</h:form>	
+<h:form>
+<h:commandButton action="UsuarioR" value="Crear un nuevo Usuario"/>
 </h:form>
-
-</body> 
-</html>
+	
+	</ui:define>
+	
+	</ui:composition>

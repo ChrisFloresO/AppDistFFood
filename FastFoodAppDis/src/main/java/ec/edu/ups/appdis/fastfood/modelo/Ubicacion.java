@@ -33,7 +33,6 @@ public class Ubicacion {
 	private double longitud;
 	
 	
-	
 	public int getCodigo() {
 		return codigo;
 	}

@@ -25,10 +25,13 @@ public class RestaurantDAO {
 		public void borrar(int codigo) {
 			em.remove(leer(codigo));
 		}
+		
 		public Restaurante leer(int  codigo) {
-			
-			return em.find(Restaurante.class, codigo);
+			Restaurante r=new Restaurante();
+			r=em.find(Restaurante.class, codigo);
+			return r;
 		}	
+		
 		public List<Restaurante> listadoRestaurantes()
 		{
 			//selects contra las entidades mapeadas restaurante
