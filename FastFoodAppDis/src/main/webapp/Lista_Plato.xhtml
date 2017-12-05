@@ -13,6 +13,10 @@
 	<h:dataTable value ="#{platoControler.platos}" var="plato"
 		rendered="#{not empty platoControler.platos}">
 		<h:column>
+			<f:facet name="header">Codigo</f:facet>
+			#{plato.codigo}
+		</h:column>
+		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			#{plato.nombre}
 		</h:column>

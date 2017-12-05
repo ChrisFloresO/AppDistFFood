@@ -36,7 +36,6 @@ public class PlatoControler
 		return plato;
 	}
 
-
 	public void setPlato(Plato plato) {
 		this.plato = plato;
 	}
@@ -122,8 +121,16 @@ public class PlatoControler
 	public String listadatosEditar(int codigo) 
 	{
 		plato = pdao.leer(codigo);
-		return "Registra_Plato";
+		return "Editar_Plato";
 	}
+	
+	public String listadatosB(int codigo) 
+	{
+		plato = pdao.leer(codigo);
+		return "Pedido";
+	}
+	
+	
 	
 
 }

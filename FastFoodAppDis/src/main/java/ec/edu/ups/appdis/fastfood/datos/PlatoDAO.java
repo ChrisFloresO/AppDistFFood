@@ -52,14 +52,14 @@ public class PlatoDAO
 		return listado;
 	}
 //listar2
-	public List<Plato> listadoPlatospr(String busqueda)
+	public List<Plato> listadoPlatospr(int busqueda)
 	{
 		//selects contra las entidades mapeadas select * from tbl_plato p where p.plt_nombre like 'papas'
-		String jppql = "SELECT p FROM Plato p where p.nombre like '"+busqueda+"'";
+		String jppql = "SELECT p FROM Plato p where p.codigo ="+busqueda+"";
 		Query query = em.createQuery(jppql,Plato.class);
 		@SuppressWarnings("unchecked")
-		List<Plato> listado =query.getResultList();
-		return listado;
+		List<Plato> listado1 =query.getResultList();
+		return listado1;
 	}
 
 

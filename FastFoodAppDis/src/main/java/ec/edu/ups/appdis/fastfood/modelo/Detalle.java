@@ -39,5 +39,11 @@ public class Detalle
 		return "Detalle [codigo=" + codigo + ", cantidad=" + cantidad + "]";
 	}	
 	
+	public String aumentar() 
+	{
+		this.cantidad=cantidad +1;
+		return null;
+		
+	}
 
 }
