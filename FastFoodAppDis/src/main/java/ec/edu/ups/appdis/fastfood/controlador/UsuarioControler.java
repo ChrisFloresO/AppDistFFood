@@ -47,12 +47,13 @@ public class UsuarioControler {
 	 * metodos para crud
 	 */
 	public String Guardar(){
-			udao.Insertar(usuario);
+			udao.guardar(usuario);
+			loadUsuarios();
 		return null;
 	}
-	public String listadatosEditar(int codigo) 
+	public String listadatosEditar(int cedula) 
 	{
-		usuario = udao.leer(codigo);
+		usuario = udao.leer(cedula);
 		System.out.println("Cuenca " + usuario);
 		
 		return "UsuarioE";
@@ -60,8 +61,8 @@ public class UsuarioControler {
 	public void loadUsuarios() {
 		usuarios = udao.listadoUsuario();
 	}
-	public void Borrar(int codigo) {
-		udao.borrar(codigo);
+	public void Borrar(int cedula) {
+		udao.borrar(cedula);
 		loadUsuarios();
 	}
 	public String listar(){
@@ -98,7 +99,7 @@ public class UsuarioControler {
     	 
     	 if(getContraseñaA().equals(usuario.getContrasena())){
     		 usuario.setContrasena(getContraseñaN());
-    		 udao.Insertar(this.usuario);
+    		 udao.guardar(this.usuario);
     	 }
     	 return "dialogo_clave";
      }

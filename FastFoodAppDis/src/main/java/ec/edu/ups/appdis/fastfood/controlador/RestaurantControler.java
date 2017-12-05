@@ -15,7 +15,7 @@ import ec.edu.ups.appdis.fastfood.modelo.Ubicacion;
 
 
 @ManagedBean
-
+@ViewScoped
 public class RestaurantControler {
 	private Restaurante restaurante;
 	private List<Restaurante> restaurantes;
@@ -86,7 +86,8 @@ public class RestaurantControler {
 		//invoque al DAO y envie la entidad a persistir
 		try 
 		{
-			rdao.Insertar(restaurante);
+			rdao.guardar(restaurante);
+			
 			loadRestaurantes();
 		}
 		catch(Exception e)

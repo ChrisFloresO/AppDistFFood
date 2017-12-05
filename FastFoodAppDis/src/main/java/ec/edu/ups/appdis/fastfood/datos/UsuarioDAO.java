@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
@@ -17,23 +18,27 @@ public class UsuarioDAO {
 	@Inject	
 	private EntityManager em;
 	
-	public void Insertar(Usuario u) {
+	public void guardar(Usuario u) {
 		Usuario u1 = leer(u.getId());
 		if(u1==null)
-			Insertar(u);
+			insertar(u);
 		else
 			actualizar(u);
 			
 	}
+	public void insertar (Usuario u) {
+		em.persist(u);
+	}
+	
 	public void actualizar(Usuario u) {
 		em.merge(u);
 	}
-	public void borrar(int  cedula) {
-		em.remove(leer(cedula));
+	public void borrar(int id) {
+		em.remove(leer(id));
 	}
-	public Usuario leer(int  cedula) {
+	public Usuario leer(int id) {
 		
-		return em.find(Usuario.class, cedula);
+		return em.find(Usuario.class, id);
 	}
 
 	public List<Usuario> listadoUsuario()
