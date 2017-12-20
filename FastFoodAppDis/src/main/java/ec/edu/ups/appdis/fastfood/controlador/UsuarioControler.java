@@ -13,6 +13,7 @@ import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 @ManagedBean
+
 public class UsuarioControler {
 	private String id;
 	private List<Usuario> usuarios;
@@ -21,17 +22,15 @@ public class UsuarioControler {
 	private List<Usuario> listadoLogin;
 	private String contraseñaA;
 	private String contraseñaN;
-	
+
 	@Inject
 	private UsuarioDAO udao;
-	
-	
+
 	private Usuario usuario;
-	
-	
-	@PostConstruct		
+
+	@PostConstruct
 	public void init() {
-		usuario=new Usuario();
+		usuario = new Usuario();
 		loadUsuarios();
 	}
 
@@ -42,87 +41,97 @@ public class UsuarioControler {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	/*
 	 * metodos para crud
 	 */
-	public String Guardar(){
-			udao.Insertar(usuario);
+	public String Guardar() {
+		udao.Insertar(usuario);
 		return null;
 	}
-	public String listadatosEditar(int codigo) 
-	{
+
+	public String Actualizar() {
+		udao.actualizar(usuario);
+		return "UsuarioL";
+	}
+
+	public String listadatosEditar(int codigo) {
 		usuario = udao.leer(codigo);
 		System.out.println("Cuenca " + usuario);
-		
+
 		return "UsuarioE";
 	}
+
 	public void loadUsuarios() {
 		usuarios = udao.listadoUsuario();
 	}
+
 	public void Borrar(int codigo) {
 		udao.borrar(codigo);
 		loadUsuarios();
 	}
-	public String listar(){
-		listadoLogin = udao.getUsuariosLogin(correoI,claveI);
-		for(int i=0;i<listadoLogin.size();i++){
+
+	public String listar() {
+		listadoLogin = udao.getUsuariosLogin(correoI, claveI);
+		for (int i = 0; i < listadoLogin.size(); i++) {
 			System.out.println(listadoLogin.get(i).getEmail());
 			System.out.println(listadoLogin.get(i).getRol());
-			if(listadoLogin.get(i).getRol()==1){
+			if (listadoLogin.get(i).getRol() == 1) {
 				System.out.println("administrador");
 				return "RestauranteR";
-			}else
-				if(listadoLogin.get(i).getRol()==2){
-					return "RestauranteL";
-				}else
-					if(listadoLogin.get(i).getRol()==3) {
-					return "Inicio";
-				}
+			} else if (listadoLogin.get(i).getRol() == 2) {
+				return "RestauranteL";
+			} else if (listadoLogin.get(i).getRol() == 3) {
+				return "Inicio";
+			}
 		}
 		return null;
 	}
-	public String perfilUsuario(){
-		
-		listadoLogin = udao.getUsuariosLogin(correoI,claveI);
+
+	public String perfilUsuario() {
+
+		listadoLogin = udao.getUsuariosLogin(correoI, claveI);
 		init();
-		for(int i=0;i<listadoLogin.size();i++){
+		for (int i = 0; i < listadoLogin.size(); i++) {
 			System.out.println(listadoLogin.get(i).getEmail());
 			System.out.println(listadoLogin.get(i).getRol());
-			
+
 		}
 		return "perfil_usuario";
 	}
-	
- public String contraseñaCambiada(){
-    	 
-    	 if(getContraseñaA().equals(usuario.getContrasena())){
-    		 usuario.setContrasena(getContraseñaN());
-    		 udao.Insertar(this.usuario);
-    	 }
-    	 return "dialogo_clave";
-     }
- public String cambiarContraseña(int correo){
-		
+
+	public String contraseñaCambiada() {
+
+		if (getContraseñaA().equals(usuario.getContrasena())) {
+			usuario.setContrasena(getContraseñaN());
+			udao.Insertar(this.usuario);
+		}
+		return "dialogo_clave";
+	}
+
+	public String cambiarContraseña(int correo) {
+
 		Usuario usuario = udao.leer(correo);
-		this.usuario  = usuario;
-		//System.out.println(this.usuario.getClave());
+		this.usuario = usuario;
+		// System.out.println(this.usuario.getClave());
 		return "cambiar_contrasenia";
 	}
-    public String editarPerfil(int correo){
+
+	public String editarPerfil(int correo) {
 		Usuario usuario = udao.leer(correo);
-		this.usuario  = usuario;
+		this.usuario = usuario;
 		return "UsuarioE";
 	}
-    @PreDestroy
-	public void close(){
+
+	@PreDestroy
+	public void close() {
 		System.out.println("Cerrando");
 	}
-	
+
 	public String logout() {
-      FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-      return "logueo?faces-redirect=true";
-  }
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "logueo?faces-redirect=true";
+	}
 	/*
 	 * getters and setters
 	 */

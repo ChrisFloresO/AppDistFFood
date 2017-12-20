@@ -18,11 +18,8 @@ public class RestaurantDAO {
 		private EntityManager em;
 		
 		public void Insertar(Restaurante r) {
-			Restaurante r1 = leer(r.getCodigo());
-			if(r1==null)
-				Insertar(r);
-			else
-				actualizar(r);
+	
+			em.persist(r);
 		}
 		public void actualizar(Restaurante r) {
 			em.merge(r);
