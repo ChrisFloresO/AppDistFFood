@@ -117,7 +117,7 @@ public class UsuarioControler {
 					return "RestauranteL";
 				}else
 					if(listadoLogin.get(i).getRol()==3) {
-					return "Inicio";
+					return "bl";
 				}
 		}
 		return null;
