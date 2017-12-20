@@ -1,6 +1,6 @@
 body{
 	margin:0;
-	color:#6a6f8c;
+	color:#ffffff;
 	padding-top:100px;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
@@ -27,7 +27,7 @@ html{
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-	background:rgba(40,57,101,.9);
+	background:#a95858;
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -100,7 +100,7 @@ html{
 	font-size:12px;
 }
 .login-form .group .button{
-	background:#1161ee;
+	background:#423e3e;
 }
 .login-form .group label .icon{
 	width:15px;
