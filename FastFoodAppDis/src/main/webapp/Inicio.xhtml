@@ -19,16 +19,16 @@
                   <label for="bucar_plato" class="col-sm-2 control-label">Buscar Plato</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.plato.nombre}" class="form-control" id="busca">
+                  	<h:inputText value="#{platoControler.plato.nombre}" class="form-control" id="buscar">
 					</h:inputText>
-					<h:message for="busca" errorClass ="Invalid"/>
+					<h:message for="buscar" errorClass ="Invalid"/>
                   </div>
                 </div>
               </div>
      		 <!-- /.box-body -->
               <div class="box-footer">
               
-              	<h:commandButton action="#{platoControler.pdao.listadoPlatospr(busca)}" class="btn btn-info pull-right" id="btn" value="Buscar" >
+              	<h:commandButton action="#{platoControler.pdao.listadoPlatospr(buscar)}" class="btn btn-info pull-right" id="btn" value="Buscar" >
               	<f:ajax  render = "tablas" />
               	</h:commandButton>
 				

@@ -56,7 +56,7 @@ public class PlatoDAO
 		List<Plato> listado =query.getResultList();
 		return listado;
 	}
-//listar2
+
 	public List<Plato> listadoPlatospr(String nombre)
 	{
 		//selects contra las entidades mapeadas select * from tbl_plato p where p.plt_nombre like 'papas'
