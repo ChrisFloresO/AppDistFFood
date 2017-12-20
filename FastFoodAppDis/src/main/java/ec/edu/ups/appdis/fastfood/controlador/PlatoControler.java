@@ -145,6 +145,7 @@ public class PlatoControler
 	}
 	
 	/**
+	 * 
 	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
 	 * y nos retornara un String (Pedido) que es un nombre de una pagina Xhtml
 	 * @param codigo

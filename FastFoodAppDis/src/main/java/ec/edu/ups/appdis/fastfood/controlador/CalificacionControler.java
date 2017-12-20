@@ -81,13 +81,6 @@ public class CalificacionControler
 		pdao.borrar(codigo);
 		loadCalificaciones();
 	}
-	/*
-	public String addDetalle() {
-		System.out.println("aqui");
-		calificacion.addDetalle(new Detalle());
-		return null;
-	}
-	*/
 	/**
 	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
 	 * que tiene el metodo guardar que se le pasa el parametro calificacion (objeto de la clase

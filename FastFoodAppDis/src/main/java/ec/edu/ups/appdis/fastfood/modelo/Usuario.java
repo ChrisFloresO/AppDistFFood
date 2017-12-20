@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
 /**
- * 
  * @author Franklin Villavicencio y Christian Flores
  */
 

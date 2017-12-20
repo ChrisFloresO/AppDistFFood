@@ -11,6 +11,10 @@ import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
 
 @Stateless
 public class UsuarioDAO {

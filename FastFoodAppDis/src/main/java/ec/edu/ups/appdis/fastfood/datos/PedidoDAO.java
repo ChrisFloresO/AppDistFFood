@@ -9,6 +9,11 @@ import javax.persistence.Query;
 
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Stateless
 public class PedidoDAO 
 {

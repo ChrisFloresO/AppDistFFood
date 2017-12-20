@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * 
  * @author Franklin Villavicencio y Christian Flores
  */
 

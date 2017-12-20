@@ -29,7 +29,7 @@
               <div class="box-footer">
               
               	<h:commandButton action="#{platoControler.pdao.listadoPlatospr(busca)}" class="btn btn-info pull-right" id="btn" value="Buscar" >
-              	<f:ajax  render = "tabla" />
+              	<f:ajax  render = "tablas" />
               	</h:commandButton>
 				
               </div>
@@ -38,7 +38,7 @@
               <h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
-	<h:dataTable value ="#{platoControler.platos}" var="busquedas" rendered="#{not empty platoControler.platos}" id ="tabla">
+	<h:dataTable value ="#{platoControler.platos}" var="busquedas" rendered="#{not empty platoControler.platos}" id ="tablas">
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			#{busquedas.nombre}

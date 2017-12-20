@@ -13,7 +13,6 @@ import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 /**
- * 
  * @author Franklin Villavicencio y Christian Flores
  */
 

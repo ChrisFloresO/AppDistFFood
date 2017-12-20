@@ -16,6 +16,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Entity
 @Table(name="tbl_pedido")
 public class Pedido 

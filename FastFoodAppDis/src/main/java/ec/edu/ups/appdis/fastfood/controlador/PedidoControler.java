@@ -12,7 +12,6 @@ import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
 /**
- * 
  * @author Franklin Villavicencio y Christian Flores
  */
 
