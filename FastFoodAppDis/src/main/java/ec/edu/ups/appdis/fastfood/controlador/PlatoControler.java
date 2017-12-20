@@ -180,5 +180,5 @@ public class PlatoControler
 		return "UbicacionP";
 	}
 	
-	
+
 }
