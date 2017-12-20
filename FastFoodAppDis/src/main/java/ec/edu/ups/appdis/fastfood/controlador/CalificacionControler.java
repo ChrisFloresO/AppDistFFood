@@ -13,9 +13,15 @@ import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @ManagedBean
 public class CalificacionControler 
 {
+
 	private Calificacion calificacion;
 	private List<Calificacion> calificaciones;
 	private int id;
@@ -65,7 +71,12 @@ public class CalificacionControler
 		listadatosEditar(id);
 	}
 
-
+	/**
+	 * Este metodo recibe un parametro (codigo de la calificiacion)
+	 * y este llama al objeto pdao(pdao de la clase CalificacionDao)
+	 * y se le pase el parametro codigo y recarga el metodo loadCalificaciones
+	 * @param codigo
+	 */
 	public void Boorar(int codigo) {
 		pdao.borrar(codigo);
 		loadCalificaciones();
@@ -77,6 +88,14 @@ public class CalificacionControler
 		return null;
 	}
 	*/
+	/**
+	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
+	 * que tiene el metodo guardar que se le pasa el parametro calificacion (objeto de la clase
+	 * calificacion) y recarga el metodo loadCalificaciones, retornando un String (Inico), siendo este
+	 * un nombre de un archivo html.
+	 * 
+	 * @return Inicio
+	 */
 	public String guardar() 
 	{
 		System.out.println(calificacion);
@@ -97,6 +116,13 @@ public class CalificacionControler
 		return "Inicio";
 	}
 	
+	/**
+	 * este metodo se genera cuando al invocar el metodo guardar no se puede guardar;
+	 * este metodo nos mostrara la causa por que no se guardo
+	 * reciviendo un parametro de excepcion (e) y retornara un String con la informacion del error
+	 * @param e
+	 * @return
+	 */
 	private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.
         String errorMessage = "Registration failed. See server log for more information";
@@ -115,7 +141,12 @@ public class CalificacionControler
         // This is the root cause message
         return errorMessage;
     }
-	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
+	 * y nos retornara un String (Calificacion) que es un nombre de una pagina Xhtml
+	 * @param codigo
+	 * @return
+	 */
 	
 	public String listadatosEditar(int codigo) 
 	{

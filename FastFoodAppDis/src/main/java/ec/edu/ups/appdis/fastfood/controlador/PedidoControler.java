@@ -1,6 +1,5 @@
 package ec.edu.ups.appdis.fastfood.controlador;
 
-//franklin
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +11,10 @@ import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
 
 @ManagedBean
 public class PedidoControler 
@@ -78,7 +81,14 @@ public class PedidoControler
 		pedido.addDetalle(new Detalle());
 		return null;
 	}
-	
+	/**
+	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
+	 * que tiene el metodo guardar que se le pasa el parametro calificacion (objeto de la clase
+	 * pedido) y recarga el metodo loadCalificaciones, retornando un String (Lista_P), siendo este
+	 * un nombre de un archivo html.
+	 * 
+	 * @return Lista_P
+	 */
 	public String guardar() 
 	{
 		System.out.println(pedido);
@@ -99,6 +109,13 @@ public class PedidoControler
 		return "Lista_P";
 	}
 	
+	/**
+	 * este metodo se genera cuando al invocar el metodo guardar no se puede guardar;
+	 * este metodo nos mostrara la causa por que no se guardo
+	 * reciviendo un parametro de excepcion (e) y retornara un String con la informacion del error
+	 * @param e
+	 * @return
+	 */
 	private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.
         String errorMessage = "Registration failed. See server log for more information";
@@ -118,7 +135,12 @@ public class PedidoControler
         return errorMessage;
     }
 	
-	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (codigo)
+	 * y nos retornara un String (Pedido) que es un nombre de una pagina Xhtml
+	 * @param codigo
+	 * @return
+	 */
 	public String listadatosEditar(int codigo) 
 	{
 		pedido = pdao.leer(codigo);

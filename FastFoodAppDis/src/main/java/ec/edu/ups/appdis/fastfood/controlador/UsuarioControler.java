@@ -12,6 +12,11 @@ import javax.inject.Inject;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @ManagedBean
 public class UsuarioControler {
 	private String id;
@@ -46,24 +51,60 @@ public class UsuarioControler {
 	/*
 	 * metodos para crud
 	 */
+	/**
+	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
+	 * que tiene el metodo guardar que se le pasa el parametro calificacion (objeto de la clase
+	 * usuari) y recarga el metodo loadUsuario, retornando un String (Logueo), siendo este
+	 * un nombre de un archivo html.
+	 * 
+	 * @return Lista_Plato
+	 */
 	public String Guardar(){
-			udao.Insertar(usuario);
-		return null;
+			udao.guardar(usuario);
+			loadUsuarios();
+		return "Logeo";
 	}
-	public String listadatosEditar(int codigo) 
+	
+	/**
+	 * este metodo permite encontrar un objeto a partir de un parametro de busqueda (cedula)
+	 * y nos retornara un String (UsuarioE que es un nombre de una pagina Xhtml
+	 * @param cedula
+	 * @return
+	 */
+	public String listadatosEditar(int cedula) 
 	{
-		usuario = udao.leer(codigo);
-		System.out.println("Cuenca " + usuario);
-		
+		usuario = udao.leer(cedula);
+		///System.out.println("Cuenca " + usuario);
 		return "UsuarioE";
 	}
+	
+	/**
+	 * este metodo permite agregar los usuarios a una lista para luego mostrarlos.
+	 * @param 
+	 * @return
+	 */
 	public void loadUsuarios() {
 		usuarios = udao.listadoUsuario();
 	}
-	public void Borrar(int codigo) {
-		udao.borrar(codigo);
+	
+	/**
+	 * Este metodo recibe un parametro (cedula de Usuario)
+	 * y este llama al objeto pdao(pdao de la clase UsuarioDao)
+	 * y se le pase el parametro cedula y recarga el metodo loadUsuarios
+	 * @param cedula
+	 */
+	public void Borrar(int cedula) {
+		udao.borrar(cedula);
 		loadUsuarios();
 	}
+	
+	/**
+	 * este metodo carga el usuario dado el parametro de correo y clave de inico 
+	 * luego hace un for para verificar que tipo de usuario es con el campo rol
+	 * este campo rol permitira ver si el usuario que se registra es administrador, empleado o cliente
+	 * y retorna un String (RestauranteR, RestauranteL, Inicio, null).
+	 * @return
+	 */
 	public String listar(){
 		listadoLogin = udao.getUsuariosLogin(correoI,claveI);
 		for(int i=0;i<listadoLogin.size();i++){
@@ -98,7 +139,7 @@ public class UsuarioControler {
     	 
     	 if(getContraseñaA().equals(usuario.getContrasena())){
     		 usuario.setContrasena(getContraseñaN());
-    		 udao.Insertar(this.usuario);
+    		 udao.guardar(this.usuario);
     	 }
     	 return "dialogo_clave";
      }
@@ -114,15 +155,12 @@ public class UsuarioControler {
 		this.usuario  = usuario;
 		return "UsuarioE";
 	}
+    
     @PreDestroy
 	public void close(){
 		System.out.println("Cerrando");
 	}
 	
-	public String logout() {
-      FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-      return "logueo?faces-redirect=true";
-  }
 	/*
 	 * getters and setters
 	 */

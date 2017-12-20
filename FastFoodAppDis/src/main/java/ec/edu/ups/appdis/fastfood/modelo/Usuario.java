@@ -13,6 +13,11 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Entity
 @Table(name="tbl_usuario")
 public class Usuario {

@@ -4,7 +4,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       template="blank.xhtml">
 	
-	<ui:define name ="titulo">Pagina de prueba</ui:define>
 	
 	<ui:define name ="contenido"> 
 	
@@ -17,10 +16,10 @@
             <!-- form start -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Buscar Plato</label>
+                  <label for="bucar_plato" class="col-sm-2 control-label">Buscar Plato</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.plato.codigo}" class="form-control" id="busca">
+                  	<h:inputText value="#{platoControler.plato.nombre}" class="form-control" id="busca">
 					</h:inputText>
 					<h:message for="busca" errorClass ="Invalid"/>
                   </div>
@@ -29,7 +28,9 @@
      		 <!-- /.box-body -->
               <div class="box-footer">
               
-              	<h:commandButton action="#{platoControler.pdao.leer(busca)}" class="btn btn-info pull-right" id="btn" value="Buscar" />
+              	<h:commandButton action="#{platoControler.pdao.listadoPlatospr(busca)}" class="btn btn-info pull-right" id="btn" value="Buscar" >
+              	<f:ajax  render = "tabla" />
+              	</h:commandButton>
 				
               </div>
               <!-- /.box-footer -->
@@ -37,12 +38,7 @@
               <h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
-	<h:dataTable value ="#{platoControler.platos}" var="busquedas"
-		rendered="#{not empty platoControler.platos}" id ="tabla">
-		<h:column>
-			<f:facet name="header">Codigo</f:facet>
-			#{busquedas.codigo}
-		</h:column>
+	<h:dataTable value ="#{platoControler.platos}" var="busquedas" rendered="#{not empty platoControler.platos}" id ="tabla">
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			#{busquedas.nombre}
@@ -63,13 +59,23 @@
 			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo)}" value="Calificar"/>
 		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.listadatosU()}" value="Ubicacion"/>
+		</h:column>
 		
 	</h:dataTable>
               
         
           </div>
 	</h:form>
-	
+	<h:form>
+	<div class="box-footer">
+              
+              	<h:commandButton action="Logeo" class="btn btn-info pull-right" id="btn" value="Salir" />
+				
+              </div>
+	</h:form>
 	</ui:define>
 	
 	</ui:composition>
