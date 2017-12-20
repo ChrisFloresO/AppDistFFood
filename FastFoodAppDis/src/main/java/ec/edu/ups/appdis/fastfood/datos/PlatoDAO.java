@@ -9,6 +9,11 @@ import javax.persistence.Query;
 
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Stateless
 public class PlatoDAO 
 {
@@ -51,16 +56,18 @@ public class PlatoDAO
 		List<Plato> listado =query.getResultList();
 		return listado;
 	}
-//listar2
-	public List<Plato> listadoPlatospr(int busqueda)
+
+	public List<Plato> listadoPlatospr(String nombre)
 	{
 		//selects contra las entidades mapeadas select * from tbl_plato p where p.plt_nombre like 'papas'
-		String jppql = "SELECT p FROM Plato p where p.codigo ="+busqueda+"";
+		System.out.println(nombre);
+		String jppql = "SELECT pl FROM Plato pl where pl.nombre like '"+nombre+"'";
 		Query query = em.createQuery(jppql,Plato.class);
 		@SuppressWarnings("unchecked")
 		List<Plato> listado1 =query.getResultList();
 		return listado1;
 	}
+	
 
 
 }
