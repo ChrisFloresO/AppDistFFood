@@ -10,6 +10,11 @@ import javax.persistence.Query;
 import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
+/**
+ * 
+ * @author Franklin Villavicencio y Christian Flores
+ */
+
 @Stateless
 public class CalificacionDAO 
 {
