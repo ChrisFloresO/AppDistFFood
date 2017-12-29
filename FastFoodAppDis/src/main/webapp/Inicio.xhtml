@@ -19,18 +19,19 @@
                   <label for="bucar_plato" class="col-sm-2 control-label">Buscar Plato</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.plato.nombre}" class="form-control" id="buscar">
+                  	<h:inputText value="#{platoControler.nombre}" class="form-control" id="buscar">
 					</h:inputText>
 					<h:message for="buscar" errorClass ="Invalid"/>
+				<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-right" id="btn" value="Buscar" >
+              	  <f:ajax execute="buscar" render = "tablas" />
+          	</h:commandButton>
                   </div>
                 </div>
               </div>
      		 <!-- /.box-body -->
               <div class="box-footer">
               
-              	<h:commandButton action="#{platoControler.pdao.listadoPlatospr(buscar)}" class="btn btn-info pull-right" id="btn" value="Buscar" >
-              	<f:ajax  render = "tablas" />
-              	</h:commandButton>
+   
 				
               </div>
               <!-- /.box-footer -->
@@ -38,7 +39,7 @@
               <h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
-	<h:dataTable value ="#{platoControler.platos}" var="busquedas" rendered="#{not empty platoControler.platos}" id ="tablas">
+	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas">
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>
 			#{busquedas.nombre}
