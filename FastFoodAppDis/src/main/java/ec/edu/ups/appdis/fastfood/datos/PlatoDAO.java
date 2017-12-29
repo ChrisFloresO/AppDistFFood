@@ -55,10 +55,10 @@ public class PlatoDAO {
 
 	public List<Plato> listadoPlatospr (String nombre) {
 		// selects contra las entidades mapeadas select * from tbl_plato p where
-		System.out.println(nombre="dao");
-		String jppql = "SELECT pl FROM Plato pl where pl.nombre = :nombre";
+		System.out.println("hbgbhfdhjn"+nombre);
+		String jppql = "SELECT pl FROM Plato pl where lower(pl.nombre) like :nombre";
 		Query query = em.createQuery(jppql, Plato.class);
-		query.setParameter("nombre", nombre);
+		query.setParameter("nombre", "%"+nombre.toLowerCase()+"%");
 		@SuppressWarnings("unchecked")
 		List<Plato> listado1 = query.getResultList();
 		return listado1;
