@@ -5,12 +5,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
 @ManagedBean
+@ViewScoped
 public class PlatoControler {
 	private Plato plato;
 	private List<Plato> platos;
@@ -160,8 +162,8 @@ public class PlatoControler {
 	}
 
 	public String doRead() {
-		//System.out.println("este sale"+nombre1);
-		Plato pl = (Plato) pdao.listadoPlatospr(nombre);
+		// System.out.println("este sale"+nombre1);
+		List<Plato> pl = pdao.listadoPlatospr(nombre);
 		System.out.println(pl);
 		return null;
 	}
