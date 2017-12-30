@@ -13,7 +13,9 @@ import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
 @ManagedBean
 @ViewScoped
-public class PlatoControler {
+public class PlatoControler 
+{
+	//variables
 	private Plato plato;
 	private List<Plato> platos;
 	private int id;
@@ -21,7 +23,10 @@ public class PlatoControler {
 
 	@Inject
 	private PlatoDAO pdao;
-
+	
+	/**
+	 * metodo para inicializar las variables
+	 */
 	@PostConstruct
 	public void init() {
 		plato = new Plato();
@@ -29,6 +34,7 @@ public class PlatoControler {
 		loadPlatos();
 	}
 
+	//getters and setters
 	public void loadPlatos() {
 		platos = pdao.listadoPlatos();
 	}
@@ -78,6 +84,8 @@ public class PlatoControler {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	//getters and setters
+	
 
 	/*
 	 * public String addDetalle() { System.out.println("aqui");
@@ -163,8 +171,8 @@ public class PlatoControler {
 
 	public String doRead() {
 		// System.out.println("este sale"+nombre1);
-		List<Plato> pl = pdao.listadoPlatospr(nombre);
-		System.out.println(pl);
+		platos = pdao.listadoPlatospr(nombre);
+		System.out.println(platos);
 		return null;
 	}
 

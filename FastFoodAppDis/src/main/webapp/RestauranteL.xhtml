@@ -19,8 +19,8 @@
 	<h:dataTable value ="#{restaurantControler.restaurantes}" var="restaurante"
 		rendered="#{not empty restaurantControler.restaurantes}">
 		<h:column>
-			<f:facet name="header">Codigo</f:facet>
-			#{restaurante.codigo}
+			<f:facet name="header">Imagne</f:facet>
+			<img src="data:image/png;base64,#{restaurantControler.rdao.convertir(restaurante.imagen)}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Nombre</f:facet>

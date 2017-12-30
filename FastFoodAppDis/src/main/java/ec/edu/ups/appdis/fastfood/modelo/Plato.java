@@ -1,5 +1,6 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,6 +37,9 @@ public class Plato
 	@Column (name="plt_precio")
 	private double precio;
 	
+	@Lob
+	@Column(name="plt_imagen")
+	private byte[] imagen;
 	
 	@OneToOne
 	private Restaurante restaurante;
@@ -75,10 +80,18 @@ public class Plato
 		this.precio = precio;
 	}
 
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
 	@Override
 	public String toString() {
 		return "Plato [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ "]";
+				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + "]";
 	}
 	
 	

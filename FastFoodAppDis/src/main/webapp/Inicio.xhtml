@@ -4,10 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       template="blank.xhtml">
 	
-	
 	<ui:define name ="contenido"> 
 
-	
 	
 	<h:form>
 		<div class="box box-info">
@@ -24,15 +22,14 @@
 					<h:message for="buscar" errorClass ="Invalid"/>
 				<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-right" id="btn" value="Buscar" >
               	  <f:ajax execute="buscar" render = "tablas" />
+              	 
           	</h:commandButton>
                   </div>
                 </div>
               </div>
      		 <!-- /.box-body -->
               <div class="box-footer">
-              
-   
-				
+ 
               </div>
               <!-- /.box-footer -->
               
@@ -40,9 +37,10 @@
 	rendered="#{empty platoControler.platos}"/>
 
 	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas">
+	
 		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			#{busquedas.nombre}
+			<f:facet name="header">Imagne</f:facet>
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Descripcion</f:facet>

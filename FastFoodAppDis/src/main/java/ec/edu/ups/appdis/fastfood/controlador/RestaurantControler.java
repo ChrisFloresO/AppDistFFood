@@ -27,7 +27,7 @@ public class RestaurantControler {
 
 	@Inject
 	private RestaurantDAO rdao;
-	
+
 	@Inject
     private FacesContext facesContext;
 	
@@ -37,6 +37,15 @@ public class RestaurantControler {
 		restaurante= new Restaurante();
 		restaurante.addUbicacion(new Ubicacion());
 		loadRestaurantes();
+	}
+	
+
+	public RestaurantDAO getRdao() {
+		return rdao;
+	}
+
+	public void setRdao(RestaurantDAO rdao) {
+		this.rdao = rdao;
 	}
 
 	public Restaurante getUsuario() {
@@ -85,8 +94,6 @@ public class RestaurantControler {
 	
 	public String guardar() 
 	{
-		//System.out.println(restaurante);
-		//invoque al DAO y envie la entidad a persistir
 		try 
 		{
 			rdao.guardar(restaurante);
@@ -103,6 +110,7 @@ public class RestaurantControler {
 		
 		return "RestauranteL";
 	}
+	
 	public String addUbicacione(){
 		System.out.println("Aqui paso");
 		restaurante.addUbicacion(new Ubicacion());
