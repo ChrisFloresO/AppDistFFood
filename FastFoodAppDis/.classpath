@@ -28,5 +28,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/frn14k/git/AppDistFFood/FastFoodAppDis/lib/javax.servlet.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
