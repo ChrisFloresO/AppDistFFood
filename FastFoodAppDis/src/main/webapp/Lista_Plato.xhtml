@@ -1,30 +1,75 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      template="blank.xhtml">
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+    <title>Menu</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
 	
-	<ui:define name ="titulo">Pagina de prueba</ui:define>
-	
-	<ui:define name ="contenido"> 
-	
-	<h:form>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src='js/device.min.js'></script> 
+</head>
+
+<body> 
+ <header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="bl1.xhtml">Home</a>
+                        </li>
+                         <li class="active">
+                            <a href="bl.xhtml">Menu</a>
+                        </li>
+                        <li>
+                            <a href="index-2.html">Ubicanos</a>
+                        </li>
+                        <li>
+                            <a href="index-4.html">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+</header>
+    
+    <main>
+      <h:form>
 	<div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de Plato</h3>
+            <center>
+            <h3 class="box-title">Lista de Plato</h3>
+            </center>
+              
             </div>
     </div>     
 	<h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
 	<h:dataTable value ="#{platoControler.platos}" var="plato"
-		rendered="#{not empty platoControler.platos}">
-
-		<h:column>
-			<f:facet name="header">Codigo</f:facet>
+		rendered="#{not empty platoControler.platos}"  >
 			
-			#{plato.codigo}
-			 
+		
+		
+		<h:column>
+			<f:facet name="header">Imagne</f:facet>
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
 		</h:column>
        
 		<h:column>
@@ -47,17 +92,31 @@
 			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
 		</h:column>
-	
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
+		</h:column>
+ 
 	</h:dataTable>
-<div class="box-footer">
-              
-              	<h:commandButton action="Registra_Plato" class="btn btn-info pull-right" id="btn" value="Registrar Nuevo Plato" />
-              
-              </div>
-
-		
+	
+	<div class="box-footer">
+             <h:commandButton action="Registra_Plato" class="btn btn-info pull-right" id="btn" value="Registrar Nuevo Plato"/>
+        </div>
 	</h:form>
-	
-	</ui:define>
-	
-	</ui:composition>
+    </main>
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="js/script.js"></script>
+</body> 
+</html>
