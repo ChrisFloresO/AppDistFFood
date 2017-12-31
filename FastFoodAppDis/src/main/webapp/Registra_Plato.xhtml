@@ -1,18 +1,60 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      template="blank.xhtml">
-	
-	<ui:define name ="titulo">RESTAURANTE</ui:define>
-	
-	<ui:define name ="contenido"> 
-	
-	<h:form enctype="multipart/form-data">
+      xmlns:h="http://java.sun.com/jsf/html"> 
 
+<head>
+    <title>Menu</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+	
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src='js/device.min.js'></script> 
+    
+</head>
+
+<body> 
+ <header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li class="active">
+                            <a href="bl.xhtml">Menu</a>
+                        </li>
+                        <li>
+                            <a href="index-2.html">Ubicanos</a>
+                        </li>
+                        <li>
+                            <a href="index-4.html">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+    
+    <main><center>
+	<h:form enctype="multipart/form-data">
 		<div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Registra Plato</h3>
+              <h3 class="box-title" align="center" style="color:blue;">Registra Plato</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -45,17 +87,33 @@
                 </div>
               </div>
               <!-- /.box-body -->
-              <div class="box-footer">
               
-              	<h:commandButton action="#{platoControler.guardar()}" class="btn btn-info pull-right" id="btn" value="Registrar Plato" />
+              	
+              <h:commandButton action="#{platoControler.guardar()}" class="btn btn-info pull-right" id="btn" value="Registrar Plato" />
               	<h:commandButton action="Lista_Plato" class="btn btn-info pull-right" id="btn1" value="Listado de Platos" />
               
-              </div>
               <!-- /.box-footer -->
         
           </div>
-	</h:form>
-	
-	</ui:define>
-	
-	</ui:composition>
+          
+          
+	  </h:form>
+	  </center>
+    </main>
+    
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="js/script.js"></script>
+</body> 
+</html>

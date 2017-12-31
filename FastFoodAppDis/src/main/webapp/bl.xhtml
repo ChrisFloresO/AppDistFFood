@@ -11,7 +11,9 @@
     <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
     <link rel="stylesheet" href="resources/template/site/css/style.css"/>
-
+    
+    <link href="resources/template/site/css/tabla.css" type="text/css" rel="stylesheet" />
+	
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src='js/device.min.js'></script> 
@@ -32,7 +34,7 @@
                 <nav class="nav">
                     <ul class="sf-menu">
                         <li>
-                            <a href="./">Home</a>
+                            <a href="Home.xhtml">Home</a>
                         </li>
                          <li class="active">
                             <a href="bl.xhtml">Menu</a>
@@ -48,106 +50,81 @@
             </div>
         </div>
 
-    </header>
+</header>
     
     <main>
-        <section class="well well__offset-2">
-            <div class="container">
-                <h2><em>Platos</em>Destacados</h2>
-               <center> 
-               <form method="get" action="#{platoControler.pdao.listadoPlatospr(buscar)}">
-               
- 					<h:inputText value="#{platoControler.nombre}" class="form-control" id="buscar">
-					</h:inputText>
-					<h:message for="buscar" errorClass ="Invalid"/>
-					<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-right" id="btn" value="Buscar" >
-              	  	<f:ajax execute="buscar" render = "tablas" />
-          			</h:commandButton>
-					
-				</form>
-				
-            	</center>
-          		
-                <div class="row box-2">
-                    <div class="grid_4">
-                        <div class="img">
-                        	<div>
-                        		<img src="resources/template/site/images/page-4_img01.jpg" alt=""/>
-                        	</div>
-                        </div>
-                        <h3>LASAÑA. </h3>
-                        <p>La lasaña es uno de los platillos favoritos de la familia de Lisa. Antes de tomar clases con EFNEP, Lisa pensaba que era muy difícil prepararla. La siguiente receta le ayudó a Lisa  a elaborar lasaña en tan sólo 30 minutos.</p>
-                        <h3>$6.00. </h3>
-                        <a href="#" class="btn">Anadir Compra</a>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img">
-                        	<div>
-                        			<img src="resources/template/site/images/page-4_img02.jpg" alt="p"/>
-                        	</div>
-                        </div>
-                        <h3>POLLO SALTEADO CON VERDURAS</h3>
-                        <p> La receta de pollo salteado con verduras y un toque asiático es la receta perfecta para practicar con una de mis técnicas de cocina preferidas. Con ella conseguimos cocinar los ingredientes en su punto justo y haciendo que queden crujientes, con un bonito color y a la vez cocinadas. </p>
-                        <h3>$6.00. </h3>
-                        <a href="#" class="btn">Añadir Compra</a>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img03.jpg" alt=""/></div></div>
-                        <h3>FIDEO CON ACEITUNAS. </h3>
-                        <p>Nuestra especialidad de la casa, una sabrosa mezcla de fideos.</p>
-                         <h3>$4.20. </h3>
-                        <a href="#" class="btn">Añadir Compra</a>
-                    </div>
-                </div>
-                <div class="row box-2">
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img04.jpg" alt=""/></div></div>
-                        <h3>FIDEOS CON QUESO RALLADO. </h3>
-                        <p>Testibulum volutpatturpis ut massa commodo, quis aliquam massa facilisis.Integer convavel miberto merlonelaoreet, at ornare lorem consequa.</p>
-                         <h3>$3.00. </h3>
-                        <a href="#" class="btn">Añadir Compra</a>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img05.jpg" alt=""/></div></div>
-                        <h3>FIDEOS CON SARDINA. </h3>
-                        <p>Delisiosos fideos en salsa de tomate acompanados con sardina fresaca.</p>
-                         <h3>$2.50. </h3>
-                        <a href="#" class="btn">Añadir Compra</a>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img06.jpg" alt=""/></div></div>
-                        <h3>ENSALADA TROPICAL. </h3>
-                        <p>Especialidad de la casa nuestra sabrosa ensalada tropical que contien pepinillo, lechuga, tomate, cebolla y nuestro toque queso. </p>
-                         <h3>$2.00. </h3>
-                        <a href="#" class="btn">Añadir Comprae</a>
-                    </div>
-                </div>
-                <div class="row box-2">
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img07.jpg" alt=""/></div></div>
-                        <h3>EMPANADA RELLENA. </h3>
-                        <p>Estas exquisitas empanadas de carne se preparan con un relleno de picadillo de carne de res. El relleno o condumio de estas empanadas casera es muy sencillo y delicioso, lleva carne molida de res, cebolla, ajo, orégano, comino, achiote, sal, y pimienta..</p>
-                         <h3>$1.30. </h3>
-                        <a href="#" class="btn">Añadir Compra</a>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img08.jpg" alt=""/></div></div>
-                        <h3>CUPCAKES.</h3>
-                        <p>Es una pequeña porción de torta para una persona. Se hornean en un molde igual que el de magdalenas y muffins. En el molde se colocan unos papeles llamados cápsulas. </p>
-                         <h3>$0.7 0. </h3>
-                        <a href="#" class="btn">Añadir Compra</a>
-                    </div>
-                    <div class="grid_4">
-                        <div class="img"><div ><img src="resources/template/site/images/page-4_img09.jpg" alt=""/></div></div>
-                        <h3>TARTA DE FRESA. </h3>
-                        <p>La tarta de fresas es una de las tartas clásicas de fruta que se hace de muchas formas y cuya capa superior está hecha normalmente de fresas. No sólo se la conoce en países germánicos sino también en Inglaterra, Polonia y Rusia..</p>
-                         <h3>$1.50. </h3>
-                        <a href="#" class="btn">Anadir Compra</a>
-                    </div>
-                </div>
+      <h:form>
+	<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Lista de Plato</h3>
             </div>
-        </section>
+    </div>     
+	<h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.platos}"/>
+
+	<h:dataTable value ="#{platoControler.platos}" var="plato"
+		rendered="#{not empty platoControler.platos}" 
+		headerClass="cabeceraTabla"   
+		rowClasses="fila1,fila2" 
+		styleClass="tabla" id="tabla" >
+		
+		
+		<f:facet name="header">
+		<center>
+        	Lista de Platos
+        </center>
+    	</f:facet>
+		
+		<h:column>
+			<f:facet name="header">Imagne</f:facet>
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
+		</h:column>
+       
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{plato.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{plato.descripcion}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Precio</f:facet>
+			#{plato.precio}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
+		</h:column>
+ 
+	</h:dataTable>
+	
+	<div class="box-footer">
+             <h:commandButton action="Registra_Plato" class="btn btn-info pull-right" id="btn" value="Registrar Nuevo Plato"/>
+        </div>
+	</h:form>
     </main>
-    
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="js/script.js"></script>
 </body> 
 </html>
