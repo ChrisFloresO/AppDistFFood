@@ -60,46 +60,44 @@
 	
 	<h:panelGrid columns ="3">
 		 
-		 <h:outputLabel value="Id:" for="id"/>
+		 <h:outputLabel class="btn btn-info pull-center" value="Id:" for="id"/>
 		<h:inputText value="#{usuarioControler.usuario.id}" id="id" />
 		<h:message  for="id"/>
 	
-		<h:outputLabel value="Cedula:" for="cedula"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Cedula:" for="cedula"/>
 		<h:inputText value="#{usuarioControler.usuario.cedula}" id="cedula" />
 		<h:message  for="cedula"/>
 		
-		<h:outputLabel value="Nombre:" for="nombre"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Nombre:" for="nombre"/>
 		<h:inputText value="#{usuarioControler.usuario.nombre}" id="nombre" />
 		<h:message  for="nombre"/>
 		
-		<h:outputLabel value="Apellido:" for="apellido"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Apellido:" for="apellido"/>
 		<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" />
 		<h:message  for="apellido"/>
 		
-		<h:outputLabel value="Telefono:" for="telefono"/>
-		<h:inputText value="#{usuarioControler.usuario.telefono}" id="telefono" />
+		<h:outputLabel class="btn btn-info pull-center" value="Telefono:" for="telefono"/>
+		<h:inputText  value="#{usuarioControler.usuario.telefono}" id="telefono" />
 		<h:message  for="telefono"/>
 		
-		<h:outputLabel value="Email:" for="email"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Email:" for="email"/>
 		<h:inputText value="#{usuarioControler.usuario.email}" id="email" />
 		<h:message  for="email"/>
 		
-		<h:outputLabel value="Contrasena" for="contrasena"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Contrasena" for="contrasena"/>
 		<h:inputText value="#{usuarioControler.usuario.contrasena}" id="contrasena" />
 		<h:message  for="contrasena"/>
 		
-		<h:outputLabel value="Rol" for="rol"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Rol" for="rol"/>
 		<h:inputText value="#{usuarioControler.usuario.rol}" id="rol" />
 		<h:message  for="rol"/>
 		
-		<h:commandButton action="#{usuarioControler.Actualizar()}" value="Guardar" />
 		
-		<h:commandButton action="UsuarioL" value="Regresar" />
 	</h:panelGrid>
+	 <div class="box-footer">
+              	<h:commandButton action="#{usuarioControler.Actualizar()}" class="btn btn-info pull-center" id="btn" value="ACTUALIZAR DATOS" />
+              </div>
 	
-</h:form>
-<h:form>
-<h:commandButton action="UsuarioL" value="Listado de Usuarios" inmediate="true"/>	
 </h:form>
 	  </center>
     </main>

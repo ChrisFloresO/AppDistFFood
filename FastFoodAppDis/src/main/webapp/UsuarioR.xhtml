@@ -49,24 +49,29 @@
         </div>
 </header>
     
-    <main><center>
+    <main>
+    <center>
+    <br />
 	<h:form>
 		<div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Registrar Usuario</h3>
+              <h2 class="box-title">
+              <em>Registrar Usuario
+              </em>
+              </h2>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
               <div class="box-body">
               <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Cedula</label>
+                  <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Cedula</label>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.cedula}" class="form-control" id="cedula">
 					</h:inputText>
 					<h:message for="nombre" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                  <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Nombre</label>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.nombre}" class="form-control" id="nombre">
 					</h:inputText>
@@ -74,14 +79,14 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Apellido</label>
+                  <label for="inputPassword3" class="col-sm-2 btn btn-info pull-center">Apellido</label>
 
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido"  class="form-control" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Telefono</label>
+                  <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Telefono</label>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.telefono}" class="form-control" id="telefono">
 					</h:inputText>
@@ -89,20 +94,20 @@
                   </div>
                   </div>
                   <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                  <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Email</label>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.email}" class="form-control" id="email">
 					</h:inputText>
 					<h:message for="email" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Contrasena</label>
+                  <label for="inputPassword3" class="col-sm-2 btn btn-info pull-center">Contrasena</label>
                   <div class="col-sm-10">
                   	<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena"  class="form-control" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Rol</label>
+                  <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Rol</label>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.rol}" class="form-control" id="rol">
 					</h:inputText>
@@ -111,7 +116,7 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-              	<h:commandButton action="#{usuarioControler.Guardar()}" class="btn btn-info pull-right" id="btn" value="REGISTRAR USUARIO" />
+              	<h:commandButton action="#{usuarioControler.Guardar()}" class="btn btn-info pull-center" id="btn" value="REGISTRAR USUARIO" />
               </div>
               
               <!-- /.box-footer -->
@@ -120,11 +125,6 @@
           </div>
           </div>
 	</h:form>
-	<h:form>
-           <div class="box-footer">
-              	<h:commandButton action="Logeo" class="btn btn-info pull-right" id="btn1" value="LOGEARSE" />
-              </div>
-              </h:form>
 	  </center>
     </main>
     

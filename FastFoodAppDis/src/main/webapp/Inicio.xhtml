@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-    <title>Registro Usuario</title>
+    <title>Busqueda</title>
     <meta charset="utf-8"/>
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
@@ -38,9 +38,6 @@
                             <a href="Inicio.xhtml">Busqueda Plato</a>
                         </li>
                         <li>
-                            <a href="UbicacionP.html">Ubicacion</a>
-                        </li>
-                        <li>
                             <a href="UsuarioE.xhtml">Acerca de </a>
                         </li>
                     </ul>
@@ -49,21 +46,27 @@
         </div>
 </header>
     
-    <main><center>
+    <main>
+    <center>
+    <br />
 	<h:form  enctype="multipart/form-data">
 		<div class="box box-info">
+		<div class="box-header with-border">
+              <h2 class="box-title">
+              <em>Busqueda De Platos
+              </em>
+              </h2>
+            </div>
             <!-- /.box-header -->
             <!-- form start -->
             
               <div class="box-body">
                 <div class="form-group">
-                  <label for="bucar_plato" class="col-sm-2 control-label">Buscar Plato</label>
-
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.nombre}" class="form-control" id="buscar">
+                  	<h:inputText value="#{platoControler.nombre}" class="col-sm-2 btn btn-info pull-center" id="buscar">
 					</h:inputText>
 					<h:message for="buscar" errorClass ="Invalid"/>
-				<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-right" id="btn" value="Buscar" >
+				<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-center" id="btn" value="Buscar" >
               	  <f:ajax execute="buscar" render = "tablas" />
               	 
           	</h:commandButton>
@@ -80,29 +83,31 @@
 	rendered="#{empty platoControler.platos}"/>
 
 	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas">
-	
+	 
 		<h:column>
-			<f:facet name="header">Imagne</f:facet>
+			<div class="col-sm-10">
+			<f:facet name="header" >Imagne</f:facet>
 			<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
+			</div>
 		</h:column>
+		
+		 <div class="col-sm-20">
 		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
+			<f:facet name="header" >Descripcion</f:facet>
 			#{busquedas.descripcion}
 		</h:column>
+		</div>
 		<h:column>
 			<f:facet name="header">Precio</f:facet>
 			#{busquedas.precio}
 		</h:column>
 		<h:column>
-			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo)}" value="Pedir"/>
 		</h:column>
 		<h:column>
-			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo)}" value="Calificar"/>
 		</h:column>
 		<h:column>
-			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{platoControler.listadatosU()}" value="Ubicacion"/>
 		</h:column>
 		
