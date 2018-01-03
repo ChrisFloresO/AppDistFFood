@@ -48,21 +48,27 @@
                 </nav>
             </div>
         </div>
-</header>
-    
-    <main><center>
+</header> 
+    <main>
+    <center>
+    <br />
 	<h:form>
+	<div class="box box-info">
+            <div class="box-header with-border">
+              <h2 class="box-title">
+              <em>Listado Usuario
+              </em>
+              </h2>
+            </div>
+     </div>
 	<h:outputText value="No existe usuarios registros" 
 	rendered="#{empty usuarioControler.usuarios}"/>
 
 	<h:dataTable value ="#{usuarioControler.usuarios}" var="usuario"
-		rendered="#{not empty usuarioControler.usuarios}">
+		rendered="#{not empty usuarioControler.usuarios}"
+		class="col-sm-2 btn btn-info pull-center">
 		<h:column>
-			<f:facet name="header">Id</f:facet>
-			#{usuario.id}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Cedula</f:facet>
+			<f:facet name="header" >Cedula</f:facet>
 			#{usuario.cedula}
 		</h:column>
 		<h:column>
@@ -83,15 +89,10 @@
 			<f:facet name="header">Email</f:facet>
 			#{usuario.email}
 		</h:column>
-		<h:column>
-			<f:facet name="header">Contrasena</f:facet>
-			#{usuario.contrasena}
-		</h:column>
 	
 		<h:column>
 			<f:facet name="header">Acciones</f:facet>
 			<h:commandButton action="#{usuarioControler.listadatosEditar(usuario.id)}" value="Editar"/>
-			<a href="UsuarioE.xhtml">Editar</a>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Acciones</f:facet>
@@ -102,12 +103,8 @@
 
 	
 </h:form>	
-<h:form>
-<h:commandButton action="UsuarioR" value="Crear un nuevo Usuario"/>
-</h:form>
 	  </center>
     </main>
-    
      <footer>
         <div class="container">
             <ul class="socials">
