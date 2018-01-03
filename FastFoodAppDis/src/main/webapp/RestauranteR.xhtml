@@ -1,81 +1,271 @@
-
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      template="blank.xhtml">
+      xmlns:m="http://code.google.com/p/gmaps4jsf/"> 
+
+<h:head>
+    <title>RegistroRestaurante</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
 	
-	<ui:define name ="titulo">FAST FOOD</ui:define>
-	
-	<ui:define name ="contenido"> 
-	
-	<h:form enctype="multipart/form-data">
-		<div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Registrar Restaurante</h3>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src='js/device.min.js'></script> 
+    
+    <style>
+#map {
+	height: 450px;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
+</h:head>
+
+<body> 
+ <header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li class="active">
+                            <a href="bl.xhtml">Menu</a>
+                        </li>
+                        <li>
+                            <a href="index-2.html">Ubicanos</a>
+                        </li>
+                        <li>
+                            <a href="index-4.html">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-              <div class="box-body">
-              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
-                  <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.nombre}" class="form-control" id="nombre">
-					</h:inputText>
-					<h:message for="nombre" errorClass ="Invalid"/>
-                  </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tipo</label>
-                  <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.tipo}" class="form-control" id="tipo">
-					</h:inputText>
-					<h:message for="tipo" errorClass ="Invalid"/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Telefono</label>
-                  <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono"  class="form-control" />
-                  	<h:message for="telefono" errorClass ="Invalid"/>
-                  </div>
-                </div>
-                <div class="form-group">
-                <h:inputFile id="file" value="#{restaurantControler.rdao.file}"/>
-                </div>
-               <h3>DATOS UBICACION</h3>
+        </div>
+</header>
+		<!-- {INICIO DEL MAPA} -->
+		<div id="mainCarousel">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+				<div class="item active">
+
+					<!-- Inicio del Mapa -->
+
+					<div id="map"></div>
+
+					<script>
+      		function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 18.0858100, lng: -15.9785000},
+                    zoom: 12
+                });
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        var pos1 = {
+                            lat: -2.887590,
+                            lng: -78.993732
+                        };
 
 
-			<h:commandButton action="#{restaurantControler.addUbicacione()}" value="Anadir Sucursal" >
-			<f:ajax render="Restaurante" execute="@all"></f:ajax>
-			</h:commandButton>
+                        var marker = new google.maps.Marker({
+                            position: pos,
+                            map: map,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            label: 'Mi Ubicacion'
+                        });
+                        map.setCenter(pos);
+                        map.setZoom(15);
+
+                       
+                        google.maps.event.addListener(map, 'click', function (event) {
+                            addMarker(event.latLng, map);
+                            document.getElementById('in').value = event.latLng.lat();
+                            document.getElementById('form:la').value = event.latLng.lat();
+                            document.getElementById('form:lo').value = event.latLng.lng();
+                            
+                            
+                        });
+
+                        function addMarker(location, map) {
+                            var marker = new google.maps.Marker({
+                                position: location,
+                                map: map,
+                                draggable: true,
+                                animation: google.maps.Animation.DROP
+                            });
+                        }
+
+                        function ruta(location) {
+                            var objConfigDR = {
+                                map: map,
+                            }
+
+                            var objConfigDS = {
+                                origin: pos,
+                                destination: location,
+                                travelMode: google.maps.TravelMode.DRIVING
+                            }
+
+                            var directionsService = new google.maps.DirectionsService();
+                            var directionRenderer = new google.maps.DirectionsRenderer(objConfigDR);
+
+                            directionsService.route(objConfigDS, fnRutear);
+
+
+                            function fnRutear(resultados, status) {
+                                if (status == 'OK') {
+                                    directionRenderer.setDirections(resultados);
+                                } else {
+                                    alert('error' + status);
+                                }
+                            }
+                        }
+
+                    }, function () {
+                        //handleLocationError(true, infoWindow, map.getCenter());
+                    });
+
+                }
+                else {
+                   
+                }
+            }
+      		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        		infoWindow.setPosition(pos);
+        		infoWindow.setContent(browserHasGeolocation ?
+                	'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+      		}          	  		
+      	</script>
+
+					<script
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy4rf6Y4Q2TCiAPuFkFaVK6qcEGaBd_H0 &amp;callback=initMap">
+    	</script>
+
+
+				</div>
+
+			</div>
+
+			<!-- Fin del Mapa -->
+			<!-- /.carousel -->
+		</div>
+		<!-- {FIN DEL MAPA	} -->
+		
+		<main><center>
+		<h:form enctype="multipart/form-data">
+		<br/>
+			<div class="box box-info">
+				<div class="box-header with-border">
 				
-			<h:dataTable value ="#{restaurantControler.restaurante.ubicaciones}" var ="ubicacion" id= "Restaurante">
-				
-				<h:column>
-					<f:facet name="header">Direccion</f:facet>
-					<h:inputText value="#{ubicacion.direccion}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Latitud</f:facet>
-					<h:inputText value="#{ubicacion.latitud}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Longitud</f:facet>
-					<h:inputText value="#{ubicacion.longitud}" />
-				</h:column>
-				</h:dataTable>
-				<div class="box-footer">
-              	<h:commandButton action="#{restaurantControler.guardar()}" class="btn btn-info pull-right" id="btn1" value="GUARDAR" />
-              </div>
-				
-		          </div>           
-		          </div>
-		          </div>
-		         
-	
-           
-              </h:form>
-	
-	</ui:define>
-	
-	</ui:composition>
+				 <h2><em>Registro Restaurante</em></h2>
+					
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<div class="box-body">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+						<div class="col-sm-10">
+							<h:inputText value="#{restaurantControler.restaurante.nombre}"
+								class="form-control" id="nombre">
+							</h:inputText>
+							<h:message for="nombre" errorClass="Invalid" />
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">Tipo</label>
+							<div class="col-sm-10">
+								<h:inputText value="#{restaurantControler.restaurante.tipo}"
+									class="form-control" id="tipo">
+								</h:inputText>
+								<h:message for="tipo" errorClass="Invalid" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">Telefono</label>
+							<div class="col-sm-10">
+								<h:inputText value="#{restaurantControler.restaurante.telefono}"
+									id="telefono" class="form-control" />
+								<h:message for="telefono" errorClass="Invalid" />
+							</div>
+						</div>
+						<div class="form-group">
+							<h:inputFile id="file" value="#{restaurantControler.rdao.file}" />
+						</div>
+						<h2><em></em>DATOS UBICACION</h2>
+						<h:commandButton action="#{restaurantControler.addUbicacione()}"
+							value="Anadir Sucursal">
+							<f:ajax render="Restaurante" execute="@all"></f:ajax>
+						</h:commandButton>
+
+						<h:dataTable
+							value="#{restaurantControler.restaurante.ubicaciones}"
+							var="ubicacion" id="Restaurante">
+
+							<h:column>
+								<f:facet name="header">Direccion</f:facet>
+								<h:inputText value="#{ubicacion.direccion}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Latitud</f:facet>
+								<h:inputText value="#{ubicacion.latitud}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Longitud</f:facet>
+								<h:inputText value="#{ubicacion.longitud}" />
+							</h:column>
+						</h:dataTable>
+						<div class="box-footer">
+							<h:commandButton action="#{restaurantControler.guardar()}"
+								class="btn btn-info pull-right" id="btn1" value="GUARDAR" />
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+		</center>
+	</main>
+<br>
+		</br>
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> 
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="js/script.js"></script>
+</body> 
+</html>
