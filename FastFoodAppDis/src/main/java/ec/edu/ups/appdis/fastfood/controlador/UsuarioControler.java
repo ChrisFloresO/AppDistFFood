@@ -117,7 +117,7 @@ public class UsuarioControler {
 					return "RestauranteL";
 				}else
 					if(listadoLogin.get(i).getRol()==3) {
-					return "bl";
+					return "Home";
 				}
 		}
 		return null;
@@ -210,6 +210,14 @@ public class UsuarioControler {
 
 	public void setContraseñaN(String contraseñaN) {
 		this.contraseñaN = contraseñaN;
+	}
+
+	public UsuarioDAO getUdao() {
+		return udao;
+	}
+
+	public void setUdao(UsuarioDAO udao) {
+		this.udao = udao;
 	}
 
 }

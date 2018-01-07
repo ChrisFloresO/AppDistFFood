@@ -36,9 +36,6 @@
                          <li >
                             <a href="Registra_Plato.xhtml">Registrar Plato</a>
                         </li>
-                        <li>
-                            <a href="Editar_Plato.xhtml">Editar Plato</a>
-                        </li>
                         <li class="active">
                             <a href="Lista_Plato.xhtml">Lista Platos</a>
                         </li>
@@ -46,6 +43,7 @@
                 </nav>
             </div>
         </div>
+        
 </header>
     
     <main>
@@ -61,47 +59,46 @@
     </div>     
 	<h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
-
-	<h:dataTable value ="#{platoControler.platos}" var="plato"
-		rendered="#{not empty platoControler.platos}"  >
-			
-		
-		
-		<h:column>
-			<f:facet name="header">Imagne</f:facet>
-			<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
-		</h:column>
-       
-		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			#{plato.nombre}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
-			#{plato.descripcion}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Precio</f:facet>
-			#{plato.precio}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
-		</h:column>
+	<center>
+		<h:dataTable value ="#{platoControler.platos}" var="plato"
+		rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
+			<h:column>
+				<f:facet name="header">Imagne</f:facet>
+				<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
+			</h:column>
+	       
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				#{plato.nombre}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Descripcion</f:facet>
+				#{plato.descripcion}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				<p>$ #{plato.precio}</p>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Acciones</f:facet>
+				<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Acciones</f:facet>
+				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Acciones</f:facet>
+				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
+			</h:column>
  
-	</h:dataTable>
-	
-	<div class="box-footer">
-             <h:commandButton action="Registra_Plato" class="btn btn-info pull-right" id="btn" value="Registrar Nuevo Plato"/>
-        </div>
+		</h:dataTable>
+	</center>
+		<div class="box-footer">
+			<center>
+	             <h:commandButton action="Registra_Plato" class="btn btn-info pull-center" id="btn" value="Registrar Nuevo Plato"/>
+	        </center>
+	    </div>
 	</h:form>
     </main>
      <footer>

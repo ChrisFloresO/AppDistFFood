@@ -1,69 +1,84 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      template="blank.xhtml">
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+    <title>Menu</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
 	
-	<ui:define name ="titulo">Pagina de prueba</ui:define>
-	
-	<ui:define name ="contenido"> 
-	
-	<f:metadata>
-	<f:viewParam name="id" value="#{platoControler.id}"/>
-</f:metadata>
-<h:form>
-	
-	<div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">PLATO</h3>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src='js/device.min.js'></script> 
+    
+</head>
+
+<body> 
+ <header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li class="active">
+                            <a href="Registra_Plato.xhtml">Registrar Plato</a>
+                        </li>
+                        <li>
+                            <a href="Lista_Plato.xhtml">Lista Platos</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">codigo</label>
-
-                  <div class="col-sm-10">
-                  	<h:outputLabel value="#{platoControler.plato.codigo}" class="form-control" id="codigo">
-					</h:outputLabel>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Nombre</label>
-
-                  <div class="col-sm-10">
-                  	<h:outputLabel value="#{platoControler.plato.nombre}" id="nombre"  class="form-control" />
-                  </div>
-                </div>
-                
-                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Descripcion</label>
-
-                  <div class="col-sm-10">
-                  	<h:outputLabel value="#{platoControler.plato.descripcion}" id="descripcion"  class="form-control" />
-                  </div>
-                </div>
-                
-                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">precio</label>
-
-                  <div class="col-sm-10">
-                  	<h:outputLabel value="#{platoControler.plato.precio}" id="precio"  class="form-control" />
-                  </div>
-                </div>
-                
-              </div>
-
- </div>
-</h:form>
+        </div>
+</header>
+    
+    <main>
+    <center>
+    		<f:metadata>
+				<f:viewParam name="id" value="#{platoControler.id}"/>
+			</f:metadata>
+    	<br />
+    		
+	<h:form enctype="multipart/form-data">
+		<h:messages globalOnly="true"/>
+	
+		<h:panelGrid columns ="3">
+		 
+		 <h:outputLabel class="btn btn-info pull-center" value="Imagen:" for="id"/>
+		<h:inputText value="#{platoControler.plato.nombre}" id="im" />
+		<h:message  for="im"/>
+	
+		<h:outputLabel class="btn btn-info pull-center" value="Descripcion:" for="cedula"/>
+		<h:inputText value="#{platoControler.plato.descripcion}" id="des" />
+		<h:message  for="des"/>
+		
+	
+		</h:panelGrid>
+	
+	</h:form>
 	<h:form>
 <div>
 		<h:messages globalOnly="true"/>
 	
 	<h:panelGrid columns ="3">
 
-		<h:outputLabel value="Calificacion:" for="voto"/>
-		<h:selectOneMenu value="#{calificacionControler.calificacion.voto}" id="voto">
+		<h:outputLabel class="btn btn-info pull-center" value="Calificacion:" for="voto"/>
+		<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto">
   			 <f:selectItem itemValue="5" itemLabel="5" />
    			 <f:selectItem itemValue="4" itemLabel="4" /> 
    			 <f:selectItem itemValue="3" itemLabel="3" />
@@ -72,7 +87,7 @@
 		</h:selectOneMenu>
 		<h:message  for="voto"/>
 		
-		<h:outputLabel value="Comentario" for="comentario"/>
+		<h:outputLabel class="btn btn-info pull-center"  value="Comentario" for="comentario"/>
 		<h:inputText value="#{calificacionControler.calificacion.comentario}" id="comentario" />
 		<h:message  for="comentario"/>
 	
@@ -86,7 +101,23 @@
         
           </div>
 	</h:form>
+	  </center>
+    </main>
+    
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="js/script.js"></script>
+</body> 
+</html>
 	
-	</ui:define>
-	
-	</ui:composition>

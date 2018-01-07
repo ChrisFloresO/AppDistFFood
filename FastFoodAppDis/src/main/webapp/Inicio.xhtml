@@ -11,6 +11,7 @@
     <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
     <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+	<link rel="stylesheet" href="resources/template/site/css/cal.css"/>
 	
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
@@ -81,26 +82,31 @@
               
               <h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
-
-	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas">
+	<br />
+	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas" cellspacing="10" width="50%">
 	 
 		<h:column>
 			<div class="col-sm-10">
-			<f:facet name="header" >Imagne</f:facet>
 			<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
 			</div>
 		</h:column>
-		
-		 <div class="col-sm-20">
 		<h:column>
-			<f:facet name="header" >Descripcion</f:facet>
 			#{busquedas.descripcion}
 		</h:column>
-		</div>
 		<h:column>
-			<f:facet name="header">Precio</f:facet>
-			#{busquedas.precio}
+			<p>$ #{busquedas.precio}</p> 
 		</h:column>
+		<h:column>
+			<div class="ec-stars-wrapper">
+				<a href="#{platoControler.listadatosC(busquedas.codigo)}" value="1" title="Votar con 1 estrellas">&#9734;</a>
+				<a href="#" value="2" title="Votar con 2 estrellas">&#9734;</a>
+				<a href="#" value="3" title="Votar con 3 estrellas">&#9734;</a>
+				<a href="#" value="4" title="Votar con 4 estrellas">&#9734;</a>
+				<a href="#" value="5" title="Votar con 5 estrellas">&#9734;</a>
+			</div>
+		<noscript>Necesitas tener habilitado javascript para poder votar</noscript>
+		</h:column>
+		
 		<h:column>
 			<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo)}" value="Pedir"/>
 		</h:column>
@@ -110,6 +116,7 @@
 		<h:column>
 			<h:commandButton action="#{platoControler.listadatosU()}" value="Ubicacion"/>
 		</h:column>
+		
 		
 	</h:dataTable>
           </div>
