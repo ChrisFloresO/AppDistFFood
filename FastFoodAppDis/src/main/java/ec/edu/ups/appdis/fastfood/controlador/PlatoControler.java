@@ -185,8 +185,10 @@ public class PlatoControler
 	 * @return
 	 */
 	public String listadatosC(int codigo) {
+		System.out.println("c"+codigo);
 		plato = pdao.leer(codigo);
-		return "Calificacion";
+		System.out.println("HOLA"+plato.getCodigo());
+		return "Calificacion.xhtml";
 	}
 
 	/**

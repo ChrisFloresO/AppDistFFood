@@ -34,6 +34,23 @@ public class PlatoDAO {
 
 	
 	//getters an setters
+	public Part getFile() {
+		return file;
+	}
+
+	public void setFile(Part file) {
+		this.file = file;
+	}
+
+	public Part getFile2() {
+		return file2;
+	}
+
+	public void setFile2(Part file2) {
+		this.file2 = file2;
+	}
+	
+	//metodos de crud
 	public void insertar(Plato plato) {
 		em.persist(plato);
 	}
@@ -50,21 +67,7 @@ public class PlatoDAO {
 		Plato pl = em.find(Plato.class, codigo);
 		return pl;
 	}
-	public Part getFile() {
-		return file;
-	}
-
-	public void setFile(Part file) {
-		this.file = file;
-	}
-
-	public Part getFile2() {
-		return file2;
-	}
-
-	public void setFile2(Part file2) {
-		this.file2 = file2;
-	}
+	
 
 	public List<Plato> listadoPlatos() {
 		String jppql = "SELECT p FROM Plato p";
