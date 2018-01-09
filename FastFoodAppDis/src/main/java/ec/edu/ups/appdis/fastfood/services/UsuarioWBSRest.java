@@ -13,6 +13,12 @@ import javax.ws.rs.QueryParam;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
+/**
+ * 
+ * @author frn14k
+ *
+ */
+
 @Path("usuarios")
 public class UsuarioWBSRest 
 {

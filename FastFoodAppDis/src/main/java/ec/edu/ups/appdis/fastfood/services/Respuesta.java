@@ -1,5 +1,10 @@
 package ec.edu.ups.appdis.fastfood.services;
 
+/**
+ * 
+ * @author frn14k
+ *
+ */
 public class Respuesta 
 {
 	
