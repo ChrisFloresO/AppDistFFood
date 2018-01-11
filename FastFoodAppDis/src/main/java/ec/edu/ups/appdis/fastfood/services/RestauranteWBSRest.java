@@ -12,7 +12,13 @@ import javax.ws.rs.Produces;
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 
-@Path("huecas")
+/**
+ * 
+ * @author frn14k
+ *
+ */
+
+@Path("restaurante")
 public class RestauranteWBSRest {
 	
 	

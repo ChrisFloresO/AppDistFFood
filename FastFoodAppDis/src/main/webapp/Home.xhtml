@@ -21,7 +21,6 @@
     
 
 <body> 
-<body>
 <div class="page">
     <!--========================================================
                               HEADER
@@ -29,21 +28,6 @@
     <header>
 
         <div class="camera_container">
-            <div id="camera" class="camera_wrap">
-                <div src="resources/template/site/images/slide01.jpg">
-                    <div class="camera_caption fadeIn">
-                    </div>
-                </div>
-                <div src="resources/template/site/images/slide02.jpg">
-                    <div class="camera_caption fadeIn">
-                    </div>
-                </div>
-                <div src="resources/template/site/images/slide03.jpg">
-                    <div class="camera_caption fadeIn">
-                    </div>
-                </div>
-            </div>
-
             <div class="brand wow fadeIn">
                 <h1 class="brand_name">
                     <a href="./">Fast Food</a>
@@ -90,19 +74,31 @@
                     </div>
                 </div>
                 <div class="decoration"><a href="#" class="btn">Read more</a></div>
-                <h2><em>Our</em>Cuisine</h2>
+                <h2><em>Paltos</em>del Dia</h2>
             </div>            
             <div class="gallery">
                 <div class="gallery_col-1">
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img03_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img03.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
+                       <center>
+							<h:dataTable value ="#{platoControler.platos.get(0)}" var="plato"
+							rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
+								<h:column>
+									<f:facet name="header">Imagne</f:facet>
+									<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
+								</h:column>
+								<h:column>
+									#{plato.descripcion}
+								</h:column>
+								<h:column>
+									<p>$ #{plato.precio}</p>
+								</h:column>
+								<h:column>
+									<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Anadir"/>
+								</h:column>
+								<h:column>
+									<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ubicar" />
+								</h:column>
+							</h:dataTable>
+						</center>
                     <a fancybox-group="gallery" href="resources/template/site/images/page-1_img04_original.jpg" >
                         <img src="resources/template/site/images/page-1_img04.jpg" alt=""/>
                         <div class="gallery_overlay">
@@ -223,12 +219,46 @@
         </section>
         <section class="well well__offset-2">
             <div class="container center">
-                <h2><em>Make </em>a Reservation</h2>
-                <p class="indents-2">Fnteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol.</p>
-                <address class="address-1">
-                    <dl><dt>Address:</dt> <dd>4578 Marmora Road, Glasgow DA04 89GR</dd></dl>
-                    <p><em>800 2345-6789</em></p>
-                </address>
+                <h2>
+                	<em>Restaurantes</em>
+                </h2>
+                	<h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.platos}"/>
+			<center>
+				<h:dataTable value ="#{platoControler.platos}" var="plato"
+				rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
+					<h:column>
+						<f:facet name="header">Imagne</f:facet>
+						<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
+					</h:column>
+			       
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{plato.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Descripcion</f:facet>
+						#{plato.descripcion}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Precio</f:facet>
+						<p>$ #{plato.precio}</p>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
+					</h:column>
+		 
+				</h:dataTable>
+			</center>
             </div>
         </section>
     </main>
@@ -253,5 +283,4 @@
 
 <script src="js/script.js"></script>
 </body>
-</body> 
 </html>

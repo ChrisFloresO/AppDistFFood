@@ -14,6 +14,9 @@ import javax.ws.rs.QueryParam;
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
+/**
+ * 
+ */
 
 @Path("platos")
 public class PlatosWBSRest {
