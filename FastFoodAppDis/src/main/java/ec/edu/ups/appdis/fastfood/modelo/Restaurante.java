@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -23,8 +24,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
+
 @Entity
 @Table(name="tbl_restaurante")
+@NamedQuery(name="Restaurante.findAll", query="SELECT r FROM Restaurante r")
 public class Restaurante {
 	
 	@Id
@@ -52,6 +55,11 @@ public class Restaurante {
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="restaurante", referencedColumnName="res_codigo")
 	private List<Ubicacion> ubicaciones;
+	
+	
+	//bi-directional many-to-one association to Plato
+	@OneToMany(mappedBy="restaurante")
+	private List<Plato> platos;
 	
 	//Getter and Setters
 

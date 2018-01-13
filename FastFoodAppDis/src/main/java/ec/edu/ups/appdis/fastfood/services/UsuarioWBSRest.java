@@ -45,7 +45,7 @@ public class UsuarioWBSRest
 	
 	
 	@GET
-	@Path("perfil")
+	@Path("/perfil")
 	@Produces("application/json")
 	public List<Usuario> getUsuario (@QueryParam("correo") String correo,@QueryParam("clave") String clave){
 		return udao.getUsuariosLogin(correo, clave);
