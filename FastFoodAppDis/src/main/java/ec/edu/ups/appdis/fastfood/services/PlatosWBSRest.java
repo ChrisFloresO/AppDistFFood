@@ -43,14 +43,14 @@ public class PlatosWBSRest {
 	
 	
 	@GET
-	@Path("listar")
+	@Path("/listar")
 	@Produces("application/json")
 	public List<Plato> getPlatos(){
 		return pdao.listadoPlatos();
 	}
 	
 	@GET
-	@Path("buscar")
+	@Path("/buscar")
 	@Produces("application/json")
 	public List<Plato> getPlatosB(@QueryParam("nombre") String nombre){
 		return pdao.listadoPlatospr(nombre);

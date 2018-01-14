@@ -2,6 +2,7 @@ package ec.edu.ups.appdis.fastfood.modelo;
 
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
@@ -16,8 +19,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+
 @Entity
 @Table(name="tbl_usuario")
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario {
 	
 	@Id
@@ -54,6 +59,14 @@ public class Usuario {
 	
 	@Column(name = "use_rol",length = 20)
 	private int rol;
+	
+	//bi-directional many-to-one association to Ordene
+	@OneToMany(mappedBy="usuario")
+	private List<Pedido> pedidos;
+	
+	//bi-directional many-to-one association to Ordene
+	@OneToMany(mappedBy="usuario")
+	private List<Calificacion> calificaciones;
 	
 	@Lob
 	@Column(name="plt_imagen")

@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.servlet.http.Part;
 
 import ec.edu.ups.appdis.fastfood.modelo.Imagenes;
+import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 
 /**
@@ -137,6 +138,16 @@ public class RestaurantDAO {
 			@SuppressWarnings("unchecked")
 			List<Restaurante> listado =query.getResultList();
 			return listado;
+		}
+		
+		public int nombreRestaurante(String nombre)
+		{
+			String jppql = "SELECT r FROM Restaurante r where lower(pl.nombre) like :nombre";
+			Query query = em.createQuery(jppql,Restaurante.class);
+			query.setParameter("nombre", "%"+nombre.toLowerCase()+"%");
+			@SuppressWarnings("unchecked")
+			int re =query.getFirstResult();
+			return re;
 		}
 		
 		

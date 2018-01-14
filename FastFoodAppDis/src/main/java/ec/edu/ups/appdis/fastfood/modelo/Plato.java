@@ -3,7 +3,6 @@ package ec.edu.ups.appdis.fastfood.modelo;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,12 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 @Table(name="tbl_plato")
+@NamedQuery(name="Plato.findAll", query="SELECT p FROM Plato p")
 public class Plato 
 {
 	@Id
@@ -41,11 +46,20 @@ public class Plato
 	@Column(name="plt_imagen")
 	private byte[] imagen;
 	
-	@OneToOne
-	private Restaurante restaurante;
+	//bi-directional many-to-one association to Categoria
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="res_codigo" ,nullable=false)
+	@JsonIgnore
+	private Restaurante restaurante; 
 	
-	//SELECT p FROM Plato p WHERE p.resturante.nombre = '' 
-
+	
+	//bi-directional many-to-one association to DetalleOrdene
+	@OneToMany(mappedBy="plato")
+	private List<Detalle> detalles;
+	
+	//bi-directional many-to-one association to DetalleOrdene
+	@OneToMany(mappedBy="plato")
+	private List<Calificacion> calificaciones;
 	
 	//gets and sets
 	public int getCodigo() {
@@ -86,6 +100,15 @@ public class Plato
 
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
+	}
+	
+	
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
 	}
 
 	@Override

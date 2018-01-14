@@ -26,7 +26,7 @@ public class RestauranteWBSRest {
 	private RestaurantDAO rdao;
 	
 	@POST
-	@Path("/regitrar")
+	@Path("/registrar")
 	@Produces("application/json")
 	@Consumes("application/json")
 	public Respuesta registrarRestaurante(Restaurante res) {
