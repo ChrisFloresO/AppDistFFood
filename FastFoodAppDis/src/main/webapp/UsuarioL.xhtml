@@ -64,11 +64,7 @@
 	<h:dataTable value ="#{usuarioControler.usuarios}" var="usuario"
 		rendered="#{not empty usuarioControler.usuarios}"
 		cellspacing="10" width="50%">
-		
-		<h:column>
-			<f:facet name="header" >Imagen</f:facet>
-			<img src="data:image/png;base64,#{usuarioControler.udao.convertir(usuario.imagen)}" />
-		</h:column>
+
 		<h:column>
 			<f:facet name="header" >Cedula</f:facet>
 			#{usuario.cedula}
@@ -80,11 +76,6 @@
 		<h:column>
 			<f:facet name="header">Apellido</f:facet>
 			#{usuario.apellido}
-		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Telefono</f:facet>
-			#{usuario.telefono}
 		</h:column>
 		
 		<h:column>

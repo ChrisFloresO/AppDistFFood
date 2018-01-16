@@ -25,13 +25,13 @@ public class PlatosWBSRest {
 	private PlatoDAO pdao;
 	
 	@POST
-	@Path("/regitrar")
+	@Path("/registrar")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public Respuesta registrarPlato(Plato pla) {
+	public Respuesta registrarPlato(Plato p) {
 		Respuesta resp = new Respuesta();
 		try {
-			pdao.guardar(pla);
+			pdao.guardar(p);
 			resp.setCodigo(1);
 			resp.setMensaje("Registro satisfactorio");
 		}catch(Exception e) {

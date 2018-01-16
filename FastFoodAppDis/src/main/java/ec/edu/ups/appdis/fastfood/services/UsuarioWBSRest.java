@@ -19,7 +19,7 @@ import ec.edu.ups.appdis.fastfood.modelo.Usuario;
  *
  */
 
-@Path("usuarios")
+@Path("/usuarios")
 public class UsuarioWBSRest 
 {
 	
