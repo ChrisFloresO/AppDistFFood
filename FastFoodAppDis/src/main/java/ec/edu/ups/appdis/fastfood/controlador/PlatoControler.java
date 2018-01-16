@@ -9,7 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
+import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
+import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 
 @ManagedBean
 @ViewScoped
@@ -20,9 +22,16 @@ public class PlatoControler
 	private List<Plato> platos;
 	private int id;
 	private String nombre;
+	private int codigo;
+	private Restaurante restaurante;
 
 	@Inject
 	private PlatoDAO pdao;
+	
+	@Inject
+	private RestaurantDAO rdao;
+	
+	
 	
 	/**
 	 * metodo para inicializar las variables
@@ -72,6 +81,14 @@ public class PlatoControler
 		this.pdao = pdao;
 	}
 
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
 	public void Boorar(int codigo) {
 		pdao.borrar(codigo);
 		loadPlatos();
@@ -87,6 +104,22 @@ public class PlatoControler
 	//getters and setters
 	
 
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+
+	public RestaurantDAO getRdao() {
+		return rdao;
+	}
+
+	public void setRdao(RestaurantDAO rdao) {
+		this.rdao = rdao;
+	}
+
 	/*
 	 * public String addDetalle() { System.out.println("aqui");
 	 * pedido.addDetalle(new Detalle()); return null; }
@@ -99,7 +132,10 @@ public class PlatoControler
 	 * 
 	 * @return Lista_Plato
 	 */
-	public String guardar() {
+	public String guardar() 
+	{
+		restaurante = rdao.leer(codigo);
+		plato.setRestaurante(restaurante);
 		System.out.println(plato);
 		// invoque al DAO y envie la entidad a persistir
 		try {

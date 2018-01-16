@@ -17,7 +17,8 @@ import ec.edu.ups.appdis.fastfood.modelo.Usuario;
  */
 
 @ManagedBean
-public class UsuarioControler {
+public class UsuarioControler 
+{
 	private String id;
 	private List<Usuario> usuarios;
 	private String correoI;

@@ -21,30 +21,11 @@ import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 @Stateless
 public class UsuarioDAO 
 {
-	//variables
-	private Part file;
-	private Part file2;
-	private Imagenes imagen;
-	
-	@Inject
-	private ImagenDAO daoImg;
 	
 	@Inject	
 	private EntityManager em;
 	
 	//getters and setters
-	public Part getFile() {
-		return file;
-	}
-	public void setFile(Part file) {
-		this.file = file;
-	}
-	public Part getFile2() {
-		return file2;
-	}
-	public void setFile2(Part file2) {
-		this.file2 = file2;
-	}
 	
 	public void insertar (Usuario u) {
 		em.persist(u);
@@ -95,25 +76,6 @@ public class UsuarioDAO
 		return personas;
 	}
     
-    /**
-	 * Este metodo permite guardar la imagen como tal en la base de datos
-	 * @return
-	 * @throws IOException
-	 */
-	public String guardarImagen() throws IOException
-	{
-		int fotoSize = (int)file2.getSize();
-           System.out.println("tamno     "+fotoSize);
-           byte[] foto;
-            if(fotoSize>0){
-            	foto = new byte [fotoSize];
-            	file2.getInputStream().read(foto);
-            	imagen.setImagen(foto);		
-    			daoImg.save(imagen);
-            
-   		}
-            return null;
-	}
 	
 	
 	/**
@@ -122,52 +84,20 @@ public class UsuarioDAO
 	 */
 	public void guardar(Usuario u)
 	{
-		/*if(plato.getNombre().equals("")||plato.getDescripcion().equals("")||plato.getImagen().equals("")||plato.getPrecio()<=0.0)
-		{
-			
-			System.out.println("campos vacios");
-		}
-		else
-		{	*/
+		
 		Usuario u1 = leer(u.getId());
 		try {
 		if (u1 == null) {
-			int fotoSize = (int)file.getSize();
-        	System.out.println("tamno     "+fotoSize);
-        	byte[] foto;
-        	if(fotoSize>0){
-        		foto = new byte [fotoSize];
-        		
-					file.getInputStream().read(foto);
-				
-					
-        		u.setImagen(foto);		
         		insertar(u);
-        	}
+        	
 		} 
 		else
 			actualizar(u);
 			
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 				
 		}
-	//}
-	
-	/**
-	 * Este metodo permite transformar un arreglo de byte a string para poder mostrar la foto al cliente resiviendo como parametro el arreglo de byte.
-	 * Y retorna el string con el nombre de la imagen.
-	 * @param photo
-	 * @return
-	 */
-	public String convertir (byte[] photo ) 
-	{
-		String bphoto = Base64.getEncoder().encodeToString(photo);
-		return bphoto;
-		
-	}
-    
-
 }

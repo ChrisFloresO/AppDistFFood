@@ -43,11 +43,7 @@ public class Usuario {
 	@Size(min=4,max=20)
 	@Column(name="user_apellido")
 	private String apellido;
-		
-	@NotNull
-	@Size(min=4,max=20)
-	@Column(name="user_telefono")
-	private String telefono;
+
 	
 	@Email
 	@Column (name="user_email")
@@ -68,9 +64,6 @@ public class Usuario {
 	@OneToMany(mappedBy="usuario")
 	private List<Calificacion> calificaciones;
 	
-	@Lob
-	@Column(name="plt_imagen")
-	private byte[] imagen;
 	
 	//Getters and Setters	
 	public int getId() {
@@ -105,13 +98,6 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 	
-	public String getTelefono() {
-		return telefono;
-	}
-	
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
 	
 	public String getEmail() {
 		return email;
@@ -137,19 +123,12 @@ public class Usuario {
 		this.rol = rol;
 	}
 
-	public byte[] getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(byte[] imagen) {
-		this.imagen = imagen;
-	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", telefono=" + telefono + ", email=" + email + ", contrasena=" + contrasena + ", rol=" + rol
-				+ ", imagen=" + Arrays.toString(imagen) + "]";
+		return "Usuario [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", email="
+				+ email + ", contrasena=" + contrasena + ", rol=" + rol + ", pedidos=" + pedidos + ", calificaciones="
+				+ calificaciones + "]";
 	}
 	
 }
