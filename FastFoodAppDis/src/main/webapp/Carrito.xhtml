@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-    <title>Lista de Platos</title>
+    <title>Carrito</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
@@ -29,7 +29,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-         <a href="./" class="brand_name">Fast Food</a>
+         <a href="#" class="brand_name">Fast Food</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -38,10 +38,10 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-                <a href="Registra_Plato.xhtml">Registrar Plato <span class="sr-only">(current)</span></a>
+                <a href="Buscar.xhtml">Buscar Plato <span class="sr-only">(current)</span></a>
             </li>
             <li class="active">
-                <a href="Lista_Plato.xhtml">Lista Platos <span class="sr-only">(current)</span></a>
+                <a href="Carrito.xhtml">Carrito <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
@@ -205,53 +205,49 @@
             <div class="box-header with-border">
             <br />
             <center>
-            <h2> <em>Lista de Plato</em></h2>
+            <h2> <em>Carrito</em></h2>
             </center>
             </div>
     </div> 
       <h:form>
 	    
 	<h:outputText value="No existe registros" 
-	rendered="#{empty platoControler.platos}"/>
+	rendered="#{empty platoControler.pedidos}"/>
 	<center>
-		<h:dataTable value ="#{platoControler.platos}" var="plato"
-		rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
+		<h:dataTable value ="#{platoControler.pedidos}" var="pedido"
+		rendered="#{not empty platoControler.pedidos}" cellspacing="10" width="50%" >
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				#{pedido.codigo}
+			</h:column>
 			<h:column>
 				<f:facet name="header">Imagne</f:facet>
-				<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
+				<img src="data:image/png;base64,#{platoControler.pdao.convertir(pedido.plato.imagen)}" />
 			</h:column>
 	       
 			<h:column>
-				<f:facet name="header">Nombre</f:facet>
-				#{plato.nombre}
+				<f:facet name="header">Precio</f:facet>
+				#{pedido.plato.precio}
 			</h:column>
 			<h:column>
 				<f:facet name="header">Descripcion</f:facet>
-				#{plato.descripcion}
+				#{pedido.usuario.nombre}
 			</h:column>
 			<h:column>
-				<f:facet name="header">Precio</f:facet>
-				<p>$ #{plato.precio}</p>
+				<f:facet name="header">Apellido</f:facet>
+				<p>$ #{pedido.usuario.apellido}</p>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Acciones</f:facet>
-				<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Acciones</f:facet>
 				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Acciones</f:facet>
-				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
 			</h:column>
  
 		</h:dataTable>
 	</center>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="Registra_Plato" class="btn btn-info pull-center" id="btn" value="Registrar Nuevo Plato" data-dismiss="modal" />
+	             <h:commandButton action="Buscar" class="btn btn-info pull-center" id="btn" value="Buscar Plato" data-dismiss="modal" />
 	        </center>
 	    </div>
 	</h:form>

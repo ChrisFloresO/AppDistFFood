@@ -8,10 +8,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
+import ec.edu.ups.appdis.fastfood.datos.PrediccionesDao;
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
+import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
+import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
+import ec.edu.ups.appdis.fastfood.modelo.Predicciones;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
+import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 @ManagedBean
 @ViewScoped
@@ -20,10 +27,15 @@ public class PlatoControler
 	//variables
 	private Plato plato;
 	private List<Plato> platos;
-	private int id;
+	private List<Plato> platosR;
+	private List<Pedido> pedidos;
+	private List<Predicciones> predicciones;
+	private String id;
 	private String nombre;
 	private int codigo;
 	private Restaurante restaurante;
+	private Pedido pedido;
+	private Usuario usuario;
 
 	@Inject
 	private PlatoDAO pdao;
@@ -31,6 +43,14 @@ public class PlatoControler
 	@Inject
 	private RestaurantDAO rdao;
 	
+	@Inject
+	private PrediccionesDao prerdao;
+	
+	@Inject
+	private PedidoDAO pedao;
+	
+	@Inject
+	private UsuarioDAO usdao;
 	
 	
 	/**
@@ -39,13 +59,52 @@ public class PlatoControler
 	@PostConstruct
 	public void init() {
 		plato = new Plato();
-		// plato.addDetalle(new Detalle());
+		pedido= new Pedido();
+		usuario = new Usuario();
 		loadPlatos();
 	}
 
 	//getters and setters
 	public void loadPlatos() {
 		platos = pdao.listadoPlatos();
+	}
+	
+	public void loadPedidos() {
+		pedidos = pedao.listadoPedidos();
+		for (int i = 0; i < pedidos.size(); i++) {
+			System.out.println(pedidos.get(i).getCodigo());
+		}
+	}
+	
+	public void loadPrediccion() {
+		
+		predicciones = prerdao.listadoPredicciones();
+		for (int i = 0; i < predicciones.size(); i++) 
+		{
+			int codigo =predicciones.get(i).getItem();
+			System.out.println(codigo);
+			platosR =pdao.listadoPlatospr(codigo);
+			System.out.println(platosR.get(i).getNombre());
+			
+		}
+		
+	}
+
+
+	public List<Plato> getPlatosR() {
+		return platosR;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public void setPlatosR(List<Plato> platosR) {
+		this.platosR = platosR;
 	}
 
 	public Plato getPlato() {
@@ -64,13 +123,12 @@ public class PlatoControler
 		this.platos = platos;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
-		listadatosEditar(id);
 	}
 
 	public PlatoDAO getPdao() {
@@ -92,6 +150,22 @@ public class PlatoControler
 	public void Boorar(int codigo) {
 		pdao.borrar(codigo);
 		loadPlatos();
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public PedidoDAO getPedao() {
+		return pedao;
+	}
+
+	public void setPedao(PedidoDAO pedao) {
+		this.pedao = pedao;
 	}
 
 	public String getNombre() {
@@ -120,10 +194,38 @@ public class PlatoControler
 		this.rdao = rdao;
 	}
 
-	/*
-	 * public String addDetalle() { System.out.println("aqui");
-	 * pedido.addDetalle(new Detalle()); return null; }
-	 */
+	public List<Predicciones> getPredicciones() {
+		return predicciones;
+	}
+
+	public void setPredicciones(List<Predicciones> predicciones) {
+		this.predicciones = predicciones;
+	}
+
+	public PrediccionesDao getPrerdao() {
+		return prerdao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public UsuarioDAO getUsdao() {
+		return usdao;
+	}
+
+	public void setUsdao(UsuarioDAO usdao) {
+		this.usdao = usdao;
+	}
+
+	public void setPrerdao(PrediccionesDao prerdao) {
+		this.prerdao = prerdao;
+	}
+
 	/**
 	 * este metod permite guardar una calificacion al momento de llamar al objeto
 	 * pdao que tiene el metodo guardar que se le pasa el parametro calificacion
@@ -201,8 +303,24 @@ public class PlatoControler
 	 * @return
 	 */
 	public String listadatosB(int codigo) {
+		System.out.println(codigo);
 		plato = pdao.leer(codigo);
-		return "Pedido";
+		System.out.println(plato.getNombre());
+		usuario = usdao.leer(codigo);
+		System.out.println(usuario.getNombre());
+		pedido.setPlato(plato);
+		pedido.setUsuario(usuario);
+		try {
+			pedao.guardar(pedido);
+			loadPedidos();
+		} catch (Exception e) {
+			String errorMessage = getRootErrorMessage(e);
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+			// facesContext.addMessage(null, m);
+			return null;
+		}
+
+		return "Carrito";
 	}
 
 	public String doRead() {
@@ -223,8 +341,8 @@ public class PlatoControler
 	public String listadatosC(int codigo) {
 		System.out.println("c"+codigo);
 		plato = pdao.leer(codigo);
-		System.out.println("HOLA"+plato.getCodigo());
-		return "Calificacion.xhtml";
+		System.out.println("HOLA"+plato.getNombre());
+		return "Calificacion";
 	}
 
 	/**

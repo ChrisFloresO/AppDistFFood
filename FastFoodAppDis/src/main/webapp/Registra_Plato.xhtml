@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <head>
     <title>Menu</title>
@@ -11,12 +12,42 @@
     <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
     <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/contact-form.css"/>
 	
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src='js/device.min.js'></script> 
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
     
 </head>
+
+	<style>
+	  .textbox
+	  {
+	  border: 1px solid #DBE1EB;
+	  font-size: 18px;
+	  font-family: Arial, Verdana;
+	  padding-left: 7px;
+	  padding-right: 7px;
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+	  border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	  -o-border-radius: 4px;
+	  background: #FFFFFF;
+	  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  color: #2E3133;
+	  }
+	  
+	  .textbox:focus
+	  {
+	  color: #2E3133;
+	  border-color: #FBFFAD;
+	  }
+	 </style>
 
 <body> 
  <header>
@@ -50,19 +81,19 @@
     <main>
     <center>
     	<br />
-	<h:form enctype="multipart/form-data">
+	<h:form enctype="multipart/form-data" >
 	  
-		<div class="box box-info">
-            <div class="box-header with-border">
+		<div class="row box-2">
+            <div class="grid_4">
               <h2> <em>Registra Plato</em></h2>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+                  <label for="inputEmail3" class="col-sm-1 control-label" >Nombre</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.plato.nombre}" class="form-control" id="nombre">
+                  	<h:inputText value="#{platoControler.plato.nombre}" class="textbox" id="nombre" size="50">
 					</h:inputText>
 					<h:message for="nombre" errorClass ="Invalid"/>
                   </div>
@@ -71,7 +102,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Descripcion</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.plato.descripcion}" id="descripcion"  class="form-control" />
+                  	<h:inputText value="#{platoControler.plato.descripcion}" id="descripcion"  class="textbox"  size="50"/>
                   </div>
                 </div>
                 
@@ -79,7 +110,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Precio</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.plato.precio}" id="precio"  class="form-control" />
+                  	<h:inputText value="#{platoControler.plato.precio}" id="precio"  class="textbox"  size="50"/>
                   </div>
                 </div>
                 
@@ -87,22 +118,23 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Restaurante</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{platoControler.codigo}" id="res"  class="form-control" />
+                  	<h:inputText value="#{platoControler.codigo}" id="res" class="textbox" size="50"/>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                <h:inputFile id="file" value="#{platoControler.pdao.file}"/>
+                <label for="inputPassword3" class="col-sm-2 control-label">Imagen</label>
+
+                  	<div class="col-sm-10">
+                		<h:inputFile id="file" class="textbox"  value="#{platoControler.pdao.file}"/>
+                	</div>
                 </div>
               </div>
-              <!-- /.box-body -->
               
-              	
-              <h:commandButton action="#{platoControler.guardar()}" class="btn btn-info pull-right" id="btn" value="Registrar Plato" />
-              	<h:commandButton action="Lista_Plato" class="btn btn-info pull-right" id="btn1" value="Listado de Platos" />
-              
-              <!-- /.box-footer -->
-        
+	             <dir class="btn-wr">
+	             	 <h:commandButton action="#{platoControler.guardar()}" class="btn btn-info pull-center" id="btn" value="Registrar Plato" />
+	              	<h:commandButton action="Lista_Plato" class="btn btn-info pull-center" id="btn1" value="Listado de Platos" />
+	          	 </dir> 	
           </div>
           
           
@@ -123,6 +155,6 @@
         </div>
         <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
     </footer>
-<script src="js/script.js"></script>
+<script src="resources/template/site/js/script.js"></script>
 </body> 
 </html>

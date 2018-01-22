@@ -38,7 +38,6 @@ public class UsuarioDAO
 		em.remove(leer(id));
 	}
 	public Usuario leer(int id) {
-		
 		return em.find(Usuario.class, id);
 	}
 

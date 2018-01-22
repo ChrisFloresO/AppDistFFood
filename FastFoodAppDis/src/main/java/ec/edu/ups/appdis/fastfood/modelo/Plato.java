@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Plato 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name = "plt_codigo",nullable = false) 
 	private int codigo;
 	
@@ -47,7 +47,7 @@ public class Plato
 	private byte[] imagen;
 	
 	//bi-directional many-to-one association to Categoria
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="res_codigo" ,nullable=false)
 	@JsonIgnore
 	private Restaurante restaurante; 
@@ -60,6 +60,10 @@ public class Plato
 	//bi-directional many-to-one association to DetalleOrdene
 	@OneToMany(mappedBy="plato")
 	private List<Calificacion> calificaciones;
+	
+	//bi-directional many-to-one association to DetalleOrdene
+	@OneToMany(mappedBy="plato")
+	private List<Pedido> pedidos;
 	
 	//gets and sets
 	public int getCodigo() {
@@ -110,11 +114,28 @@ public class Plato
 	public void setRestaurante(Restaurante restaurante) {
 		this.restaurante = restaurante;
 	}
+	
+	public List<Calificacion> getCalificaciones() {
+		return calificaciones;
+	}
+
+	public void setCalificaciones(List<Calificacion> calificaciones) {
+		this.calificaciones = calificaciones;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 	@Override
 	public String toString() {
 		return "Plato [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + "]";
+				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + ", detalles=" + detalles
+				+ ", calificaciones=" + calificaciones + ", pedidos=" + pedidos + "]";
 	}
 	
 	

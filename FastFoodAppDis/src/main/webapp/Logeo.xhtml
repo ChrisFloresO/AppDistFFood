@@ -8,14 +8,14 @@
 <meta charset="UTF-8"></meta>
   <title>Logueate</title>
   
-	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
+	<link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Open+Sans:600"/>
 	<link rel="stylesheet" href="resources/assets/css/style_login.css"/>
 </h:head> 
 <body > 
 <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" /><label for="tab-1" class="tab">Loguearse</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab"></label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab">Registrarse</label>
 		<div class="login-form">
 		<h:form id="login">
 			<div class="sign-in-htm">
@@ -43,10 +43,6 @@
 				<div class="group">
 				<h:commandButton value="LOGIN" action="#{usuarioControler.listar()}" class="button"/>
 				</div>
-				<div class="hr"></div>
-				<div class="group">
-					<h:commandButton value="REGISTRARSE" action="UsuarioR" class="button"/>
-				</div>
 			</div>
 			</h:form>
 			<h:form>
@@ -58,6 +54,10 @@
 				<div class="group">
 					<label for="user" class="label">Apellido</label>
 					<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" type="text" class="input" />
+				</div>
+				<div class="group">
+					<label for="user" class="label">Cedula</label>
+					 <h:inputText value="#{usuarioControler.usuario.cedula}" id="ced" type="text" class="input" />	 
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Correo Electrónico</label>

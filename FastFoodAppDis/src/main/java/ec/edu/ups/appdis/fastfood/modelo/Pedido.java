@@ -1,8 +1,5 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,42 +9,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 
 
 @Entity
 @Table(name="tbl_pedido")
-@NamedQuery(name="Pedido.findAll", query="SELECT o FROM Pedido o")
+@NamedQuery(name="Pedido.findAll", query="SELECT p FROM Pedido p")
 public class Pedido 
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name = "codigo",nullable = false) 
 	private int codigo;
 	
-	@NotNull
-	@Size (min=10, max=13)
-	@Column (name="ped_ruc")
-	private String ruc;
-		
-	@NotNull
-	@Column (name="ped_iva")
-	private String iva;
-
-	@OneToMany(mappedBy="pedido", fetch=FetchType.LAZY)
-	private List<Detalle> detalles;
-	
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private Usuario usuario;
-	
-	
 
+	//bi-directional many-to-one association to Cliente
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="plt_codigo")
+	private Plato plato;
+	
+	
 
 	public int getCodigo() {
 		return codigo;
@@ -57,42 +42,26 @@ public class Pedido
 		this.codigo = codigo;
 	}
 
-	public String getRuc() {
-		return ruc;
+	public Plato getPlato() {
+		return plato;
 	}
 
-	public void setRuc(String ruc) {
-		this.ruc = ruc;
+	public void setPlato(Plato plato) {
+		this.plato = plato;
 	}
 
-	public String getIva() {
-		return iva;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIva(String iva) {
-		this.iva = iva;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-
-	public List<Detalle> getDetalles() {
-		return detalles;
-	}
-
-
-	public void setDetalles(List<Detalle> detalles) {
-		this.detalles = detalles;
-	}
-	
-	public void addDetalle(Detalle detalle) {
-		if(detalles==null) {
-			detalles = new ArrayList();
-		}
-		detalles.add(detalle);
-	}
-
 
 	@Override
 	public String toString() {
-		return "Pedido [codigo=" + codigo + ", ruc=" + ruc + ", iva=" + iva + ", detalles=" + detalles + "]";
+		return "Pedido [codigo=" + codigo + ", plato=" + plato + ", usuario=" + usuario + "]";
 	}
+
 
 }

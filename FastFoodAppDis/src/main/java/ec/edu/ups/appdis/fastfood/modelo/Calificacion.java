@@ -18,25 +18,25 @@ import javax.validation.constraints.NotNull;
 public class Calificacion {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name="cal_codigo")
 	private int codigo;
 	
 	@NotNull
 	@Column (name="cal_voto")
-	private String voto;
+	private int voto;
 	
 	@NotNull
 	@Column (name="cal_comentario")
 	private String comentario;
 	
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Cliente
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="plt_codigo")
 	private Plato plato;
 
@@ -49,11 +49,11 @@ public class Calificacion {
 		this.codigo = codigo;
 	}
 
-	public String getVoto() {
+	public int getVoto() {
 		return voto;
 	}
 
-	public void setVoto(String voto) {
+	public void setVoto(int voto) {
 		this.voto = voto;
 	}
 	
@@ -65,10 +65,28 @@ public class Calificacion {
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
 	}
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Plato getPlato() {
+		return plato;
+	}
+
+	public void setPlato(Plato plato) {
+		this.plato = plato;
+	}
 
 	@Override
 	public String toString() {
-		return "Calificacion [codigo=" + codigo + ", voto=" + voto + ", comentario=" + comentario + "]";
+		return "Calificacion [codigo=" + codigo + ", voto=" + voto + ", comentario=" + comentario + ", usuario="
+				+ usuario + ", plato=" + plato + "]";
 	}
 	
 	

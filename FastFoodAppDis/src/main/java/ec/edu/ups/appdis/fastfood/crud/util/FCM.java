@@ -1,19 +1,22 @@
 package ec.edu.ups.appdis.fastfood.crud.util;
 
+import java.util.List;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
+import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
+import ec.edu.ups.appdis.fastfood.modelo.Plato;
+import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 /**
  * 
@@ -22,574 +25,474 @@ import java.util.Set;
  *
  */
 public class FCM {
-	
-	String filename, dirBase;
-    double[][] centroides;
-    int[][] centroidesVecinosporUsuario;
-    double[][] pesoscentroidesVecinosporUsuario;
-     
-    public int k = 0;
-    public int usuarios = 0;
-    public int items = 0;
 
-    public double[][] votosTrain;
-    public double[][] votos;
+    private double centroides[][];
+    private int centroidesVecinosporUsuario[][];
+    private double pesoscentroidesVecinosporUsuario[][];
 
-    public int iteraciones;
-    @SuppressWarnings("rawtypes")
-	List<Hashtable> ListaVotosUsuarios;
+    private int k = 0;
+    private int usuarios = 0;
+    private int items = 0;
+
+    private int votosTrain[][];
+
+    private int iteraciones;
     
-    public int totalTrain, totalTest;
-    double R;
-    public boolean conVacios;
-    double ERROR;
-    Random rand = new Random();
+    private List<Hashtable> ListaVotosUsuarios;
+    private List<Hashtable> ListaPredicciones;
+    private int totalTrain;
+    private double R;
+    private boolean conVacios;
+    private double ERROR;
+    Random aleatorio = new Random();
     
-    BufferedReader lectura;
-    FileReader f;
+//    private int predicciones[][];
     
-    int L;//num centroides más cercanos a tomar en cuenta para realizar la predicción
+    int l;//num centroides más cercanos a tomar en cuenta para realizar la predicción
+    List<Calificacion> listVotos;
     
-	public FCM (String direccion,String filename, String dirBase, boolean bandera, int ka, int iter, double err, double Mm) 
-	{
-		System.out.println(direccion);
-		System.out.println(dirBase+filename);
-		System.out.println(bandera);
-		System.out.println(ka);
-		System.out.println(iter);
-		System.out.println(err);
-		System.out.println(Mm);
-		//Algoritmo de Sistema de Recomendacion
+    public FCM(List<Calificacion> listVotos, List<Usuario> listUsuarios, List<Plato> listplatos){
+        //Algoritmo de Sistema de Recomendacion
+    	this.listVotos=listVotos;
+
+    	
         //1. Entrada de Datos y parámetros
-		
-		this.filename = filename;
-		this.dirBase = dirBase; 
-		
-		try 
-		{
-			lectura = new BufferedReader(new FileReader(direccion));
-			//indica si el conjunto de datos tiene vacios o esta completo. Si convacios es false, los huecos se tomaran como ceros.
-	        conVacios = bandera;
-	        k=ka;
-	        iteraciones = iter;
-	        ERROR = err;
-	        m = Mm;
-	      //m = 1.01;
-	        
-	        R = 4.0;
-	        
-	        //votos
-	        minVoto = 1.0;
-	        maxVoto = 5.0;
-	        //para movielens
-	        items = 3952;
-	        //items = 12;
-	        usuarios = 6040; //modificar de acuerdo al dataset a utilizar
-	       // usuarios = 12;
-	        
-	        creaM();
-	        creaTest();
-	        iniciarListas();
-            iniciarListas();
+
+        //indica si el conjunto de datos tiene vacios o esta completo. Si convacios es false, los huecos se tomaran como ceros.
+        conVacios = false;
+        k=3;
+        iteraciones = 100;
+        ERROR = 0.001;
+        R = 4.0;
+        m = 2.0;
+        minVoto = 1.0;
+        maxVoto = 5.0;
+        
+        System.out.println("el tamaño de los items = "+listplatos.size()+" usuario="+listUsuarios.size());
+
+        creaM();
+        items = listplatos.size();
+        usuarios = votosTrain[totalTrain-1][0]+1; //modificar de acuerdo al dataset a utilizar
+        
+        iniciarListas();
+        
+        //2. Clustering de usuarios
+        SoftClustering();
+
+        //3. Cálculo de Predicciones y medición MAE
+        System.out.println("determinar centroides vecinos");
+                   
+        l=k;
+        determinarCentroidesVecinosFCMeans();
+    }
+    
+    
+    public void creaM(){
+
+            totalTrain = listVotos.size();
             
-
-	        //2. Clustering de usuarios
-	        SoftClustering();
-
-	        //3. Cálculo de Predicciones y medición MAE
-	        System.out.println("calculo predicciones Mae");
-	        L = k;
-	        double MAE = calcularMAEFCMeans(L);
-	        System.out.println("k;" + k + ";MAE;" + MAE);
-
-	        
-	        //4. Realizar Recomendaciones -> ordenar N predicciones para usuario objetivo (el que hace el login)
-	        System.out.println("prediccion");
-	        determinarCentroidesVecinosFCMeans(L);
-	        System.out.println(predecirVotoFCM(2, 4, L));
-	        		
-		}
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	public void creaM() {
-		
-		try
-        {
-			Path path = Paths.get("D:/Trabajos_Matlab/PracticaFCM/Dataset1M", "train.dat");
-            totalTrain = Files.readAllLines(path).size();
-            votosTrain = new double[totalTrain][3];//total de datos en dataset * 3 campos (usuario, item, voto) 
+            votosTrain = new int[totalTrain][3];//total de datos en dataset * 3 campos (usuario, item, voto) 
             String fila;
             int cont = 0;
-            while ((fila = lectura.readLine()) != null)
-            {
-                String[] parametros;
-                parametros = fila.split("::");
-                votosTrain[cont][0] = Integer.parseInt(parametros[0])-1;
-                votosTrain[cont][1] = Integer.parseInt(parametros[1])-1;
-                votosTrain[cont][2] = Double.parseDouble(parametros[2]);
 
-                parametros = null;
+            System.out.println("total tamano="+listVotos.size());
+            	for (int i = 0; i < listVotos.size(); i++) {
+            		
+            		int usu = listVotos.get(i).getUsuario().getId();
+                    int item = listVotos.get(i).getPlato().getCodigo();
+            		int voto = listVotos.get(i).getVoto();
+                
+                votosTrain[cont][0] = usu - 1;
+                votosTrain[cont][1] = item - 1;
+                votosTrain[cont][2] = voto;
                 cont++;
             }
-            lectura.close();
-        }
-        catch (IOException e)
-        {
-            System.out.println(e);
-        }
-		
-	}
-	
-	@SuppressWarnings({ "resource", "unused" })
-	public void creaTest()
-    {
-        int campos = 4;
-        try
-        {         
-            BufferedReader fsIn = new BufferedReader(new FileReader(dirBase + "test.dat"));            					 
-            String fila;
-            Path path = Paths.get(dirBase, "test.dat");
-            totalTest = Files.readAllLines(path).size();
-                       
-            votos = new double[totalTest][campos];
+    }
+
+    public void iniciarListas() {
+        ListaVotosUsuarios = new ArrayList<Hashtable>();
+        ListaPredicciones = new ArrayList<Hashtable>();
+        
+        Hashtable votosUsuario;
+        Hashtable predicciones;
+        System.out.println("gggggg "+votosTrain[totalTrain-1][0]);
+        for (int u = 0; u <= votosTrain[totalTrain-1][0]; u++) {
+            votosUsuario = new Hashtable();
+            predicciones = new Hashtable();
+            ListaVotosUsuarios.add(votosUsuario);
+            ListaPredicciones.add(predicciones);
             
-            int row = 0;
-            int cont = 0;
-            while ((fila = fsIn.readLine()) != null)
-            {
-                String[] parametros;
-                int usuario;
-                int item;
-                parametros = fila.split("::");
-                votos[cont][0] = Integer.parseInt(parametros[0]) - 1;
-                votos[cont][1] =Integer.parseInt(parametros[1]) - 1;
-                
-                votos[cont][2] = Double.parseDouble(parametros[2]);
-                
-                cont++;
-                row++;
-                parametros = null;
-               
-            }
-            lectura.close();
         }
-        catch (IOException e)
-        {
-            System.out.println(e);
+
+        if (!conVacios){ //la matriz no tiene vacios o los vacios son tomados como ceros.
+        
+            for (int u = 0; u < usuarios; u++){
+                for (int i = 0; i < items; i++){
+//                	System.out.println("por aca va 2 ="+i+" items="+items);
+                    ListaVotosUsuarios.get(u).put(i, 0);
+                    ListaPredicciones.get(u).put(i,0);
+                }
+            }
+            for (int v = 0; v < totalTrain; v++){
+                int usuario = votosTrain[v][0];
+                int item = votosTrain[v] [1];
+                double voto = votosTrain[v][2];
+                ListaVotosUsuarios.get(usuario).put(item, voto);
+            }
+            
+        }else{// indica que la matriz tiene vacios, sparse
+        	
+        	for (int u = 0; u < usuarios; u++){
+                for (int i = 0; i < items; i++){
+                    ListaPredicciones.get(u).put(i,0);
+                }
+            }
+        	
+            for (int v = 0; v < totalTrain; v++){
+                int usuario = Integer.parseInt("" + votosTrain[v][0]);
+                int item = Integer.parseInt("" + votosTrain[v][1]);
+                double voto = votosTrain[v][2];
+                ListaVotosUsuarios.get(usuario).put(item, voto);
+            }
         }
     }
-	
-	
-	 @SuppressWarnings({ "rawtypes", "unchecked" })
-	public void iniciarListas()
-     {
-         ListaVotosUsuarios = new ArrayList<Hashtable>();
-         Hashtable votosUsuario;
-         for (int u = 0; u < usuarios; u++)
-         {
-             votosUsuario = new Hashtable();
-             ListaVotosUsuarios.add(votosUsuario);
-         }
-
-         if (!conVacios) //la matriz no tiene vacios o los vacios son tomados como ceros.
-         {
-             for (int u = 0; u < usuarios; u++)
-             {
-                 for (int i = 0; i < items; i++)
-                 {
-                     ListaVotosUsuarios.get(u).put(i, 0);
-                 }
-             }
-             for (int v = 0; v < totalTrain; v++)
-             {
-                 int usuario = (int)(votosTrain[v][0]);
-                 int item = (int)( votosTrain[v][1]);
-                 double voto = votosTrain[v][2];
-                 ListaVotosUsuarios.get(usuario).replace(item, voto);
-             }
-         }
-         else// indica que la matriz tiene vacios, sparse
-         {
-             for (int v = 0; v < totalTrain; v++)
-             {
-                 int usuario = (int)(votosTrain[v][0]);
-                 int item = (int)(votosTrain[v][1]);
-                 double voto = votosTrain[v][2];
-                 ListaVotosUsuarios.get(usuario).put(item, voto);
-             }
-         }
-//         mostrarHashTable(ListaVotosUsuarios[1]);
-     }
-	 
-	 // Fuzzy CMeans *********************************************************************************************************************
-     //***********************************************************************************************************************************
-     double[][] Yuk;
-     double m;//controla overlapping en Fuzzy cmeans
-     double JM;
-     double mMin;
-     double mMax;
-     int cMax;
-     int saltoK;
-     
-     
-     @SuppressWarnings("unused")
-	public void SoftClustering() {
-    	 
-     	//a. inicializar
-          iteraciones = 100;
-          int numIntentos = 0;
-          numIntentos++;
-          //b. inicializar fuzzy membership Yij
-          inicializarMatrizCentroidesconVacios();
-          inicializarRandomicamenteYuk();
-          double JMant = Double.MAX_VALUE;
-          
-          //c. actualizar centroides y membership Yij
-          for (int it = 0; it < iteraciones; it++) //4. Probar Convergencia con numIteraciones o con error 0.001 con JM.
-          {
-              if (!conVacios)
-            	  calcularCentroidesFCM();
-              else
-            	  calcularCentroidesFCM2();
-              
-              System.out.println("actualizado centroides ");
-              actualizarYuk();
-              System.out.println("actualizado YUK ");
-              JM = calcularJM();
-              //double errorJM = Math.Abs((JM - JMant) / JM);
-              double errorJM = Math.abs(JM - JMant);
-              
-              System.out.println("it;"+(it +1) + ";JM;" + JM + ";errorJM;" + errorJM);
-              if (errorJM < ERROR) break;
-              JMant = JM;
-          }
-     	 
-      }
-     
-     public void inicializarMatrizCentroidesconVacios() //reinicia a 0 todos los centroides
-     {
-
-         centroides = new double[k][items];
-         for (int j = 0; j < k; j++)
-         {
-             for (int i = 0; i < items; i++)
-             {
-                 centroides[j][i] = 0.0;
-             }
-         }
-         //mostrarMatriz(centroides);
-     }
-     
-     public void inicializarRandomicamenteYuk() {
-    	 //La sumatoria de cada vector de usuarios es igual a 1.
-         Yuk = new double[usuarios][k];
-         double sumaYuk;
-         for (int u = 0; u < usuarios; u++)
-         {
-             sumaYuk = 0.0;
-             for (int j = 0; j < k; j++)
-             {
-                 Yuk[u][j] = rand.nextDouble();
-                 sumaYuk = sumaYuk + Yuk[u][j];
-             }
-             for (int j = 0; j < k; j++) {
-                 Yuk[u][j] = Yuk[u][j] / sumaYuk;	//se normaliza para que la sumatoria sea igual a 1.
-             }
-         }
-     }
     
-     public void calcularCentroidesFCM()
-     {
-         double[][] sumatoriaAuk = new double[k][items];
-         centroides = null;
-         centroides = new double[k][items];
-         for (int i = 0; i < items; i++)
-         {
-             for (int u = 0; u < usuarios; u++)
-             {
-                 if (!conVacios)
-                 {
-                     double votoenItem = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(i));
-                     for (int j = 0; j < k; j++)
-                     {
-                         centroides[j][i] = centroides[j][i] + (Math.pow(Yuk[u][j], m) * votoenItem);
-                         sumatoriaAuk[j][i] = sumatoriaAuk[j][i] + Math.pow(Yuk[u][j], m);
-                     }
-                 }
-                 else
-                 {
-                     if ( ListaVotosUsuarios.get(u).get(i) != null)
-                     {
-                         double votoenItem = Double.parseDouble("" +  ListaVotosUsuarios.get(u).get(i));
-                         for (int j = 0; j < k; j++)
-                         {
-                             centroides[j][i] = centroides[j][i] + (Math.pow(Yuk[u][j], m) * votoenItem);
-                             sumatoriaAuk[j][i] = sumatoriaAuk[j][i] + Math.pow(Yuk[u][j], m);
-                         }
-                     }
-                 }
-             }
-         }
-         for (int i = 0; i < items; i++)
-         {
-             for (int j = 0; j < k; j++)
-             {
-                 centroides[j][i] = centroides[j][i] / sumatoriaAuk[j][i];
-                 if (sumatoriaAuk[j][i] == 0) centroides[j][i] = 0.0;//si ningun usuario aporta entonces queda en 0.
-             }
-         }
-         sumatoriaAuk = null;
-     }
-     
-     
-     public void calcularCentroidesFCM2()
-     {
-         double[][] sumatoriaAuk = new double[k][items];
-         centroides = null;
-         centroides = new double[k][items];
-         //Console.WriteLine("totalTrain: "+ totalTrain);
-         for (int r = 0; r < totalTrain; r++)
-         {
-             int u = (int)(votosTrain[r][0]);
-             int i = (int)(votosTrain[r][1]);
-             double votoenItem = votosTrain[r][2];
-             for (int j = 0; j < k; j++)
-             {
-                 centroides[j][i] = centroides[j][i] + (Math.pow(Yuk[u][j], m) * votoenItem);
-                 sumatoriaAuk[j][i] = sumatoriaAuk[j][i] + Math.pow(Yuk[u][j], m);
-             }
-         }
-         for (int i = 0; i < items; i++)
-         {
-             for (int j = 0; j < k; j++)
-             {
-                 centroides[j][i] = centroides[j][i] / sumatoriaAuk[j][i];
-                 if (sumatoriaAuk[j][i] == 0) centroides[j][i] = 0.0;
-                 //if (sumatoriaAuk[j, i] == 0) centroides[j, i] = ((maxVoto+minVoto)/2.0);//si ningun usuario aporta entonces queda en 0.
-                 //if(centroides[j, i]==0) centroides[j, i] = (maxVoto + minVoto) / 2.0;
-             }
-         }
-         sumatoriaAuk = null;
-     }
-     
-     double[][] normas;
-     
-     public void actualizarYuk()
-     {
-         normas = new double[usuarios][k];
-         for (int u = 0; u < usuarios; u++)
-         {
-             for (int j = 0; j < k; j++)
-             {
-                 normas[u][j] = Norma(u, j);
-             }
-         }
-         double p = (2.0 / (m - 1.0));
+    public void inicializarMatrizCentroidesconVacios(){ //reinicia a 0 todos los centroides
+    
+        centroides = new double[k][items];
+        for (int j = 0; j < k; j++){
+            for (int i = 0; i < items; i++){
+                centroides[j][ i] = 0.0;
+            }
+        }
+        //mostrarMatriz(centroides);
+    }
+    // Fuzzy CMeans *********************************************************************************************************************
+    //***********************************************************************************************************************************
+    double[][] Yuk;
+    double m;//controla overlapping en Fuzzy cmeans
+    double JM;
+    double mMin;
+    double mMax;
+    int cMax;
+    int saltoK;
+    double minVoto;
+    double maxVoto;
+    
+    public void SoftClustering(){
+        //a. inicializar
+        iteraciones = 100;
+        int numIntentos = 0;
+        numIntentos++;
+        //b. inicializar fuzzy membership Yij
+        inicializarMatrizCentroidesconVacios();
+        inicializarRandomicamenteYuk();
+        double JMant = Double.MAX_VALUE;
 
-         for (int u = 0; u < usuarios; u++)
-         {
-             for (int j = 0; j < k; j++)
-             {
-                 double sumatoria = 0.0;
-                 for (int c = 0; c < k; c++)
-                 {
-                     sumatoria = sumatoria + Math.pow((normas[u][j]) / normas[u][c], p);
-//                     System.out.println(sumatoria);
-                     
-                 }
-                 Yuk[u][j] = 1.0 / sumatoria;
-                 if (Double.isNaN(sumatoria) || sumatoria == 0) Yuk[u][j] = (1.0 / k) + rand.nextDouble() / 100.0;
-             }
+        //c. actualizar centroides y membership Yij
+        for (int it = 0; it < iteraciones; it++) { //4. Probar Convergencia con numIteraciones o con error 0.001 con JM.
+        
+            if (!conVacios) calcularCentroidesFCM();
+            else calcularCentroidesFCM2();
+            System.out.println("actualizado centroides ");
+            actualizarYuk();
+            System.out.println("actualizado YUK ");
+            JM = calcularJM();
+            //double errorJM = Math.Abs((JM - JMant) / JM);
+            double errorJM = Math.abs((JM - JMant));
+            System.out.println("it;"+(it +1) + ";JM;" + JM + ";errorJM;" + errorJM);
+            if (errorJM < ERROR) break;
+            JMant = JM;
+        }
+    }
+    
+    public void inicializarRandomicamenteYuk(){//La sumatoria de cada vector de usuarios es igual a 1.
+        Yuk = new double[usuarios][k];
+        double sumaYuk;
+        for (int u = 0; u < usuarios; u++){
+            sumaYuk = 0.0;
+            for (int j = 0; j < k; j++){
+                Yuk[u][j] = aleatorio.nextDouble();
+                sumaYuk = sumaYuk + Yuk[u][j];
+            }
+            for (int j = 0; j < k; j++) {
+                Yuk[u][j] = Yuk[u][j] / sumaYuk;//se normaliza para que la sumatoria sea igual a 1.
+            }
+        }
+    }
+    
+    public void calcularCentroidesFCM(){
+        double[][] sumatoriaAuk = new double[k][items];
+        centroides = null;
+        centroides = new double[k][items];
+        for (int i = 0; i < items; i++){
+            for (int u = 0; u < usuarios; u++){
+                if (!conVacios){
+                    double votoenItem = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(i));
+                    for (int j = 0; j < k; j++){
+                        centroides[j][i] = centroides[j][i] + (Math.pow(Yuk[u][j], m) * votoenItem);
+                        sumatoriaAuk[j][i] = sumatoriaAuk[j][i] + Math.pow(Yuk[u][j], m);
+                    }
+                }else{
+                    if (ListaVotosUsuarios.get(u).get(i)!= null){
+                        double votoenItem = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(i));
+                        for (int j = 0; j < k; j++){
+                            centroides[j][i] = centroides[j][i] + (Math.pow(Yuk[u][j], m) * votoenItem);
+                            sumatoriaAuk[j][i] = sumatoriaAuk[j][i] + Math.pow(Yuk[u][j], m);
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < items; i++){
+            for (int j = 0; j < k; j++){
+                centroides[j][i] = centroides[j][i] / sumatoriaAuk[j][i];
+                if (sumatoriaAuk[j][i] == 0) centroides[j][i] = 0.0;//si ningun usuario aporta entonces queda en 0.
+            }
+        }
+        sumatoriaAuk = null;
+    }
+    
+    public void calcularCentroidesFCM2(){
+        double[][] sumatoriaAuk = new double[k][items];
+        centroides = null;
+        centroides = new double[k][items];
+        //Console.WriteLine("totalTrain: "+ totalTrain);
+        for (int r = 0; r < totalTrain; r++){
+            int u = votosTrain[r][0];
+            int i = votosTrain[r][1];
+            double votoenItem = votosTrain[r][2];
+            for (int j = 0; j < k; j++){
+                centroides[j][i] = centroides[j][i] + (Math.pow(Yuk[u][j], m) * votoenItem);
+                sumatoriaAuk[j][i] = sumatoriaAuk[j][i] + Math.pow(Yuk[u][j], m);
+            }
+        }
+        for (int i = 0; i < items; i++){
+            for (int j = 0; j < k; j++){
+                centroides[j][i] = centroides[j][i] / sumatoriaAuk[j][i];
+                if (sumatoriaAuk[j][i] == 0) centroides[j][i] = 0.0;
+            }
+        }
+        sumatoriaAuk = null;
+    }
+    double[][] normas;
+    public void actualizarYuk(){
+        normas = new double[usuarios][k];
+        for (int u = 0; u < usuarios; u++){
+            for (int j = 0; j < k; j++){
+                normas[u][j] = Norma(u, j);
+            }
+        }
+        double p = (2.0 / (m - 1.0));
 
-         }
-         //mostrarMatriz(Yuk);
-     }
-     
-     
-     @SuppressWarnings("unchecked")
-	public double Norma(int u, int v)// v es el centroide. Se calcula la razi cuadrada
-     {
-         double distancia = 0.0;
-         
-         Set<Integer> keys = ListaVotosUsuarios.get(u).keySet();
-         
-         for(int key : keys){
-        	 double voto = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(key));
-             double votoC = centroides[v][key];
-             if (!conVacios)
-             {
-                 distancia = distancia + Math.pow(voto - votoC, 2.0);
-             }
-             else
-             {
-                 if (votoC > 0.0)//votosComun++;
-                     distancia = distancia + Math.pow(voto - votoC, 2.0);
-             }
-         }
-         return Math.sqrt(distancia); 
-     }
-     
-     @SuppressWarnings({ "unused", "unchecked" })
-	public double Norma2(int u, int v)// v es el centroide
-     {
-         double distancia = 0.0;
-         double votosComun = 0.0;
-         
-         Set<Integer> keys = ListaVotosUsuarios.get(u).keySet();
-         
-         for(int key : keys){
+        for (int u = 0; u < usuarios; u++){
+            for (int j = 0; j < k; j++){
+                double sumatoria = 0.0;
+                for (int c = 0; c < k; c++){
+                    sumatoria = sumatoria + Math.pow((normas[u][j]) / normas[u][c], p);
+                }
+                Yuk[u][j] = 1.0 / sumatoria;
+                if (Double.isNaN(sumatoria) || sumatoria == 0) Yuk[u][j] = (1.0 / k) + aleatorio.nextDouble() / 100.0;
+            }
 
-        	 double voto = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(key));
-             if (!conVacios)
-             {
-                 votosComun++;
-                 distancia = distancia + Math.pow(voto - centroides[v][key], 2.0);
-             }
-             else
-             {
-                 if (centroides[v][key] > 0.0)
-                 {
-                     votosComun++;
-                     distancia = distancia + Math.pow(voto - centroides[v][key], 2.0);
-                 }
-             }
-         }
-         return distancia;
-     }
-         
-     public double calcularJM()
-     {
-         double JM = 0.0;
-         for (int u = 0; u < usuarios; u++)
-         {
-             for (int j = 0; j < k; j++)
-             {
-                 JM = JM + (Math.pow(Yuk[u][j], m) * Math.pow(normas[u][j], 2.0));
-             }
-         }
-         return JM;
-     }
-     
-     @SuppressWarnings("unused")
-	public double calcularMAE_FCMeans(int l)
-     {
-         determinarCentroidesVecinosFCMeans(l);
-         double MAE = 0.0;
-         int campoUsuario = 0;
-         int campoItem = 1;
-         int campoVoto = 2;
-         int numVotosceros = 0;
-         for (int r = 0; r < totalTest; r++)
-         {
-             int u = (int)(votos[r][campoUsuario]);
-             int i = (int)(votos[r][campoItem]);
-             double votoReal = votos[r][campoVoto];
-             double prediccion = predecirVotoFCM(u, i, l);
-             if (prediccion == 0) numVotosceros++;
-             MAE = MAE + Math.abs(votoReal - prediccion);
-         }
-         MAE = MAE / totalTest;
-         return MAE;
-     }
-     
-     public double calcularMAEFCMeans(int L)
-     {
-         double MAE = calcularMAE_FCMeans(L);
-         return MAE;
-     }
-     
-     @SuppressWarnings("unused")
-	public double predecirVotoFCM(int u, int i, int l)
-     {
-         double prediccion = 0.0;
-         int cantVotosTomados = l;
-         double sumatoriaPesos = 0.0;
-         for (int v = 0; v < l; v++)
-         {
-             double votoVecino = 0.0;
-             int vecino = centroidesVecinosporUsuario[u][v];
-             votoVecino = centroides[vecino][i];
-             sumatoriaPesos = sumatoriaPesos + pesoscentroidesVecinosporUsuario[u][v];
-             prediccion = prediccion + (votoVecino * pesoscentroidesVecinosporUsuario[u][v]);
-         }
-         prediccion = prediccion / sumatoriaPesos;  //media ponderada
-         if (sumatoriaPesos == 0.0) { prediccion = ((minVoto + maxVoto) / 2.0); }
-         if (prediccion == 0.0) { prediccion = ((minVoto + maxVoto) / 2.0); }//dejar como indiferente en el caso de no tener info para predecir.
+        }
+    }
+    
+    public double calcularJM(){
+        double JM = 0.0;
+        for (int u = 0; u < usuarios; u++){
+            for (int j = 0; j < k; j++){
+                JM = JM + (Math.pow(Yuk[u][j], m) * Math.pow(normas[u][j], 2.0));
+            }
+        }
+        return JM;
+    }
+    
+    public double Norma(int u, int v) {// v es el centroide. Se calcula la razi cuadrada
+    
+        double distancia = 0.0;
+        
+        Set<Integer> keys = ListaVotosUsuarios.get(u).keySet();
+        
+        for(int key : keys){
 
-         double pui = 0.0;
-         pui = (prediccion - 1.0) / R;
-         if (pui >= 0 && pui < 0.2)
-         {
-             prediccion = 1;
-         }
-         else if (pui >= 0.2 && pui < 0.4)
-         {
-             prediccion = 2;
-         }
-         else if (pui >= 0.4 && pui < 0.6)
-         {
-             prediccion = 3;
-         }
-         else if (pui >= 0.6 && pui < 0.8)
-         {
-             prediccion = 4;
-         }
-         else if (pui >= 0.8)
-         {
-             prediccion = 5;
-         }
-         return prediccion;
-     }
-     double minVoto;
-     double maxVoto;
-     
-     
-     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public void determinarCentroidesVecinosFCMeans(int l)
-     {
-         centroidesVecinosporUsuario = new int[usuarios][l];
-         pesoscentroidesVecinosporUsuario = new double[usuarios][l];
-         for (int u = 0; u < Yuk.length; u++) 
-         {
-				ArrayList vecinos= new ArrayList<>();
-				for (int c = 0; c < k; c++) 
-				{
-					double sim = Norma(u,c);
-					vecinos.add(new Part(c,sim));	
+        	double voto = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(key));
+            double votoC = centroides[v][key];
+            if (!conVacios){
+                distancia = distancia + Math.pow(voto - votoC, 2.0);
+            }else{
+                if (votoC > 0.0)//votosComun++;
+                    distancia = distancia + Math.pow(voto - votoC, 2.0);
+            }
+        }
+        return Math.sqrt(distancia); 
+    }
+    
+    public double Norma2(int u, int v) {// v es el centroide
+    
+        double distancia = 0.0;
+        double votosComun = 0.0;
+        
+        Set<Integer> keys = ListaVotosUsuarios.get(u).keySet();
+        
+        for (int key: keys){
+            double voto = Double.parseDouble("" + ListaVotosUsuarios.get(u).get(key));
+            if (!conVacios){
+                votosComun++;
+                distancia = distancia + Math.pow(voto - centroides[v][key], 2.0);
+            }else{
+                if (centroides[v][key] > 0.0){
+                    votosComun++;
+                    distancia = distancia + Math.pow(voto - centroides[v][key], 2.0);
+                }
+            }
+        }
+        return distancia;
+    }
+
+    public int predecirVotoFCM(int u, int i){
+        double prediccion = 0.0;
+        double sumatoriaPesos = 0.0;
+        
+        for (int v = 0; v < l; v++){ 
+            double votoVecino = 0.0;
+            int vecino = centroidesVecinosporUsuario[u][v];
+            
+            votoVecino = centroides[vecino][i];
+            if(votoVecino!=0) {
+            	sumatoriaPesos = sumatoriaPesos + pesoscentroidesVecinosporUsuario[u][v];
+            }
+            prediccion = prediccion + (votoVecino * pesoscentroidesVecinosporUsuario[u][v]);
+        }
+        prediccion = prediccion / sumatoriaPesos;  //media ponderada
+        if (sumatoriaPesos == 0.0) { prediccion = ((minVoto + maxVoto) / 2.0); }
+        if (prediccion == 0.0) { prediccion = ((minVoto + maxVoto) / 2.0); }//dejar como indiferente en el caso de no tener info para predecir.
+
+        double pui = 0.0;
+        pui = (prediccion - 1.0) / R;
+        System.out.println(" prediccion="+prediccion+" pui="+pui);
+        
+        if (pui < 0.2){
+            prediccion = 1;
+        }else if (pui >= 0.2 && pui < 0.4){ 
+            prediccion = 2;
+        }else if (pui >= 0.4 && pui < 0.6){
+            prediccion = 3;
+        }else if (pui >= 0.6 && pui < 0.8){
+            prediccion = 4;
+        }else if (pui >= 0.8){
+            prediccion = 5;
+        }
+        
+        return (int)prediccion;
+    }
+    
+
+    
+    public void determinarCentroidesVecinosFCMeans(){
+        centroidesVecinosporUsuario = new int[usuarios][l];
+        pesoscentroidesVecinosporUsuario = new double[usuarios][l];
+        
+        for (int u = 0; u < usuarios; u++) {
+			ArrayList vecinos= new ArrayList<>();
+			
+			
+			for (int c = 0; c < k; c++) {
+				double sim = Norma(u,c); 
+				vecinos.add(new Part(c,sim));
+				
+//				System.out.println("el veci ="+vecinos.get(c).toString());
+			}
+			
+			//ordena de menor a mayor
+        	Collections.sort(vecinos, new Comparator<Part>() {
+				@Override
+				public int compare(Part parte1, Part parte2) {			
+					int res= new Double(parte1.getPartProb()).compareTo(new Double(parte2.getPartProb()));
+					return res;
 				}
+			});
+			
+			for (int c = 0; c < vecinos.size(); c++) {
 				
-				//ordena de menor a mayor
-				Collections.sort(vecinos, new Comparator<Part>() 
-				{
-					@Override
-					public int compare(Part parte1, Part parte2) 
-					{	
-						String num1=""+parte1.getPartProb()*1000;
-						String num2=""+parte2.getPartProb()*1000;
-						
-						int v1=Integer.parseInt(num1.substring(0,num1.indexOf(".")));
-						int v2=Integer.parseInt(num2.substring(0,num2.indexOf(".")));;
-						
-						return new Integer(v1).compareTo(new Integer(v2));
-					}
-				});
+//				System.out.println("el veci 222 ="+vecinos.get(c).toString());
+			}
+			
+			int numVecino = 0;
+			
+			List<Part> temp = vecinos.subList(0, l);
+			
+			
+			for(Part vecino : temp){
 				
-				int numVecino = 0;
-				
-				List<Part> temp = vecinos.subList(0, l);
-				
-				
-				for(Part vecino : temp)
-				{
-					centroidesVecinosporUsuario[u][numVecino] = vecino.PartId;
-					pesoscentroidesVecinosporUsuario[u][numVecino] = vecino.PartProb;
-					numVecino++;
-					//System.out.println("El cont="+numVecino+" "+vecino.PartProb);
-				}
-         	}
-     	}
+                centroidesVecinosporUsuario[u][numVecino] = vecino.PartId;
+                pesoscentroidesVecinosporUsuario[u][numVecino] = vecino.PartProb;
+                numVecino++;
+//                System.out.println("El conel vt="+numVecino+" "+vecino.PartId);
+            
+			}
+        }
+    }
+    
+    public List<Hashtable> prediccionesUsuarios() {
+    	
+    	determinarCentroidesVecinosFCMeans();
+    	
+//    	predicciones = new int[usuarios][items];
+        
+//    	System.out.println(votosTrain.length);
+    	for (int usu = 0; usu < ListaPredicciones.size(); usu++) {
+			
+		
+        for (int item = 0; item < ListaPredicciones.get(usu).size(); item++){
+        	
+        	double votoUsu=0.0;
+        	
+        	if(ListaVotosUsuarios.get(usu).get(item) !=null) {
+            votoUsu = Double.parseDouble(""+ListaVotosUsuarios.get(usu).get(item));
+        	}
+
+            if(votoUsu!=0) {
+            	System.out.println("no hace prediccion xq el usuario ("+(usu)+") "
+            			+ "con item ("+(item)+") ya voto ("+votoUsu+")");
+            	
+                
+            }else{
+            
+            	int prediccion = predecirVotoFCM(usu, item);
+            	
+//            	predicciones[usu][item]=prediccion; //.add(new Recomendacion(item,prediccion));
+            	
+            	ListaPredicciones.get(usu).put(item, prediccion);
+            	
+            	
+            	System.out.println("HIZO PREDICCION ("+prediccion+") del usuario ("+usu+")"
+            			+ " con item ("+(item)+")");
+            }
+        }
+        
+        for (int i = 0; i < ListaPredicciones.size(); i++) {
+			for (int j = 0; j < ListaPredicciones.get(i).size(); j++) {
+				System.out.print("|"+ListaPredicciones.get(i).get(j));	
+			}System.out.println();
+        	
+        	
+		}
+        
+        //obtiene los numeros mayores de la lista en base al voto de la prediicon
+//    	Collections.sort(predicciones, new Comparator<Recomendacion>() {
+//			@Override
+//			public int compare(Recomendacion pre1, Recomendacion pre2) {			
+//				
+//				 
+//				
+//				return new Integer(pre2.getPrediccion()).compareTo(new Integer(pre1.getPrediccion()));
+//			}
+//		});
+    	
+    	}
+    	
+    	
+        return ListaPredicciones;
+    }
 }
