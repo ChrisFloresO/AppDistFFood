@@ -68,50 +68,11 @@
             <!-- form start -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Ruc</label>
-
-                  <div class="col-sm-10">
-                  	<h:inputText value="#{pedidoControler.pedido.ruc}" class="form-control" id="ruc">
-					</h:inputText>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">IVA</label>
-
-                  <div class="col-sm-10">
-                  	<h:inputText value="#{pedidoControler.pedido.iva}" id="iva"  class="form-control" />
-                  </div>
+                  
                 </div>
                 
               </div>
               
-              	
-	<h:commandButton action="#{pedidoControler.addDetalle()}" value="Anadir detalle" >
-	 <f:ajax render="tbldetalles" execute="@all"/>
-	</h:commandButton>
-	
-	
-		<h:dataTable value ="#{pedidoControler.pedido.detalles}" var ="detalle" id ="tbldetalles">
-		<h:column>
-			<f:facet name="header">Codigo</f:facet>
-			<h:inputText value="#{detalle.codigo}" id ="detalleid" />
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{detalle.disminuir()}" value="-" >
-			<f:ajax  render = "r" />
-			</h:commandButton>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Cantidad</f:facet>
-			<h:inputText value="#{detalle.cantidad}" id ="r"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{detalle.aumentar()}" value="+" >
-			<f:ajax  render = "r" />
-			</h:commandButton>
-		</h:column>
-		
-		</h:dataTable>
 		
           </div>
           </h:form>

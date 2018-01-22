@@ -12,10 +12,39 @@
     <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
     <link rel="stylesheet" href="resources/template/site/css/style.css"/>
 	
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src='js/device.min.js'></script> 
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
 </head>
+
+	<style>
+	  .textbox
+	  {
+	  border: 1px solid #DBE1EB;
+	  font-size: 18px;
+	  font-family: Arial, Verdana;
+	  padding-left: 7px;
+	  padding-right: 7px;
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+	  border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	  -o-border-radius: 4px;
+	  background: #FFFFFF;
+	  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  color: #2E3133;
+	  }
+	  
+	  .textbox:focus
+	  {
+	  color: #2E3133;
+	  border-color: #FBFFAD;
+	  }
+	 </style>
 
 <body> 
  <header>
@@ -63,15 +92,13 @@
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Cedula</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.cedula}" class="form-control" id="cedula">
-					</h:inputText>
+                  	<h:inputText value="#{usuarioControler.usuario.cedula}" class="textbox"  size="50" id="cedula"/>
 					<h:message for="nombre" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Nombre</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.nombre}" class="form-control" id="nombre">
-					</h:inputText>
+                  	<h:inputText value="#{usuarioControler.usuario.nombre}" class="textbox"  size="50" id="nombre"/>
 					<h:message for="nombre" errorClass ="Invalid"/>
                   </div>
                 </div>
@@ -79,27 +106,25 @@
                   <label for="inputPassword3" class="col-sm-2 btn btn-info pull-center">Apellido</label>
 
                   <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido"  class="form-control" />
+                  	<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido"  class="textbox"  size="50" />
                   </div>
                 </div>
                   <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Email</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.email}" class="form-control" id="email">
-					</h:inputText>
+                  	<h:inputText value="#{usuarioControler.usuario.email}" class="textbox"  size="50" id="email"/>
 					<h:message for="email" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 btn btn-info pull-center">Contrasena</label>
                   <div class="col-sm-10">
-                  	<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena"  class="form-control" />
+                  	<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena"  class="textbox"  size="50"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Rol</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.rol}" class="form-control" id="rol">
-					</h:inputText>
+                  	<h:inputText value="#{usuarioControler.usuario.rol}" class="textbox"  size="50" id="rol"/>
 					<h:message for="rol" errorClass ="Invalid"/>
                   </div>
               </div>
@@ -130,7 +155,7 @@
         </div>
         <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
     </footer>
-<script src="js/script.js"></script>
+<script src="resources/template/site/js/script.js"></script>
 </body> 
 </html>
 	

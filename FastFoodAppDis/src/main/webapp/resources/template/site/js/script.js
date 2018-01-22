@@ -9,11 +9,11 @@ function isIE() {
 
 /* cookie.JS
  ========================================================*/
-include('js/jquery.cookie.js');
+include('resources/template/site/js/jquery.cookie.js');
 
 /* Easing library
  ========================================================*/
-include('js/jquery.easing.1.3.js');
+include('resources/template/site/js/jquery.easing.1.3.js');
 
 /* Stick up menus
  ========================================================*/
@@ -21,7 +21,7 @@ include('js/jquery.easing.1.3.js');
 (function ($) {
     var o = $('html');
     if (o.hasClass('desktop')) {
-        include('js/tmstickup.js');
+        include('resources/template/site/js/tmstickup.js');
 
         $(document).ready(function () {
             $('#stuck_container').TMStickUp({})
@@ -35,7 +35,7 @@ include('js/jquery.easing.1.3.js');
 (function ($) {
     var o = $('html');
     if (o.hasClass('desktop')) {
-        include('js/jquery.ui.totop.js');
+        include('resources/template/site/js/jquery.ui.totop.js');
 
         $(document).ready(function () {
             $().UItoTop({easingType: 'easeOutQuart'});
@@ -49,7 +49,7 @@ include('js/jquery.easing.1.3.js');
 (function ($) {
     var o = $('[data-equal-group]');
     if (o.length > 0) {
-        include('js/jquery.equalheights.js');
+        include('resources/template/site/js/jquery.equalheights.js');
     }
 })(jQuery);
 
@@ -59,8 +59,8 @@ include('js/jquery.easing.1.3.js');
 (function ($) {
     var o = $('html');
     if (o.hasClass('desktop')) {
-        include('js/jquery.mousewheel.min.js');
-        include('js/jquery.simplr.smoothscroll.min.js');
+        include('resources/template/site/js/jquery.mousewheel.min.js');
+        include('resources/template/site/js/jquery.simplr.smoothscroll.min.js');
 
         $(document).ready(function () {
             $.srSmoothscroll({
@@ -83,7 +83,7 @@ $(document).ready(function () {
  ========================================================*/
 ;
 (function ($) {
-    include('js/superfish.js');
+    include('resources/template/site/js/superfish.js');
 
     var o = $('.sf-menu-toggle');
     if (o.length > 0) {
@@ -104,7 +104,7 @@ $(document).ready(function () {
             });
         });
     } else {
-        include('js/jquery.mobilemenu.js');
+        include('resources/template/site/js/jquery.mobilemenu.js');
     }
 })(jQuery);
 
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     if ((navigator.userAgent.toLowerCase().indexOf('msie') == -1 ) || (isIE() && isIE() > 9)) {
         if (o.hasClass('desktop')) {
-            include('js/wow.js');
+            include('resources/template/site/js/wow.js');
 
             $(document).ready(function () {
                 new WOW().init();
@@ -131,8 +131,8 @@ $(document).ready(function () {
 (function ($) {
     var o = $('#contact-form');
     if (o.length > 0) {
-        include('js/modal.js');
-        include('js/TMForm.js');
+        include('resources/template/site/js/modal.js');
+        include('resources/template/site/js/TMForm.js');
     }
 })(jQuery);
 
@@ -191,10 +191,10 @@ document.write('<meta name="viewport" content="width=device-width,initial-scale=
 var o = $('#camera');
     if (o.length > 0) {
         if (!(isIE() && (isIE() > 9))) {
-            include('js/jquery.mobile.customized.min.js');
+            include('resources/template/site/js/jquery.mobile.customized.min.js');
         }
 
-        include('js/camera.js');
+        include('resources/template/site/js/camera.js');
 
         $(document).ready(function () {
             o.camera({
@@ -220,9 +220,9 @@ var o = $('#camera');
 ;(function ($) {
     var o = $('.thumb');
     if (o.length > 0) {
-        include('js/jquery.fancybox.js');
-        include('js/jquery.fancybox-media.js');
-        include('js/jquery.fancybox-buttons.js');
+        include('resources/template/site/js/jquery.fancybox.js');
+        include('resources/template/site/js/jquery.fancybox-media.js');
+        include('resources/template/site/js/jquery.fancybox-buttons.js');
         $(document).ready(function () {
             o.fancybox();
         });
@@ -236,7 +236,7 @@ var o = $('#camera');
     var o = $('.lazy-img img');
 
     if (o.length > 0) {
-        include('js/jquery.unveil.js');
+        include('resources/template/site/js/jquery.unveil.js');
 
         $(document).ready(function () {
             $(o).unveil(0, function () {
@@ -262,7 +262,7 @@ var o = $('#camera');
 ;(function ($) {
     var o = $('.parallax');
     if (o.length > 0 && $('html').hasClass('desktop')) {
-        include('js/jquery.rd-parallax.js');
+        include('resources/template/site/js/jquery.rd-parallax.js');
     }
 })(jQuery);
 
@@ -273,7 +273,7 @@ var o = $('#camera');
     var o = document.getElementById("google-map");
     if (o) {
         include('//maps.google.com/maps/api/js?sensor=false');
-        include('js/jquery.rd-google-map.js');
+        include('resources/template/site/js/jquery.rd-google-map.js');
 
         $(document).ready(function () {
             var o = $('#google-map');

@@ -31,7 +31,7 @@ import javax.validation.constraints.Size;
 public class Restaurante {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="res_codigo")
 	private int codigo;
 	

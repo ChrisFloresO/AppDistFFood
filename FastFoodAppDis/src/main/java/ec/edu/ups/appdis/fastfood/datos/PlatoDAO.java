@@ -12,6 +12,7 @@ import javax.servlet.http.Part;
 
 import ec.edu.ups.appdis.fastfood.modelo.Imagenes;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
+import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 import ec.edu.ups.appdis.fastfood.datos.ImagenDAO;
 
 /**
@@ -64,8 +65,7 @@ public class PlatoDAO {
 	}
 
 	public Plato leer(int codigo) {
-		Plato pl = em.find(Plato.class, codigo);
-		return pl;
+		return em.find(Plato.class, codigo);
 	}
 	
 
@@ -87,6 +87,16 @@ public class PlatoDAO {
 		String jppql = "SELECT pl FROM Plato pl where lower(pl.nombre) like :nombre";
 		Query query = em.createQuery(jppql, Plato.class);
 		query.setParameter("nombre", "%"+nombre.toLowerCase()+"%");
+		@SuppressWarnings("unchecked")
+		List<Plato> listado1 = query.getResultList();
+		return listado1;
+	}
+	
+	public List<Plato> listadoPlatospr (int codigo) 
+	{
+		String jppql = "SELECT pl FROM Plato pl where pl.codigo = :codigo";
+		Query query = em.createQuery(jppql, Plato.class);
+		query.setParameter("codigo", codigo);
 		@SuppressWarnings("unchecked")
 		List<Plato> listado1 = query.getResultList();
 		return listado1;

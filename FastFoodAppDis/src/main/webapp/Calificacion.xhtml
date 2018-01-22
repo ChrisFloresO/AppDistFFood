@@ -5,18 +5,48 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-    <title>Menu</title>
+    <title>Calificacion</title>
     <meta charset="utf-8"/>
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
     <link rel="stylesheet" href="resources/template/site/css/style.css"/>
 	
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src='js/device.min.js'></script> 
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
     
 </head>
+
+	<style>
+	  .textbox
+	  {
+	  border: 1px solid #DBE1EB;
+	  font-size: 18px;
+	  font-family: Arial, Verdana;
+	  padding-left: 7px;
+	  padding-right: 7px;
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+	  border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	  -o-border-radius: 4px;
+	  background: #FFFFFF;
+	  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  color: #2E3133;
+	  }
+	  
+	  .textbox:focus
+	  {
+	  color: #2E3133;
+	  border-color: #FBFFAD;
+	  }
+	 </style>
+
 
 <body> 
  <header>
@@ -52,33 +82,40 @@
     		<f:metadata>
 				<f:viewParam name="id" value="#{platoControler.id}"/>
 			</f:metadata>
+			
     	<br />
+    	<div class="grid_4">
+              <h2> <em>Calificacion</em></h2>
+            </div>
     		
-	<h:form enctype="multipart/form-data">
+	<h:form>
 		<h:messages globalOnly="true"/>
 	
-		<h:panelGrid columns ="3">
-		 
-		 <h:outputLabel class="btn btn-info pull-center" value="Imagen:" for="id"/>
-		<h:inputText value="#{platoControler.plato.nombre}" id="im" />
-		<h:message  for="im"/>
-	
-		<h:outputLabel class="btn btn-info pull-center" value="Descripcion:" for="cedula"/>
-		<h:inputText value="#{platoControler.plato.descripcion}" id="des" />
-		<h:message  for="des"/>
-		
+		 <h:panelGrid columns ="3">
+		 <h:outputLabel class="btn btn-info pull-center" value="nombre:" for="nombre"/>
+		<h:inputText value="#{platoControler.plato.nombre}" id="nombre" class="textbox"  size="50"/>
+		<h:message  for="nombre"/>
 	
 		</h:panelGrid>
 	
 	</h:form>
 	<h:form>
-<div>
+		<div>
 		<h:messages globalOnly="true"/>
 	
-	<h:panelGrid columns ="3">
+		<h:panelGrid columns ="3">
 
+		
+		<h:outputLabel class="btn btn-info pull-center" value="Plato:" for="codigo"/>
+		<h:inputText value="#{calificacionControler.codigop}" id="codigo" class="textbox"  size="50" />
+		<h:message  for="codigo"/>
+
+		<h:outputLabel class="btn btn-info pull-center" value="Usuario:" for="codigou"/>
+		<h:inputText value="#{calificacionControler.codigou}" id="codigou" class="textbox"  size="50"/>
+		<h:message  for="codigou"/>
+		
 		<h:outputLabel class="btn btn-info pull-center" value="Calificacion:" for="voto"/>
-		<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto">
+		<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto"  >
   			 <f:selectItem itemValue="5" itemLabel="5" />
    			 <f:selectItem itemValue="4" itemLabel="4" /> 
    			 <f:selectItem itemValue="3" itemLabel="3" />
@@ -88,7 +125,7 @@
 		<h:message  for="voto"/>
 		
 		<h:outputLabel class="btn btn-info pull-center"  value="Comentario" for="comentario"/>
-		<h:inputText value="#{calificacionControler.calificacion.comentario}" id="comentario" />
+		<h:inputText value="#{calificacionControler.calificacion.comentario}" id="comentario" class="textbox"  size="50"/>
 		<h:message  for="comentario"/>
 	
 	</h:panelGrid>
@@ -117,7 +154,7 @@
         </div>
         <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
     </footer>
-<script src="js/script.js"></script>
+<script src="resources/template/site/js/script.js"></script>
 </body> 
 </html>
 	

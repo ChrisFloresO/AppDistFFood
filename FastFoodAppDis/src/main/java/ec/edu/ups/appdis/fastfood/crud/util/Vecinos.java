@@ -8,50 +8,38 @@ package ec.edu.ups.appdis.fastfood.crud.util;
 
 public class Vecinos 
 {
-	        private String equipoLocal;
-	        private String equipoVisitante;
-	        private int golesLocal;
-	        private int golesVisitante;
-	        
-	        public String getEquipoLocal()
-	        {
-	            return equipoLocal;
-	        }
+	public int item;
 
-	        public void setEquipoLocal(String equipoLocal)
-	        {
-	            this.equipoLocal = equipoLocal;
-	        }
+    public int prediccion;
 
-	        public String getEquipoVisitante()
-	        {
-	            return equipoVisitante;
-	        }
+    public Vecinos(int item, int prediccion) {
+        this.item = item;
+        this.prediccion = prediccion;
+    }
 
-	        public void setEquipoVisitante(String equipoVisitante)
-	        {
-	            this.equipoVisitante = equipoVisitante;
-	        }
-	        
-	        public int getGolesLocal()
-	        {
-	            return golesLocal;
-	        }
+	public int getItem() {
+		return item;
+	}
 
-	        public void setGolesLocal(int golesLocal)
-	        {
-	            this.golesLocal = golesLocal;
-	        }
+	public void setItem(int item) {
+		this.item = item;
+	}
 
-	        public int getGolesVisitante()
-	        {
-	            return golesVisitante;
-	        }
 
-	        public void setGolesVisitante(int golesVisitante)
-	        {
-	            this.golesVisitante = golesVisitante;
-	        }
+
+	public int getPrediccion() {
+		return prediccion;
+	}
+
+	public void setPrediccion(int prediccion) {
+		this.prediccion = prediccion;
+	}
+
+	@Override
+	public String toString() {
+		return "Recomendacion [ item=" + item + ", prediccion=" + prediccion + "]";
+	}
+
 
 	}
 

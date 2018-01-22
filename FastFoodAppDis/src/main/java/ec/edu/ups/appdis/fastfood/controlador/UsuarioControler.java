@@ -1,5 +1,6 @@
 package ec.edu.ups.appdis.fastfood.controlador;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,7 +10,14 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import ec.edu.ups.appdis.fastfood.crud.util.FCM;
+import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
+import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
+import ec.edu.ups.appdis.fastfood.datos.PrediccionesDao;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
+import ec.edu.ups.appdis.fastfood.modelo.Plato;
+import ec.edu.ups.appdis.fastfood.modelo.Predicciones;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 /**
@@ -26,6 +34,17 @@ public class UsuarioControler
 	private List<Usuario> listadoLogin;
 	private String contraseñaA;
 	private String contraseñaN;
+	private List<Plato> platos;
+	private List<Calificacion> calificaciones;
+	
+	@Inject
+	private CalificacionDAO cdao;
+	
+	@Inject
+	private PrediccionesDao prdao;
+	
+	@Inject
+	private PlatoDAO pdao;
 	
 	@Inject
 	private UsuarioDAO udao;
@@ -39,6 +58,7 @@ public class UsuarioControler
 		usuario=new Usuario();
 		loadUsuarios();
 	}
+	
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -59,10 +79,12 @@ public class UsuarioControler
 	 * 
 	 * @return Lista_Plato
 	 */
-	public String Guardar(){
+	public String Guardar()
+	{
+		usuario.setRol(3);
 			udao.guardar(usuario);
 			loadUsuarios();
-		return "Logeo";
+		return "Home";
 	}
 	
 	/**
@@ -87,6 +109,14 @@ public class UsuarioControler
 		usuarios = udao.listadoUsuario();
 	}
 	
+	public void loadPlatos() {
+		platos = pdao.listadoPlatos();
+	}
+	
+	public void loadCalificacion() {
+		calificaciones = cdao.listadoCalificaciones();
+	}
+	
 	/**
 	 * Este metodo recibe un parametro (cedula de Usuario)
 	 * y este llama al objeto pdao(pdao de la clase UsuarioDao)
@@ -106,7 +136,13 @@ public class UsuarioControler
 	 * @return
 	 */
 	public String listar(){
+		
+		usuarios = udao.listadoUsuario();
 		listadoLogin = udao.getUsuariosLogin(correoI,claveI);
+		calificaciones = cdao.listadoCalificaciones();
+		platos =pdao.listadoPlatos();
+		
+		
 		for(int i=0;i<listadoLogin.size();i++){
 			System.out.println(listadoLogin.get(i).getEmail());
 			System.out.println(listadoLogin.get(i).getRol());
@@ -117,8 +153,32 @@ public class UsuarioControler
 				if(listadoLogin.get(i).getRol()==2){
 					return "RestauranteL";
 				}else
-					if(listadoLogin.get(i).getRol()==3) {
+					if(listadoLogin.get(i).getRol()==3) 
+					{
+						FCM fcm = new FCM(calificaciones, usuarios, platos);
+						List<Hashtable> predicciones= fcm.prediccionesUsuarios();
+						Predicciones pre;
+						List<Predicciones> listapredcciones = prdao.listadoPredicciones();
+						for (int k = 0; k < listapredcciones.size(); k++) {
+							System.out.println(listapredcciones.get(k));
+							prdao.Borrar(listapredcciones.get(k));
+						}
+						for (int k = 0; k < predicciones.size(); k++) {
+							for (int j = 0; j < predicciones.get(k).size(); j++) {
+								if ((int)predicciones.get(k).get(j)!=0) {
+									pre = new Predicciones();
+									
+									pre.setItem(j+1);
+									pre.setUsuario(j+2);
+									pre.setPrediccion((int) predicciones.get(k).get(j));
+									prdao.Insertar(pre);
+								}
+								
+							}
+							
+						}
 					return "Home";
+					
 				}
 		}
 		return null;

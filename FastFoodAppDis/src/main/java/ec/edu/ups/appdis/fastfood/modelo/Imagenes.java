@@ -10,7 +10,7 @@ import javax.persistence.Lob;
 @Entity
 public class Imagenes {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="img_id")
 	private int id;
 	

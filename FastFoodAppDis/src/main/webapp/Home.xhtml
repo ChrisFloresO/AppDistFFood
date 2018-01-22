@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="resources/template/site/css/camera.css"/>
     <link rel="stylesheet" href="resources/template/site/css/jquery.fancybox.css"/>
 
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src='js/device.min.js'></script> 
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
 </head>
     
 
@@ -30,7 +30,7 @@
         <div class="camera_container">
             <div class="brand wow fadeIn">
                 <h1 class="brand_name">
-                    <a href="./">Fast Food</a>
+                    <a href="#">Fast Food</a>
                 </h1>
             </div>
         </div>
@@ -41,41 +41,24 @@
                 <a class="sf-menu-toggle fa fa-bars" href="#"></a>
                 <ul class="sf-menu">
                     <li class="active">
-                        <a href="./">Home</a>
+                        <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="index-1.html">About</a>
+                        <a href="#">Cuenta</a>
                         <ul>
                             <li>
-                                <a href="#">Quisque nulla</a>
+                                <a href="Logeo.xhtml">Inicial Sesion</a>
                             </li>
                             <li>
-                                <a href="#">Vestibulum libero</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Lorem</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Dolor</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Sit amet</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Vivamus eget nibh</a>
+                                <a href="UsuarioR.xhtml">Registrarse</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="index-2.html">What We Do</a>
+                        <a href="Buscar.xhtml">Buscar Plato</a>
                     </li>
                     <li>
-                        <a href="index-3.html">Menu</a>
-                    </li>
-                    <li>
-                        <a href="index-4.html">Contacts</a>
+                        <a href="Carrito.xhtml">Carrito</a>
                     </li>
                 </ul>
             </nav>            
@@ -104,7 +87,7 @@
                     </div>
                 </div>
                 <div class="decoration"><a href="#" class="btn">Read more</a></div>
-                <h2><em>Paltos</em>del Dia</h2>
+                <h2><em>Platos</em>del Dia</h2>
             </div>            
             <div class="gallery">
                 <div class="gallery_col-1">
@@ -120,12 +103,6 @@
 								</h:column>
 								<h:column>
 									<p>$ #{plato.precio}</p>
-								</h:column>
-								<h:column>
-									<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Anadir"/>
-								</h:column>
-								<h:column>
-									<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ubicar" />
 								</h:column>
 							</h:dataTable>
 						</center>
@@ -209,86 +186,30 @@
             </div>
         </section>
         <section class="parallax parallax1" parallax-speed="-0.4">
-            <div class="container">
-                <h2><em>Our </em>Experience</h2>
-                <p class="indents-2">Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla. Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis. Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci </p>
-                <a href="#" class="btn">View full menu</a>
-            </div>
-        </section>
-        <section class="well well__offset-1 bg-1">
-            <div class="container">
-                <h2><em>Our </em>Cooks</h2>
-                <div class="row row__offset-1">
-                    <div class="grid_4">
-                        <figure>
-                            <div class="img lazy-img" ><img src="resources/template/site/images/page-1_img12.jpg" alt=""/></div>
-                            <figcaption>Kevin Grey</figcaption>
-                        </figure>
-                        <h3>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl </h3>
-                        <p>Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla.</p>
-                    </div>
-                    <div class="grid_4">
-                        <figure>
-                            <div class="img lazy-img" ><img src="resources/template/site/images/page-1_img13.jpg" alt=""/></div>
-                            <figcaption>Linda Klein</figcaption>
-                        </figure>
-                        <h3>Oeteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl </h3>
-                        <p>Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla.</p>
-                    </div>
-                    <div class="grid_4">
-                        <figure>
-                            <div class="img lazy-img" ><img src="resources/template/site/images/page-1_img14.jpg" alt=""/></div>
-                            <figcaption>Ann Shelton</figcaption>
-                        </figure>
-                        <h3>Koteger convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl </h3>
-                        <p>Vestibulum volutpat turpis ut massa commodo, quis aliquam massa facilisis.Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl auctor vel veliterol. sed,pharetra venenatis nulla.</p>
-                    </div>
-                </div>
-                <div class="decoration"><a href="#" class="btn">Read more</a></div>
-            </div>
-        </section>
-        <section class="well well__offset-2">
             <div class="container center">
                 <h2>
-                	<em>Restaurantes</em>
+                	<em>Platos Recomendados</em>
                 </h2>
                 	<h:outputText value="No existe registros" 
-	rendered="#{empty platoControler.platos}"/>
-			<center>
-				<h:dataTable value ="#{platoControler.platos}" var="plato"
-				rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
-					<h:column>
-						<f:facet name="header">Imagne</f:facet>
-						<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
-					</h:column>
-			       
-					<h:column>
-						<f:facet name="header">Nombre</f:facet>
-						#{plato.nombre}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Descripcion</f:facet>
-						#{plato.descripcion}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Precio</f:facet>
-						<p>$ #{plato.precio}</p>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Acciones</f:facet>
-						<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Acciones</f:facet>
-						<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Acciones</f:facet>
-						<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
-					</h:column>
-		 
-				</h:dataTable>
-			</center>
+						rendered="#{empty platoControler.platosR}"/>
+					<center>
+						<h:dataTable value ="#{platoControler.platosR}" var="pre"
+						rendered="#{not empty platoControler.platosR}" cellspacing="10" width="50%" >		       
+							<h:column>
+								<f:facet name="header">Nombre</f:facet>
+								#{pre.descripcion}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Precio</f:facet>
+								 #{pre.precio}
+							</h:column>
+							<h:column>
+								<f:facet name="header">Imagne</f:facet>
+								<img src="data:image/png;base64,#{platoControler.pdao.convertir(pre.imagen)}" />
+							</h:column>
+						</h:dataTable>
+					</center>
+			
             </div>
         </section>
     </main>
@@ -311,6 +232,6 @@
     </footer>
 </div>
 
-<script src="js/script.js"></script>
+<script src="resources/template/site/js/script.js"></script>
 </body>
 </html>

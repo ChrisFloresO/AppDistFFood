@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+    <title>Busqueda</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+	<link rel="stylesheet" href="resources/template/site/css/cal.css"/>
+	
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src='resources/template/site/js/device.min.js'></script> 
+</head>
+
+	<style>
+  		.textbox
+		  {
+		  border: 1px solid #DBE1EB;
+		  font-size: 18px;
+		  font-family: Arial, Verdana;
+		  padding-left: 7px;
+		  padding-right: 7px;
+		  padding-top: 10px;
+		  padding-bottom: 10px;
+		  border-radius: 4px;
+		  -moz-border-radius: 4px;
+		  -webkit-border-radius: 4px;
+		  -o-border-radius: 4px;
+		  background: #FFFFFF;
+		  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  color: #2E3133;
+		  }
+		  
+		  .textbox:focus
+		  {
+		  color: #2E3133;
+		  border-color: #FBFFAD;
+		  }
+ 	</style>
+ 	
+ 	<style>
+ 	#responsive-form{
+		 max-width:600px /*-- change this to get your desired form width --*/;
+		 margin:0 auto;
+		        width:100%;
+		}
+		.form-row{
+		 width: 100%;
+		}
+		.column-half, .column-full{
+		 float: left;
+		 position: relative;
+		 padding: 0.65rem;
+		 width:100%;
+		 -webkit-box-sizing: border-box;
+		        -moz-box-sizing: border-box;
+		        box-sizing: border-box
+		}
+		.clearfix:after {
+		 content: "";
+		 display: table;
+		 clear: both;
+		}
+		 
+		/**---------------- Media query ----------------**/
+		@media only screen and (min-width: 48em) { 
+		 .column-half{
+		 width: 50%;
+		 }
+		}
+ 		</style>
+<body> 
+<header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li class="active">
+                            <a href="Buscar.xhtml">Busqueda Plato</a>
+                        </li>
+                        <li>
+                            <a href="Carrito.xhtml">Carrito </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+    
+    <main>
+    <center>
+    <br />
+	<h:form  enctype="multipart/form-data">
+		<div class="box box-info">
+		<div class="box-header with-border">
+              <h2 class="box-title">
+              <em>Busqueda De Platos
+              </em>
+              </h2>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+              <div class="box-body">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{platoControler.nombre}" class="textbox" size="50" id="buscar"/>
+					<h:message for="buscar" errorClass ="Invalid"/>
+						<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-center" id="btn" value="Buscar" >
+              	 		 	<f:ajax execute="buscar" render = "tablas" />
+          				</h:commandButton>
+                  </div>
+                </div>
+              </div>
+     		 <!-- /.box-body -->
+              <div class="box-footer">
+ 
+              </div>
+              <!-- /.box-footer -->
+              
+              <h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.platos}"/>
+	<br />
+		 <center>
+	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas" cellspacing="10" width="70%" >
+		<h:column>
+		<f:facet name="header">Plato</f:facet>
+			<div >
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
+			</div>
+		</h:column>
+		<h:column>
+		<f:facet name="header">Descripcion</f:facet>
+			#{busquedas.descripcion}
+		</h:column>
+		<h:column>
+		<f:facet name="header">Precio</f:facet>
+			<p>$ #{busquedas.precio}</p> 
+		</h:column>
+		
+		<h:column>
+		<f:facet name="header">Restaurante</f:facet>
+			#{busquedas.restaurante.nombre}
+		</h:column>
+		
+		<h:column>
+		<f:facet name="header">Restaurante</f:facet>
+			<div >
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.restaurante.imagen)}" />
+			</div>
+		</h:column>
+		
+		<h:column>
+			<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo)}" value="Pedir"/>
+		</h:column>
+		<h:column>
+			<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo)}" value="Calificar"/>
+		</h:column>
+		<h:column>
+			<h:commandButton action="#{mapaControler.cargardatos(busquedas.restaurante.ubicaciones.get(busquedas.restaurante.codigo),busquedas.restaurante.ubicaciones.get(busquedas.restaurante.codigo))}" value="Ir Lugar" />
+			
+			<h:commandButton action="#{platoControler.listadatosU()}" value="Ubicacion" />
+		</h:column>
+		
+		</h:dataTable>
+	</center>
+          </div>
+	</h:form>
+	<h:form>
+	<center>
+	<h:commandButton action="#{platoControler.loadPrediccion()}" id="btn" value="Recomendaciones"  >
+	 		<f:ajax render="pre" execute="@all"/>
+		</h:commandButton>
+	<h:outputText value="No existe registros" 
+						rendered="#{empty platoControler.predicciones}"/>
+		
+		
+		<h:dataTable value ="#{platoControler.predicciones}" var="pre"
+				rendered="#{not empty platoControler.predicciones}" cellspacing="10" width="50%" >		       
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{pre.item}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Descripcion</f:facet>
+						#{pre.prediccion}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Precio</f:facet>
+						<p>$ #{pre.usuario}</p>
+					</h:column>
+				</h:dataTable>
+			</center>
+	</h:form>
+	  </center>
+    </main>
+    
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="resources/template/site/js/script.js"></script>
+</body> 
+</html>
+	

@@ -9,9 +9,13 @@ import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
 import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
+import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
+import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
+import ec.edu.ups.appdis.fastfood.modelo.Plato;
+import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 /**
  * 
@@ -25,7 +29,19 @@ public class CalificacionControler
 	private Calificacion calificacion;
 	private List<Calificacion> calificaciones;
 	private int id;
-
+	private int codigop;
+	private int codigou;
+	private Usuario usuario;
+	private Plato plato;
+	
+	@Inject
+	private UsuarioDAO udao;
+	
+	
+	
+	@Inject
+	private PlatoDAO padao;
+	
 	
 	@Inject
 	private CalificacionDAO pdao;
@@ -33,7 +49,7 @@ public class CalificacionControler
 	@PostConstruct
 	public void init() {
 		calificacion= new Calificacion();
-		//pedido.addDetalle(new Detalle());
+		plato = new Plato();
 		loadCalificaciones();
 	}
 	
@@ -66,6 +82,58 @@ public class CalificacionControler
 		return id;
 	}
 
+	public int getCodigop() {
+		return codigop;
+	}
+
+	public void setCodigop(int codigop) {
+		this.codigop = codigop;
+	}
+
+	public int getCodigou() {
+		return codigou;
+	}
+
+	public void setCodigou(int codigou) {
+		this.codigou = codigou;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Plato getPlato() {
+		return plato;
+	}
+
+	public void setPlato(Plato plato) {
+		this.plato = plato;
+	}
+
+	public UsuarioDAO getUdao() {
+		return udao;
+	}
+
+	public void setUdao(UsuarioDAO udao) {
+		this.udao = udao;
+	}
+
+	public PlatoDAO getPadao() {
+		return padao;
+	}
+
+	public void setPadao(PlatoDAO padao) {
+		this.padao = padao;
+	}
+
+	public CalificacionDAO getPdao() {
+		return pdao;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 		listadatosEditar(id);
@@ -92,6 +160,12 @@ public class CalificacionControler
 	public String guardar() 
 	{
 		System.out.println(calificacion);
+		usuario = udao.leer(codigou);
+		plato = padao.leer(codigop);
+		calificacion.setPlato(plato);
+		calificacion.setUsuario(usuario);
+		//plato.setRestaurante(restaurante);
+		System.out.println(plato);
 		//invoque al DAO y envie la entidad a persistir
 		try 
 		{

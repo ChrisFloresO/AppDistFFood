@@ -21,67 +21,69 @@ import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 
 
-
-
-
 @ManagedBean
 @SessionScoped
 public class MapaControler {
-private String latitud="-1";
-private String longitud="-1";
-private String descripcion;
-private String eubelegida;
-private String latituddes;
-private String longituddes;
-
-
-
-private List <MapaControler> ub = new ArrayList<MapaControler>();
-private List<SelectItem> ubicaciones=new ArrayList<SelectItem>();
-
-private List<Ubicacion> listadoUb;
-private List<Usuario> listadoUsu;
-
-
-
-
-
-
-@Inject
-private UsuarioDAO use;
-
-public List<Usuario> getListadoUsu() {
-	return listadoUsu;
-}
-
-public void setListadoUsu(List<Usuario> listadoUsu) {
-	this.listadoUsu = listadoUsu;
-}
-
-public UsuarioDAO getUse() {
-	return use;
-}
-
-public void setUse(UsuarioDAO use) {
-	this.use = use;
-}
-
-
-
-public List<Ubicacion> getListadoUb() {
-	return listadoUb;
-}
-
-public void setListadoUb(List<Ubicacion> listadoUb) {
-	this.listadoUb = listadoUb;
-}
-
-public MapaControler(String latitud, String longitud, String descripcion) {
-	this.latitud=latitud;
-	this.longitud=longitud;
-	this.descripcion=descripcion;
+	private String latitud="-1";
+	private String longitud="-1";
+	private String descripcion;
+	private String eubelegida;
+	private String latituddes;
+	private String longituddes;
+	private double log;
+	private double lat;
 	
-}
+	
+	
+	private List <MapaControler> ub = new ArrayList<MapaControler>();
+	private List<SelectItem> ubicaciones=new ArrayList<SelectItem>();
+	
+	private List<Ubicacion> listadoUb;
+	private List<Usuario> listadoUsu;
+
+
+	@Inject
+	private UsuarioDAO use;
+
+	public List<Usuario> getListadoUsu() {
+		return listadoUsu;
+	}
+	
+	public void setListadoUsu(List<Usuario> listadoUsu) {
+		this.listadoUsu = listadoUsu;
+	}
+	
+	public UsuarioDAO getUse() {
+		return use;
+	}
+	
+	public void setUse(UsuarioDAO use) {
+		this.use = use;
+	}
+
+
+	public void cargardatos(double lo, double la) 
+	{
+		log = lo;
+		lat = la;
+		System.out.println(log);
+		
+	}
+
+	public List<Ubicacion> getListadoUb() {
+		return listadoUb;
+	}
+	
+	public void setListadoUb(List<Ubicacion> listadoUb) {
+		this.listadoUb = listadoUb;
+	}
+	
+	public MapaControler(String latitud, String longitud, String descripcion) {
+		this.latitud=latitud;
+		this.longitud=longitud;
+		this.descripcion=descripcion;
+		
+	}
 
  public MapaControler() {
 	// TODO Auto-generated constructor stub

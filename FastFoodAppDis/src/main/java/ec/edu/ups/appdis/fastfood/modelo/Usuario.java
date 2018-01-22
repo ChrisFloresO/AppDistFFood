@@ -26,7 +26,7 @@ import org.hibernate.validator.constraints.Email;
 public class Usuario {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id",length=10)
 	private int id;
 	

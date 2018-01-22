@@ -14,22 +14,22 @@
 	<link rel="stylesheet" href="resources/template/site/css/grid.css" />
 	<link rel="stylesheet" href="resources/template/site/css/style.css" />
 
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery-migrate-1.2.1.js"></script>
-	<script src='js/device.min.js'></script>
+	<script src="resources/template/site/js/jquery.js"></script>
+	<script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+	<script src="resources/template/site/js/device.min.js"></script>
 
 	<style>
-#map {
-	height: 450px;
-}
-
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-</style>
-</h:head>
+		#map {
+			height: 450px;
+		}
+		
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		</style>
+	</h:head>
 
 <body>
 	<header>
@@ -111,6 +111,20 @@ html, body {
                                 animation: google.maps.Animation.DROP
                             });
                         }
+                        function calcRoute() {
+                      	  var start = document.getElementById('start').value;
+                      	  var end = document.getElementById('end').value;
+                      	  var request = {
+                      	      origin:start,
+                      	      destination:end,
+                      	      travelMode: google.maps.DirectionsTravelMode.DRIVING
+                      	  };
+                      	  directionsService.route(request, function(response, status) {
+                      	    if (status == google.maps.DirectionsStatus.OK) {
+                      	      directionsDisplay.setDirections(response);
+                      	    }
+                      	  });
+                      	}
 
                         function ruta(location) {
                             var objConfigDR = {
@@ -152,7 +166,8 @@ html, body {
         		infoWindow.setContent(browserHasGeolocation ?
                 	'Error: The Geolocation service failed.' :
                     'Error: Your browser doesn\'t support geolocation.');
-      		}          	  		
+      		}  
+      		        	  		
       	</script>
 
 				<script
@@ -224,58 +239,10 @@ html, body {
 				<div id="steps" style="width: 100%; heigth: 100%"></div>
 			</center>
 			<script type="text/javascript">
-function geoFindMe() {
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error, geoOptions);
-    } else {
-        alert("Geolocation services are not supported by your web browser.");
-    }
-}
+			
 
-function success(position) {
-        alert("estoy aqui");
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    var altitude = position.coords.altitude;
-    var accuracy = position.coords.accuracy;
-    /*
-    var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    };
 
-    var iconact = {
-        url: str, // url
-        scaledSize: new google.maps.Size(50, 50), // scaled size
-        origin: new google.maps.Point(0,0), // origin
-        anchor: new google.maps.Point(0, 0) // anchor
-    };
-    var MiUbicacion = new google.maps.Marker({
-        position: pos,
-        map: map,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        title: "mi Ubuicaion",
-        icon: iconact
-
-    });
-    */
-    document.getElementById("formulario:latitud").value=position.coords.latitude;
-    document.getElementById("formulario:longitud").value=position.coords.longitude;
-	
-}
-
-function error(error) {
-    alert("Unable to retrieve your location due to " + error.code + ": " + error.message);
-}
-
-var geoOptions = {
-    enableHighAccuracy: true,
-    maximumAge: 30000,
-    timeout: 27000
-};
-
-</script>
+			</script>
 		</center>
 		</main>
 	</h:body>
@@ -297,7 +264,7 @@ var geoOptions = {
 			alt="" /></a>
 	</div>
 	</footer>
-	<script src="js/script.js"></script>
+	<script src="resources/template/site/js/script.js"></script>
 </body>
 </html>
 

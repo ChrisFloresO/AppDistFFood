@@ -29,7 +29,6 @@ public class PedidoControler
 	@PostConstruct
 	public void init() {
 		pedido= new Pedido();
-		pedido.addDetalle(new Detalle());
 		loadPedidos();
 	}
 	
@@ -75,11 +74,7 @@ public class PedidoControler
 		loadPedidos();
 	}
 	
-	public String addDetalle() {
-		System.out.println("aqui");
-		pedido.addDetalle(new Detalle());
-		return null;
-	}
+
 	/**
 	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
 	 * que tiene el metodo guardar que se le pasa el parametro calificacion (objeto de la clase
@@ -90,6 +85,7 @@ public class PedidoControler
 	 */
 	public String guardar() 
 	{
+		
 		System.out.println(pedido);
 		//invoque al DAO y envie la entidad a persistir
 		try 
