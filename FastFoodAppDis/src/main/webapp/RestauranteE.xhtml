@@ -20,16 +20,46 @@
     <script src="resources/template/site/js/device.min.js"></script> 
     
     <style>
-#map {
-	height: 450px;
-}
+		#map {
+			height: 450px;
+		}
+		
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
 
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-</style>
+	<style>
+  		.textbox
+		  {
+		  border: 1px solid #DBE1EB;
+		  font-size: 18px;
+		  font-family: Arial, Verdana;
+		  padding-left: 7px;
+		  padding-right: 7px;
+		  padding-top: 10px;
+		  padding-bottom: 10px;
+		  border-radius: 4px;
+		  -moz-border-radius: 4px;
+		  -webkit-border-radius: 4px;
+		  -o-border-radius: 4px;
+		  background: #FFFFFF;
+		  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  color: #2E3133;
+		  }
+		  
+		  .textbox:focus
+		  {
+		  color: #2E3133;
+		  border-color: #FBFFAD;
+		  }
+ 	</style>
+ 	
 </h:head>
 
 <body> 
@@ -40,7 +70,7 @@ html, body {
 
                 <div class="brand">
                     <h1 class="brand_name">
-                        <a href="./">Fast Food</a>
+                        <a href="#">Fast Food</a>
                     </h1>
                 </div>
 
@@ -49,14 +79,14 @@ html, body {
                         <li>
                             <a href="Home.xhtml">Home</a>
                         </li>
-                         <li class="active">
-                            <a href="bl.xhtml">Menu</a>
+                         <li >
+                            <a href="Registra_Plato.xhtml">Registra Restaurante</a>
+                        </li>
+                        <li class="active">
+                            <a href="RestauranteL.xhtml">Edita Restaurante</a>
                         </li>
                         <li>
-                            <a href="index-2.html">Ubicanos</a>
-                        </li>
-                        <li>
-                            <a href="index-4.html">Contacts</a>
+                            <a href="RestauranteL.xhtml">Lista Restaurante</a>
                         </li>
                     </ul>
                 </nav>
@@ -76,21 +106,21 @@ html, body {
                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Codigo</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.codigo}" class="form-control" id="codigo">
+                  	<h:inputText value="#{restaurantControler.restaurante.codigo}" class="textbox" size="50" id="codigo">
 					</h:inputText>
 					<h:message for="codigo" errorClass ="Invalid"/>
                   </div>
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.nombre}" class="form-control" id="nombre">
+                  	<h:inputText value="#{restaurantControler.restaurante.nombre}" class="textbox" size="50" id="nombre">
 					</h:inputText>
 					<h:message for="nombre" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tipo</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.tipo}" class="form-control" id="tipo">
+                  	<h:inputText value="#{restaurantControler.restaurante.tipo}" class="textbox" size="50" id="tipo">
 					</h:inputText>
 					<h:message for="tipo" errorClass ="Invalid"/>
                   </div>
@@ -98,7 +128,7 @@ html, body {
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Telefono</label>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono"  class="form-control" />
+                  	<h:inputText value="#{restaurantControler.restaurante.telefono}" id="telefono"  class="textbox" size="50" />
                   	<h:message for="telefono" errorClass ="Invalid"/>
                   </div>
                 </div>
@@ -111,19 +141,19 @@ html, body {
 				
 				<h:column>
 					<f:facet name="header">Direccion</f:facet>
-					<h:inputText value="#{ubicacion.direccion}" />
+					<h:inputText value="#{ubicacion.direccion}" class="textbox" size="50"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Latitud</f:facet>
-					<h:inputText value="#{ubicacion.latitud}" />
+					<h:inputText value="#{ubicacion.latitud}" class="textbox" size="50"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Longitud</f:facet>
-					<h:inputText value="#{ubicacion.longitud}" />
+					<h:inputText value="#{ubicacion.longitud}" class="textbox" size="50" />
 				</h:column>
 				</h:dataTable>
 				<div class="box-footer">
-              	<h:commandButton action="#{restaurantControler.Actualizar()}" class="btn btn-info pull-right" id="btn1" value="GUARDAR" />
+              	<h:commandButton action="#{restaurantControler.Actualizar()}" class="btn btn-info pull-center" id="btn1" value="ACTUALIZAR" />
               </div>
 				
 		          </div>           
@@ -131,11 +161,6 @@ html, body {
 		          </div>
 		          </div>
               </h:form>
-              <h:form>
-              <div class="box-footer">
-              <h:commandButton action="RestauranteL" class="btn btn-info pull-right" id="btn2" value="LISTADO RESTAURANTE"/>	
-              </div>
-		</h:form>
 		
 		</center>
 	</main>
