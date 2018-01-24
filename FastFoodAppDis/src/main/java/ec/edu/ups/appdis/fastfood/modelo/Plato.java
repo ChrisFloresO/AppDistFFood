@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tbl_plato")
-@NamedQuery(name="Plato.findAll", query="SELECT p FROM Plato p")
+@NamedQuery(name="Plato.findAll", query="SELECT pla FROM Plato pla")
 public class Plato 
 {
 	@Id
@@ -52,10 +52,6 @@ public class Plato
 	@JsonIgnore
 	private Restaurante restaurante; 
 	
-	
-	//bi-directional many-to-one association to DetalleOrdene
-	@OneToMany(mappedBy="plato")
-	private List<Detalle> detalles;
 	
 	//bi-directional many-to-one association to DetalleOrdene
 	@OneToMany(mappedBy="plato")
@@ -134,8 +130,8 @@ public class Plato
 	@Override
 	public String toString() {
 		return "Plato [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + ", detalles=" + detalles
-				+ ", calificaciones=" + calificaciones + ", pedidos=" + pedidos + "]";
+				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + ", calificaciones="
+				+ calificaciones +"]";
 	}
 	
 	

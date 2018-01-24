@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"> 
 
 <head>
     <title>Calificacion</title>
@@ -14,8 +16,7 @@
 	
     <script src="resources/template/site/js/jquery.js"></script>
     <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
-    <script src="resources/template/site/js/device.min.js"></script> 
-    
+    <script src="resources/template/site/js/device.min.js"></script>   
 </head>
 
 	<style>
@@ -65,11 +66,14 @@
                         <li>
                             <a href="Home.xhtml">Home</a>
                         </li>
+                         <li>
+                            <a href="Buscar.xhtml">Buscar Plato</a>
+                        </li>
                          <li class="active">
-                            <a href="Registra_Plato.xhtml">Registrar Plato</a>
+                            <a href="Calificacion.xhtml">Calificar Plato</a>
                         </li>
                         <li>
-                            <a href="Lista_Plato.xhtml">Lista Platos</a>
+                            <a href="Lista_Plato.xhtml">Carrito</a>
                         </li>
                     </ul>
                 </nav>
@@ -77,42 +81,32 @@
         </div>
 </header>
     
-    <main>
-    <center>
-    		<f:metadata>
-				<f:viewParam name="id" value="#{platoControler.id}"/>
-			</f:metadata>
-			
-    	<br />
-    	<div class="grid_4">
+    <main><center>
+    <f:metadata>
+	<f:viewParam name="id" value="#{platoControler.id}"/>
+	</f:metadata>
+		
+<h:form>	
+    <br/>
+    <h:messages globalOnly="true"/>
+    <div class="grid_4">
               <h2> <em>Calificacion</em></h2>
-            </div>
-    		
-	<h:form>
-		<h:messages globalOnly="true"/>
-	
-		 <h:panelGrid columns ="3">
-		 <h:outputLabel class="btn btn-info pull-center" value="nombre:" for="nombre"/>
-		<h:inputText value="#{platoControler.plato.nombre}" id="nombre" class="textbox"  size="50"/>
-		<h:message  for="nombre"/>
-	
-		</h:panelGrid>
-	
-	</h:form>
-	<h:form>
+            </div>    
+
 		<div>
 		<h:messages globalOnly="true"/>
 	
 		<h:panelGrid columns ="3">
 
+		<h:outputLabel class="btn btn-info pull-center" value="Plato:" for="foto"/>
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(platoControler.plato.imagen)}" />
+		<h:message  for="foto"/>
 		
-		<h:outputLabel class="btn btn-info pull-center" value="Plato:" for="codigo"/>
-		<h:inputText value="#{calificacionControler.codigop}" id="codigo" class="textbox"  size="50" />
-		<h:message  for="codigo"/>
+		<h:outputLabel class="btn btn-info pull-center" value="Descripcon:" for="codigou" />
+		<h:inputText value="#{platoControler.plato.codigo}" id="codigo" class="textbox"  size="50" style='display:none;'/>
+		<h:inputText value="#{platoControler.plato.descripcion}" id="nombre" class="textbox"  size="50" />
+		<h:message  for="nombre"/>
 
-		<h:outputLabel class="btn btn-info pull-center" value="Usuario:" for="codigou"/>
-		<h:inputText value="#{calificacionControler.codigou}" id="codigou" class="textbox"  size="50"/>
-		<h:message  for="codigou"/>
 		
 		<h:outputLabel class="btn btn-info pull-center" value="Calificacion:" for="voto"/>
 		<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto"  >
@@ -124,15 +118,14 @@
 		</h:selectOneMenu>
 		<h:message  for="voto"/>
 		
-		<h:outputLabel class="btn btn-info pull-center"  value="Comentario" for="comentario"/>
-		<h:inputText value="#{calificacionControler.calificacion.comentario}" id="comentario" class="textbox"  size="50"/>
+		<h:outputLabel class="btn btn-info pull-center" placeholder="Comentario" value="Comentario" for="comentario"/>
+		<h:inputText  value="#{calificacionControler.calificacion.comentario}" id="comentario" class="textbox"  size="50" a:placeholder="Comentario"/>
 		<h:message  for="comentario"/>
 	
 	</h:panelGrid>
 		
               <div class="box-footer">
-              	<h:commandButton action="#{calificacionControler.guardar()}" class="btn btn-info pull-right" id="btn" value="Realizar Voto" />
-				<h:commandButton action="Inicio" class="btn btn-info pull-right" id="btn1" value="REGRESAR" />
+              	<h:commandButton action="#{calificacionControler.guardar()}" class="btn btn-info pull-center" id="btn" value="Realizar Voto" />
               </div>
               <!-- /.box-footer -->
         

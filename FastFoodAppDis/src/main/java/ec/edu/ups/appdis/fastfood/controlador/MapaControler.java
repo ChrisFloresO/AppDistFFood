@@ -16,6 +16,7 @@ import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Ubicacion;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
@@ -30,54 +31,12 @@ public class MapaControler {
 	private String eubelegida;
 	private String latituddes;
 	private String longituddes;
-	private double log;
-	private double lat;
-	
-	
-	
-	private List <MapaControler> ub = new ArrayList<MapaControler>();
-	private List<SelectItem> ubicaciones=new ArrayList<SelectItem>();
-	
-	private List<Ubicacion> listadoUb;
-	private List<Usuario> listadoUsu;
+	private Ubicacion ubicacion;
 
+	private Restaurante restaurante;
 
-	@Inject
-	private UsuarioDAO use;
+	
 
-	public List<Usuario> getListadoUsu() {
-		return listadoUsu;
-	}
-	
-	public void setListadoUsu(List<Usuario> listadoUsu) {
-		this.listadoUsu = listadoUsu;
-	}
-	
-	public UsuarioDAO getUse() {
-		return use;
-	}
-	
-	public void setUse(UsuarioDAO use) {
-		this.use = use;
-	}
-
-
-	public void cargardatos(double lo, double la) 
-	{
-		log = lo;
-		lat = la;
-		System.out.println(log);
-		
-	}
-
-	public List<Ubicacion> getListadoUb() {
-		return listadoUb;
-	}
-	
-	public void setListadoUb(List<Ubicacion> listadoUb) {
-		this.listadoUb = listadoUb;
-	}
-	
 	public MapaControler(String latitud, String longitud, String descripcion) {
 		this.latitud=latitud;
 		this.longitud=longitud;
@@ -85,118 +44,83 @@ public class MapaControler {
 		
 	}
 
- public MapaControler() {
-	// TODO Auto-generated constructor stub
-}
+	public MapaControler() {
+		// TODO Auto-generated constructor stub
+	}	
 	
 	
 
-@PostConstruct
-public void init(){
-	
-	cargarCampos();
-
-}
-public String getLongitud() {
-
+	@PostConstruct
+	public void init()
+	{	
+	}
+	public String getLongitud() 
+	{
 		return longitud;
-
-
-}
-public void setLongitud(String longitud) {
-	this.longitud = longitud;
-}
-
-public String getLatitud() {
-
+	}
+	
+	public void setLongitud(String longitud) 
+	{
+		this.longitud = longitud;
+	}
+	
+	public String getLatitud() 
+	{
 		return latitud;
-
-}
-public void setLatitud(String latitud) {
-	this.latitud = latitud;
-}
-public String getDescripcion() {
-	return descripcion;
-}
-public void setDescripcion(String descripcion) {
-	this.descripcion = descripcion;
-}
-
-public List<MapaControler> getUb() {
-	return ub;
-}
-public void setUb(List<MapaControler> ub) {
-	this.ub = ub;
-}
-
-public String getEubelegida() {
-	return eubelegida;
-}
-
-public void setEubelegida(String eubelegida) {
-	this.eubelegida = eubelegida;
-}
-
-public List<SelectItem> getUbicaciones() {
-	return ubicaciones;
-}
-
-public void setUbicaciones(List<SelectItem> ubicaciones) {
-	this.ubicaciones = ubicaciones;
-}
-
-public String getLatituddes() {
-	return latituddes;
-}
-
-public void setLatituddes(String latituddes) {
-	this.latituddes = latituddes;
-}
-
-public String getLongituddes() {
-	return longituddes;
-}
-
-public void setLongituddes(String longituddes) {
-	this.longituddes = longituddes;
-}
-
-
-
-
-
-private void cargarCampos()
-{
-	for (MapaControler ubi:ub)
+	}
 		
+	public void setLatitud(String latitud) 
 	{
-		ubicaciones.add(new SelectItem(ubi.descripcion,ubi.descripcion));
+		this.latitud = latitud;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+			this.descripcion = descripcion;
+	}
 		
+
+	public Restaurante getRestaurante() {
+		return restaurante;
 	}
 
-}
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
 
-public String action(){
-
-	setDescripcion("Mi Ubicacion");
-	return null;
-}
-
-public String calcular(String descripcion,String lat,String lon){
-
-	for (MapaControler ubicar: ub)
-	{
-
-		if (eubelegida.equals(ubicar.descripcion))
-		{
-			this.latituddes=ubicar.latitud;
-			this.longituddes=ubicar.longitud;
-			System.out.println("calculando"+" "+ubicar.descripcion+"  latitud  "+this.latituddes+" "+"longitud  "+this.longituddes+"--->"+descripcion+"  latitud"+latitud+" "+"  longitud"+longitud );
+	public String getEubelegida() {
+		return eubelegida;
+	}
+		
+	public void setEubelegida(String eubelegida) {
+			this.eubelegida = eubelegida;
 		}
-	}
-	return "null";
-}
+		
+		
+		public String getLatituddes() {
+			return latituddes;
+		}
+		
+		public void setLatituddes(String latituddes) {
+			this.latituddes = latituddes;
+		}
+		
+		public String getLongituddes() {
+			return longituddes;
+		}
+		
+		public void setLongituddes(String longituddes) {
+			this.longituddes = longituddes;
+		}
 
+		public Ubicacion getUbicacion() {
+			return ubicacion;
+		}
+
+		public void setUbicacion(Ubicacion ubicacion) {
+			this.ubicacion = ubicacion;
+		}
 
 	
 }

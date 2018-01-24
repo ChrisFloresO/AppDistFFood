@@ -1,16 +1,11 @@
 package ec.edu.ups.appdis.fastfood.datos;
-
-import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.servlet.http.Part;
 
-import ec.edu.ups.appdis.fastfood.modelo.Imagenes;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 /**
@@ -51,6 +46,7 @@ public class UsuarioDAO
 		return listado;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Usuario> getUsuariosLogin(String correo,String clave)
 	{
 		
@@ -61,11 +57,12 @@ public class UsuarioDAO
 		Query q = em.createQuery(sql,Usuario.class);
 		q.setParameter(1, correo);
 		q.setParameter(2, clave);
-		List<Usuario> personas = q.getResultList();
-		return personas;
+		List<Usuario> usuario = q.getResultList();
+		return usuario;
 	}
 	
-    public List<Usuario> getUsuariosLoginRC(String correo)
+    @SuppressWarnings("unchecked")
+	public List<Usuario> getUsuariosLoginRC(String correo)
     {
 		String sql = "SELECT u FROM Usuario u "
 				+ "WHERE email = ? ";
@@ -75,6 +72,15 @@ public class UsuarioDAO
 		return personas;
 	}
     
+	public boolean ValidarCedula(String cedula)
+    {
+		Usuario usuario = em.find(Usuario.class, cedula);
+		if(usuario == null) {
+			return true;
+		}
+		else
+			return false;
+	}
 	
 	
 	/**
@@ -83,7 +89,6 @@ public class UsuarioDAO
 	 */
 	public void guardar(Usuario u)
 	{
-		
 		Usuario u1 = leer(u.getId());
 		try {
 		if (u1 == null) {
