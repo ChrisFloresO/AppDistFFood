@@ -3,6 +3,7 @@ package ec.edu.ups.appdis.fastfood.controlador;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -13,7 +14,6 @@ import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PrediccionesDao;
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
-import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Predicciones;
@@ -21,7 +21,6 @@ import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 @ManagedBean
-@ViewScoped
 public class PlatoControler 
 {
 	//variables
@@ -32,6 +31,7 @@ public class PlatoControler
 	private List<Predicciones> predicciones;
 	private String id;
 	private String nombre;
+	private String tipo;
 	private int codigo;
 	private Restaurante restaurante;
 	private Pedido pedido;
@@ -52,6 +52,8 @@ public class PlatoControler
 	@Inject
 	private UsuarioDAO usdao;
 	
+	@Inject
+	private Sesion sesion;
 	
 	/**
 	 * metodo para inicializar las variables
@@ -172,6 +174,14 @@ public class PlatoControler
 		return nombre;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -226,6 +236,10 @@ public class PlatoControler
 		this.prerdao = prerdao;
 	}
 
+	@PreDestroy
+	public void close(){
+		System.out.println("Cerrando");
+	}
 	/**
 	 * este metod permite guardar una calificacion al momento de llamar al objeto
 	 * pdao que tiene el metodo guardar que se le pasa el parametro calificacion
@@ -234,6 +248,7 @@ public class PlatoControler
 	 * 
 	 * @return Lista_Plato
 	 */
+	@SuppressWarnings("unused")
 	public String guardar() 
 	{
 		restaurante = rdao.leer(codigo);
@@ -290,6 +305,7 @@ public class PlatoControler
 	 */
 	public String listadatosEditar(int codigo) {
 		plato = pdao.leer(codigo);
+		System.out.println("ceunca"+ plato.getNombre());
 		return "Editar_Plato";
 	}
 
@@ -302,11 +318,13 @@ public class PlatoControler
 	 * @param codigo
 	 * @return
 	 */
-	public String listadatosB(int codigo) {
+	@SuppressWarnings("unused")
+	public String listadatosB(int codigo , int codus) {
 		System.out.println(codigo);
+		System.out.println(codus);
 		plato = pdao.leer(codigo);
 		System.out.println(plato.getNombre());
-		usuario = usdao.leer(codigo);
+		usuario = usdao.leer(codus);
 		System.out.println(usuario.getNombre());
 		pedido.setPlato(plato);
 		pedido.setUsuario(usuario);
@@ -324,9 +342,16 @@ public class PlatoControler
 	}
 
 	public String doRead() {
-		// System.out.println("este sale"+nombre1);
-		platos = pdao.listadoPlatospr(nombre);
-		System.out.println(platos);
+		System.out.println("este sale"+nombre);
+		if(nombre==null && tipo!=null) {
+			platos = pdao.listadoPlatospr(nombre);
+			System.out.println(platos);
+		}else
+		{
+			platos = pdao.listadoPlatospr(nombre);
+			System.out.println(platos);
+		}
+		
 		return null;
 	}
 
@@ -338,10 +363,11 @@ public class PlatoControler
 	 * @param codigo
 	 * @return
 	 */
-	public String listadatosC(int codigo) {
-		System.out.println("c"+codigo);
+	public String listadatosC(int codigo, int codus) 
+	{
 		plato = pdao.leer(codigo);
-		System.out.println("HOLA"+plato.getNombre());
+		usuario = usdao.leer(codus);
+		sesion.setPlato(plato);
 		return "Calificacion";
 	}
 
@@ -353,9 +379,11 @@ public class PlatoControler
 	 * @param codigo
 	 * @return
 	 */
-	public String listadatosU() {
-		// plato = pdao.leer(codigo);
-		return "UbicacionP";
+	public String listadatosU(int codigo) {
+		plato = pdao.leer(codigo);
+		restaurante = rdao.leer(plato.getRestaurante().getCodigo());
+		System.out.println(restaurante.getCodigo());
+		return "IrLugar";
 	}
 
 }

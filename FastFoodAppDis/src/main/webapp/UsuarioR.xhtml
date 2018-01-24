@@ -91,12 +91,14 @@
               <div class="box-body">
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Cedula</label>
+                  <span class="ui-inputgroup-addon"><i class="fa fa-indent" ></i></span>
                   <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.cedula}" class="textbox"  size="50" id="cedula"/>
+                  	<h:inputText value="#{usuarioControler.usuario.cedula}" class="textbox"  size="50" id="cedula" placeholder="Username"/>
 					<h:message for="nombre" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Nombre</label>
+                  <span class="ui-inputgroup-addon"><i class="fa fa-user" ></i></span>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.nombre}" class="textbox"  size="50" id="nombre"/>
 					<h:message for="nombre" errorClass ="Invalid"/>
@@ -104,25 +106,28 @@
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 btn btn-info pull-center">Apellido</label>
-
+				  <span class="ui-inputgroup-addon"><i class="fa fa-user-md" ></i></span>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido"  class="textbox"  size="50" />
                   </div>
                 </div>
                   <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Email</label>
+                  <span class="ui-inputgroup-addon"><i class="fa fa-inbox" ></i></span>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.email}" class="textbox"  size="50" id="email"/>
 					<h:message for="email" errorClass ="Invalid"/>
                   </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 btn btn-info pull-center">Contrasena</label>
+                  <span class="ui-inputgroup-addon"><i class="fa fa-unlock-alt" ></i></span>
                   <div class="col-sm-10">
                   	<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena"  class="textbox"  size="50"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Rol</label>
+                  <span class="ui-inputgroup-addon"><i class="fa fa-gears" ></i></span>
                   <div class="col-sm-10">
                   	<h:inputText value="#{usuarioControler.usuario.rol}" class="textbox"  size="50" id="rol"/>
 					<h:message for="rol" errorClass ="Invalid"/>

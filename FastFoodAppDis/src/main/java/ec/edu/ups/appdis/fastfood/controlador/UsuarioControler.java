@@ -6,11 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.crud.util.FCM;
+import ec.edu.ups.appdis.fastfood.crud.util.Validar;
 import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PrediccionesDao;
@@ -25,8 +25,11 @@ import ec.edu.ups.appdis.fastfood.modelo.Usuario;
  */
 
 @ManagedBean
+@SessionScoped
 public class UsuarioControler 
 {
+	private int codigo;
+	private Validar v;
 	private String id;
 	private List<Usuario> usuarios;
 	private String correoI;
@@ -49,6 +52,9 @@ public class UsuarioControler
 	@Inject
 	private UsuarioDAO udao;
 	
+	@Inject
+	private Sesion sesion;
+	
 	
 	private Usuario usuario;
 	
@@ -57,6 +63,7 @@ public class UsuarioControler
 	public void init() {
 		usuario=new Usuario();
 		loadUsuarios();
+		v = new Validar();
 	}
 	
 
@@ -79,12 +86,36 @@ public class UsuarioControler
 	 * 
 	 * @return Lista_Plato
 	 */
+	@SuppressWarnings("static-access")
 	public String Guardar()
 	{
-		usuario.setRol(3);
+		boolean t =v.validacionCedula(usuario.getCedula());
+		System.out.println(t+"y");
+		if(t==false) {
+			return null;
+		} else 
+		{
+			usuario.setRol(3);
 			udao.guardar(usuario);
 			loadUsuarios();
-		return "Home";
+			return "Home";
+		}
+	}
+	
+	@SuppressWarnings("static-access")
+	public String Guardar1()
+	{
+		boolean t =v.validacionCedula(usuario.getCedula());
+		System.out.println(t+"y");
+		if(t==false) {
+			return null;
+		} else 
+		{
+			usuario.setRol(3);
+			udao.guardar(usuario);
+			loadUsuarios();
+			return "UsuarioL";
+		}
 	}
 	
 	/**
@@ -96,7 +127,7 @@ public class UsuarioControler
 	public String listadatosEditar(int cedula) 
 	{
 		usuario = udao.leer(cedula);
-		///System.out.println("Cuenca " + usuario);
+		System.out.println("Cuenca " + usuario.getNombre());
 		return "UsuarioE";
 	}
 	
@@ -135,6 +166,7 @@ public class UsuarioControler
 	 * y retorna un String (RestauranteR, RestauranteL, Inicio, null).
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes" })
 	public String listar(){
 		
 		usuarios = udao.listadoUsuario();
@@ -146,54 +178,53 @@ public class UsuarioControler
 		for(int i=0;i<listadoLogin.size();i++){
 			System.out.println(listadoLogin.get(i).getEmail());
 			System.out.println(listadoLogin.get(i).getRol());
+			codigo = listadoLogin.get(i).getId();
+			System.out.println(codigo);
 			if(listadoLogin.get(i).getRol()==1){
 				System.out.println("administrador");
+				sesion.setUsuario(listadoLogin.get(i));
 				return "RestauranteR";
 			}else
 				if(listadoLogin.get(i).getRol()==2){
+					sesion.setUsuario(listadoLogin.get(i));
 					return "RestauranteL";
 				}else
 					if(listadoLogin.get(i).getRol()==3) 
 					{
-						FCM fcm = new FCM(calificaciones, usuarios, platos);
-						List<Hashtable> predicciones= fcm.prediccionesUsuarios();
+						sesion.setUsuario(listadoLogin.get(i));
+						/*FCM fcm = new FCM(calificaciones, usuarios, platos);
+						Hashtable predicciones=  fcm.prediccionesUsuarios();
 						Predicciones pre;
 						List<Predicciones> listapredcciones = prdao.listadoPredicciones();
 						for (int k = 0; k < listapredcciones.size(); k++) {
-							System.out.println(listapredcciones.get(k));
 							prdao.Borrar(listapredcciones.get(k));
 						}
-						for (int k = 0; k < predicciones.size(); k++) {
-							for (int j = 0; j < predicciones.get(k).size(); j++) {
-								if ((int)predicciones.get(k).get(j)!=0) {
+						for (int k = 0; k < predicciones.size(); k++) 
+						{
+							int us = usuarios.get(k).getId();
+							Hashtable voto = (Hashtable) predicciones.get(us);
+							for (int j = 0; j < calificaciones.size(); j++) {
+								int plat = platos.get(j).getCodigo();
+								
+								if ((int)voto.get(plat)!=0) {
 									pre = new Predicciones();
 									
-									pre.setItem(j+1);
-									pre.setUsuario(j+2);
-									pre.setPrediccion((int) predicciones.get(k).get(j));
+									pre.setItem(plat);
+									pre.setUsuario(us);
+									pre.setPrediccion((int) voto.get(plat));
 									prdao.Insertar(pre);
 								}
 								
 							}
 							
-						}
+						}*/
 					return "Home";
 					
 				}
 		}
 		return null;
 	}
-	public String perfilUsuario(){
-		
-		listadoLogin = udao.getUsuariosLogin(correoI,claveI);
-		init();
-		for(int i=0;i<listadoLogin.size();i++){
-			System.out.println(listadoLogin.get(i).getEmail());
-			System.out.println(listadoLogin.get(i).getRol());
-			
-		}
-		return "perfil_usuario";
-	}
+
 	
  public String contraseñaCambiada(){
     	 
@@ -252,6 +283,16 @@ public class UsuarioControler
 	public String getClaveI() {
 		return claveI;
 	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
 
 	public void setClaveI(String claveI) {
 		this.claveI = claveI;

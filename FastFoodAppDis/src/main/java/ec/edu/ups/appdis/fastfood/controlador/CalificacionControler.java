@@ -8,12 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.CalificacionDAO;
-import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
-import ec.edu.ups.appdis.fastfood.modelo.Detalle;
-import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
@@ -37,6 +34,8 @@ public class CalificacionControler
 	@Inject
 	private UsuarioDAO udao;
 	
+	@Inject
+	private Sesion sesion;
 	
 	
 	@Inject
@@ -159,14 +158,11 @@ public class CalificacionControler
 	 */
 	public String guardar() 
 	{
-		System.out.println(calificacion);
-		usuario = udao.leer(codigou);
-		plato = padao.leer(codigop);
+		usuario = sesion.getUsuario();
+		plato = sesion.getPlato();
+		System.out.println(usuario.getNombre());
 		calificacion.setPlato(plato);
 		calificacion.setUsuario(usuario);
-		//plato.setRestaurante(restaurante);
-		System.out.println(plato);
-		//invoque al DAO y envie la entidad a persistir
 		try 
 		{
 			pdao.guardar(calificacion);
@@ -180,7 +176,7 @@ public class CalificacionControler
             return null;
 		}
 		
-		return "Inicio";
+		return "Buscar";
 	}
 	
 	/**
@@ -220,5 +216,6 @@ public class CalificacionControler
 		calificacion = pdao.leer(codigo);
 		return "Calificacion";
 	}
+	
 
 }

@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <head>
-    <title>Lista Usuario</title>
+    <title>Editar Usuario</title>
     <meta charset="utf-8"/>
     <meta name="format-detection" content="telephone=no"/>
     <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
@@ -81,7 +81,7 @@
     <main><center>
 	<f:metadata>
 	<f:viewParam name="id" value="#{usuarioControler.id}"/>
-</f:metadata>
+	</f:metadata>
 
 <h:form>
 	<br></br>
@@ -90,8 +90,8 @@
               <h2> <em>Editar Usuarios</em></h2>
             </div>
 	<h:panelGrid columns ="3">
-		 
-		 <h:outputLabel class="btn btn-info pull-center" value="Id:" for="id"/>
+	
+		<h:outputLabel class="btn btn-info pull-center" value="Id:" for="id"/>
 		<h:inputText value="#{usuarioControler.usuario.id}" id="id" class="textbox"  size="50" />
 		<h:message  for="id"/>
 	
@@ -122,7 +122,7 @@
 		
 	</h:panelGrid>
 	 <div class="box-footer">
-              	<h:commandButton action="#{usuarioControler.Actualizar()}" class="btn btn-info pull-center" id="btn" value="ACTUALIZAR DATOS" />
+              	<h:commandButton action="#{usuarioControler.Guardar1()}" class="btn btn-info pull-center" id="btn" value="ACTUALIZAR DATOS" />
               </div>
 	
 </h:form>

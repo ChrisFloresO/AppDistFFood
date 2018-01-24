@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <head>
 <title>Home</title>
@@ -18,7 +19,44 @@
     <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
     <script src="resources/template/site/js/device.min.js"></script> 
 </head>
-    
+    <style>
+    .slider {
+		width: 95%;
+		margin: auto;
+		overflow: hidden;
+	}
+	
+	.slider ul {
+		display: flex;
+		padding: 0;
+		width: 400%;
+		
+		animation: cambio 20s infinite alternate linear;
+	}
+
+	.slider li {
+		width: 100%;
+		list-style: none;
+	}
+
+	.slider img {
+		width: 100%;
+	}
+
+	@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+	</style>
+}
 
 <body> 
 <div class="page">
@@ -58,7 +96,7 @@
                         <a href="Buscar.xhtml">Buscar Plato</a>
                     </li>
                     <li>
-                        <a href="Carrito.xhtml">Carrito</a>
+                        <a href="Carrito.xhtml">Carrito</a>'
                     </li>
                 </ul>
             </nav>            
@@ -69,9 +107,26 @@
                               CONTENT
     =========================================================-->
     <main>
-        <section class="well">
-            <div class="container">
-                <h2><em>Bienvenido</em>Al lugar donde tu puedes</h2>
+        <section class="well">  
+         <h2><em>Bienvenido</em>Platos del Dia</h2> 
+           <div class="slider">
+			<ul>
+				<li>
+ 					<img src="http://www.andreicrivat.ro/wp-content/uploads/2015/12/pizza-700x300.jpg" alt=""/>
+ 		       </li>
+				<li>
+				  <img src="http://www.mamatieneunplan.com/img/actividades/1233_mamatieneunplan-hamburguesas-gsd.jpg" alt=""/>
+				</li>
+				<li>
+				  <img src="http://s3-us-west-1.amazonaws.com/app-static-quepasa/wp-content/uploads/2016/04/21230136/Marilyn-700x300.jpg" alt=""/>
+				</li>
+				<li>
+				  <img src="https://talleresculinaria.de/wp-content/uploads/2017/11/Restaurantes-y-gastronom%C3%ADa-en-Medell%C3%ADn-Pescado-Marisco-700x300.jpg" alt=""/>
+				</li>
+			</ul>
+		</div>
+		 <div class="container">
+		 <h2><em>Bienvenido</em>Al lugar donde tu puedes</h2> 
                 <div class="row">
                     <div class="grid_6">
                         <div class="img img__border">
@@ -86,130 +141,30 @@
                         <p class="center indents-1">en este espacion se podra ver la ubicacion del restaurante duenio del plato.</p>
                     </div>
                 </div>
-                <div class="decoration"><a href="#" class="btn">Read more</a></div>
-                <h2><em>Platos</em>del Dia</h2>
-            </div>            
-            <div class="gallery">
-                <div class="gallery_col-1">
-                       <center>
-							<h:dataTable value ="#{platoControler.platos.get(0)}" var="plato"
-							rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
-								<h:column>
-									<f:facet name="header">Imagne</f:facet>
-									<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
-								</h:column>
-								<h:column>
-									#{plato.descripcion}
-								</h:column>
-								<h:column>
-									<p>$ #{plato.precio}</p>
-								</h:column>
-							</h:dataTable>
-						</center>
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img04_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img04.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img05_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img05.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery_col-2">
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img06_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img06.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img07_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img07.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img08_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img08.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="gallery_col-3">
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img09_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img09.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img10_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img10.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a fancybox-group="gallery" href="resources/template/site/images/page-1_img11_original.jpg" >
-                        <img src="resources/template/site/images/page-1_img11.jpg" alt=""/>
-                        <div class="gallery_overlay">
-                            <div class="gallery_caption">
-                                <p><em>Lorem Blandit</em></p>
-                                <p>Integer convallis orci vel mi nelaoreet, at ornare lorem consequat. Phasellus era nisl</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            </div>       
         </section>
         <section class="parallax parallax1" parallax-speed="-0.4">
             <div class="container center">
                 <h2>
-                	<em>Platos Recomendados</em>
+                	<em>Restaurantes</em>
                 </h2>
-                	<h:outputText value="No existe registros" 
-						rendered="#{empty platoControler.platosR}"/>
-					<center>
-						<h:dataTable value ="#{platoControler.platosR}" var="pre"
-						rendered="#{not empty platoControler.platosR}" cellspacing="10" width="50%" >		       
-							<h:column>
-								<f:facet name="header">Nombre</f:facet>
-								#{pre.descripcion}
-							</h:column>
-							<h:column>
-								<f:facet name="header">Precio</f:facet>
-								 #{pre.precio}
-							</h:column>
-							<h:column>
-								<f:facet name="header">Imagne</f:facet>
-								<img src="data:image/png;base64,#{platoControler.pdao.convertir(pre.imagen)}" />
-							</h:column>
-						</h:dataTable>
-					</center>
-			
+                	<p:dataGrid var="res" value="#{restaurantControler.restaurantes}" columns="3" layout="grid"
+				        rows="12" paginator="true" id="rest"
+				        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				        rowsPerPageTemplate="6,12,16">
+				 
+				        <p:panel header="#{res.nombre}" style="text-align:center">
+				            <h:panelGrid columns="1" style="width:100%">
+				                <h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(res.imagen)}" />
+				 
+				                <h:outputText value="#{res.tipo}" />
+				                <h:outputText value="#{res.ubicaciones.get(0).direccion}" />
+				 
+				            </h:panelGrid>
+				        </p:panel>
+				 
+				    </p:dataGrid>
+							
             </div>
         </section>
     </main>

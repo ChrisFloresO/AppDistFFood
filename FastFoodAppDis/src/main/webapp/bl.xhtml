@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <head>
     <title>Menu</title>
@@ -53,7 +54,8 @@
 </header>
     
     <main>
-      <h:form>
+    <center>
+     <h:form id="form">
 	<div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Lista de Plato</h3>
@@ -62,55 +64,57 @@
 	<h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
 
-	<h:dataTable value ="#{platoControler.platos}" var="plato"
-		rendered="#{not empty platoControler.platos}" 
-		headerClass="cabeceraTabla"   
-		rowClasses="fila1,fila2" 
-		styleClass="tabla" id="tabla" >
-		
-		
-		<f:facet name="header">
-		<center>
-        	Lista de Platos
-        </center>
-    	</f:facet>
-		
-		<h:column>
-			<f:facet name="header">Imagne</f:facet>
-			<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
-		</h:column>
-       
-		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			#{plato.nombre}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
-			#{plato.descripcion}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Precio</f:facet>
-			#{plato.precio}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Ir Lugar" />
-		</h:column>
+
+  <p:dataScroller value="#{platoControler.platos}"  var="car" chunkSize="10">
+        <h:panelGrid columns="2" style="width:30%" columnClasses="logo,detail" >
+            <h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(car.imagen)}" />
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{car.descripcion}" style="font-weight: bold"/>
  
-	</h:dataTable>
-	
+                    <h:outputText value="Year:" />
+                    <h:outputText value="#{car.precio}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Color:" />
+                    <h:outputText value="#{car.restaurante.nombre}" style="font-weight: bold"/>
+                    
+                    <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{car}" target="#{platoControler.plato}" />
+                    
+                </p:commandLink>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
+    <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty platoControler.plato}" columnClasses="label,value">
+                <f:facet name="header">
+                     <h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(platoControler.plato.imagen)}" />
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{platoControler.plato.nombre}" />
+ 
+                <h:outputText value="Year" />
+                <h:outputText value="#{platoControler.plato.descripcion}" />
+ 
+                <h:outputText value="Color:" />
+                <h:outputText value="$#{platoControler.plato.precio}" />
+ 
+                <h:outputText value="Price" />
+                <h:outputText value="#{platoControler.plato.restaurante.nombre}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
 	<div class="box-footer">
              <h:commandButton action="Registra_Plato" class="btn btn-info pull-right" id="btn" value="Registrar Nuevo Plato"/>
         </div>
+        
 	</h:form>
+	</center>
     </main>
      <footer>
         <div class="container">
