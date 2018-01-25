@@ -3,7 +3,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"> 
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <head>
     <title>Busqueda</title>
@@ -79,6 +80,44 @@
 		 }
 		}
  		</style>
+ 		
+ 		    <style>
+    .slider {
+		width: 95%;
+		margin: auto;
+		overflow: hidden;
+	}
+	
+	.slider ul {
+		display: flex;
+		padding: 0;
+		width: 400%;
+		
+		animation: cambio 20s infinite alternate linear;
+	}
+
+	.slider li {
+		width: 100%;
+		list-style: none;
+	}
+
+	.slider img {
+		width: 100%;
+	}
+
+	@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+	</style>
  	<f:metadata>
 	<f:viewParam name="id" value="#{usuarioControler.codigo}"/>
 	</f:metadata>
@@ -111,9 +150,34 @@
         </div>
 </header>
     
+    
     <main>
     <center>
-    <br />
+     <h2><em>Platos</em>Recomendados</h2> 
+           <div >
+			<p:carousel value="#{platoControler.predicciones}" headerText="Responsive" var="pre" itemStyle="text-align:center" responsive="true">
+        	<p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+ 
+	            <h:outputText value="Id:" />
+	            <h:outputText value="#{pre.id}" />
+	 
+	            <h:outputText value="Year" />
+	            <h:outputText value="#{pre.item}" />
+	 
+	            <h:outputText value="Color:" />
+	            <h:outputText value="#{pre.prediccion}" style="color:#{car.color}"/>
+	 
+	            <h:outputText value="Price" />
+	            <h:outputText value="$#{pre.usuario}" />
+	            
+	            <h:outputText value="Imagen:" />
+            <h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(pre.imagen)}" />
+        </p:panelGrid>
+ 
+        <f:facet name="footer">
+        </f:facet>
+    </p:carousel>
+		   </div>
 	<h:form  enctype="multipart/form-data">
 		<div class="box box-info">
 		<div class="box-header with-border">
@@ -194,33 +258,11 @@
 		</h:dataTable>
 	</center>
           </div>
+          <br/>
 	</h:form>
-	<h:form>
-	<center>
-	<h:commandButton action="#{platoControler.loadPrediccion()}" id="btn" value="Recomendaciones"  >
-	 		<f:ajax render="pre" execute="@all"/>
-		</h:commandButton>
-	<h:outputText value="No existe registros" 
-						rendered="#{empty platoControler.predicciones}"/>
+	<div>
 		
-		
-		<h:dataTable value ="#{platoControler.predicciones}" var="pre"
-				rendered="#{not empty platoControler.predicciones}" cellspacing="10" width="50%" >		       
-					<h:column>
-						<f:facet name="header">Nombre</f:facet>
-						#{pre.item}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Descripcion</f:facet>
-						#{pre.prediccion}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Precio</f:facet>
-						<p>$ #{pre.usuario}</p>
-					</h:column>
-				</h:dataTable>
-			</center>
-	</h:form>
+	</div>
 	  </center>
     </main>
     

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.appdis.fastfood.modelo.Predicciones;
+import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 
 @Stateless
@@ -22,9 +23,13 @@ public class PrediccionesDao {
 	public void Actualizar(Predicciones pre) {
 		EM.merge(pre);
 	}
-	public void Borrar(Predicciones pred) {
-		EM.remove(pred);
+	public void Borrar(int id) {
+		EM.remove(leer(id));
 	}
+	public Predicciones leer(int id) {
+		return EM.find(Predicciones.class, id);
+	}
+
 	//este metodo nos sirve para buscar una Marca en base a un id
 	public Predicciones Leer(int id) {
 		Predicciones centroide = EM.find(Predicciones.class, id);
