@@ -61,6 +61,7 @@ public class Restaurante {
 	@OneToMany(mappedBy="restaurante")
 	private List<Plato> platos;
 	
+	
 	//Getter and Setters
 
 	public int getCodigo() {
@@ -116,6 +117,15 @@ public class Restaurante {
 	public void setUbicaciones(List<Ubicacion> ubicaciones) {
 		this.ubicaciones = ubicaciones;
 	}
+
+	public List<Plato> getPlatos() {
+		return platos;
+	}
+
+	public void setPlatos(List<Plato> platos) {
+		this.platos = platos;
+	}
+
 
 	@Override
 	public String toString() {

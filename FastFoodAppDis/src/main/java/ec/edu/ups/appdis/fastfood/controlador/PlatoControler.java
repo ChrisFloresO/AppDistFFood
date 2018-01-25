@@ -64,6 +64,7 @@ public class PlatoControler
 		pedido= new Pedido();
 		usuario = new Usuario();
 		loadPlatos();
+		loadPrediccion();
 	}
 
 	//getters and setters

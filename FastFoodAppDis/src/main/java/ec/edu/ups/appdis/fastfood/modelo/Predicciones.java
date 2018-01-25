@@ -1,13 +1,9 @@
 package ec.edu.ups.appdis.fastfood.modelo;
 
-import java.util.Hashtable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -18,7 +14,6 @@ import javax.validation.constraints.NotNull;
 public class Predicciones {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="cal_id")
 	private int id;
 	
@@ -33,6 +28,10 @@ public class Predicciones {
 	@NotNull
 	@Column(name= "cal_prediccion")
 	private int prediccion;
+	
+	@Lob
+	@Column(name="plt_imagen")
+	private byte[] imagen;
 	
 	public int getId() {
 		return id;
@@ -65,5 +64,14 @@ public class Predicciones {
 	public void setPrediccion(int prediccion) {
 		this.prediccion = prediccion;
 	}
+
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
 	
 }

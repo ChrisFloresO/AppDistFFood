@@ -35,6 +35,7 @@ public class UsuarioDAO
 	public Usuario leer(int id) {
 		return em.find(Usuario.class, id);
 	}
+	
 
 	public List<Usuario> listadoUsuario()
 	{
@@ -60,6 +61,7 @@ public class UsuarioDAO
 		List<Usuario> usuario = q.getResultList();
 		return usuario;
 	}
+	
 	
     @SuppressWarnings("unchecked")
 	public List<Usuario> getUsuariosLoginRC(String correo)

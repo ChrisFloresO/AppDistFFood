@@ -11,9 +11,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-
+import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 
@@ -31,6 +32,9 @@ public class PlatosWBSRest
 	
 	@Inject
 	private RestaurantDAO rdao;
+	
+	@Inject
+	private PedidoDAO pedao;
 	
 	@POST
 	@Path("/registrar")
@@ -56,8 +60,8 @@ public class PlatosWBSRest
 	@GET
 	@Path("/listar")
 	@Produces("application/json")
-	public List<Plato> getPlatos(){
-		return pdao.listadoPlatos();
+	public List<Pedido> getPedidos(){
+		return pedao.listadoPedidos();
 	}
 	
 	@GET

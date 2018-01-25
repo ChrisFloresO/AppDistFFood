@@ -166,7 +166,7 @@ public class UsuarioControler
 	 * y retorna un String (RestauranteR, RestauranteL, Inicio, null).
 	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes" })
+	@SuppressWarnings({ })
 	public String listar(){
 		
 		usuarios = udao.listadoUsuario();
@@ -191,13 +191,16 @@ public class UsuarioControler
 				}else
 					if(listadoLogin.get(i).getRol()==3) 
 					{
+						int c = 1;
 						sesion.setUsuario(listadoLogin.get(i));
-						/*FCM fcm = new FCM(calificaciones, usuarios, platos);
+						FCM fcm = new FCM(calificaciones, usuarios, platos);
 						Hashtable predicciones=  fcm.prediccionesUsuarios();
 						Predicciones pre;
 						List<Predicciones> listapredcciones = prdao.listadoPredicciones();
-						for (int k = 0; k < listapredcciones.size(); k++) {
-							prdao.Borrar(listapredcciones.get(k));
+						for (int k = 0; k < listapredcciones.size(); k++) 
+						{
+							System.out.println("1"+listapredcciones.get(k));
+							prdao.Borrar(listapredcciones.get(k).getId());
 						}
 						for (int k = 0; k < predicciones.size(); k++) 
 						{
@@ -205,19 +208,22 @@ public class UsuarioControler
 							Hashtable voto = (Hashtable) predicciones.get(us);
 							for (int j = 0; j < calificaciones.size(); j++) {
 								int plat = platos.get(j).getCodigo();
-								
+								byte[] imagen = platos.get(j).getImagen();
 								if ((int)voto.get(plat)!=0) {
 									pre = new Predicciones();
-									
+									pre.setId(c);
 									pre.setItem(plat);
 									pre.setUsuario(us);
+									pre.setImagen(imagen);
 									pre.setPrediccion((int) voto.get(plat));
 									prdao.Insertar(pre);
+									c++;
+									System.out.println("hola"+c);
 								}
 								
 							}
 							
-						}*/
+						}
 					return "Home";
 					
 				}

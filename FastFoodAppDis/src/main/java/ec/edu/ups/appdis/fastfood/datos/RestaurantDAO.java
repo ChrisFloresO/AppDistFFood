@@ -66,6 +66,12 @@ public class RestaurantDAO {
 			return em.find(Restaurante.class, codigo);
 		}	
 		
+		public Restaurante leer1(String  nombre) {
+			Restaurante r = em.find(Restaurante.class, nombre);
+				System.out.println("hola"+r.getNombre());
+			return em.find(Restaurante.class, nombre);
+		}
+		
 		public String guardarImagen() throws IOException{
 			
 			int fotoSize = (int)file2.getSize();
