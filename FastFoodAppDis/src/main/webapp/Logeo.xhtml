@@ -15,10 +15,8 @@
 <div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" /><label for="tab-1" class="tab">Loguearse</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab">Registrarse</label>
 		<div class="login-form">
 		<h:form id="login">
-			<div class="sign-in-htm">
 				<div class="group">
 					<label for="user" class="label">Correo</label>
 					<h:inputText value="#{usuarioControler.correoI}" id="usuario" type="text" class="input" />
@@ -43,35 +41,6 @@
 				<div class="group">
 				<h:commandButton value="LOGIN" action="#{usuarioControler.listar()}" class="button"/>
 				</div>
-			</div>
-			</h:form>
-			<h:form>
-			<div class="sign-up-htm">
-				<div class="group">
-					<label for="user" class="label">Nombre</label>
-					 <h:inputText value="#{usuarioControler.usuario.nombre}" id="user" type="text" class="input" />	 
-				</div>
-				<div class="group">
-					<label for="user" class="label">Apellido</label>
-					<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" type="text" class="input" />
-				</div>
-				<div class="group">
-					<label for="user" class="label">Cedula</label>
-					 <h:inputText value="#{usuarioControler.usuario.cedula}" id="ced" type="text" class="input" />	 
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Correo Electrónico</label>
-					<h:inputText value="#{usuarioControler.usuario.email}" id="email" type="text" class="input" />
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Contraseña</label>
-					<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="pass" type="password" class="input" data-type="password"/>
-				</div>
-				<div class="group">
-				<h:commandButton value="Registrarse" action="#{usuarioControler.Guardar()}" class="button"/>
-				</div>
-				
-			</div>
 			</h:form>
 		</div>
 	</div>

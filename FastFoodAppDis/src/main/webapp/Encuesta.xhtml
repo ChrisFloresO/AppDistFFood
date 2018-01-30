@@ -4,8 +4,172 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<body> 
+<head>
+    <title>Elige tus gustos</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+    
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+	
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
+</head>
 
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+
+<header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li >
+                            <a href="Buscar.xhtml">Busqueda Plato</a>
+                        </li>
+                        <li class="active">
+                            <a href="Carrito.xhtml">Carrito </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+<body>
+    <main>
+    <div class="box box-info">
+            <div class="box-header with-border">
+            <br />
+            <center>
+            <h2> <em>Elige Tus Gustos</em></h2>
+            </center>
+            </div>
+    </div> 
+      <h:form>
+	<center>
+		<div>
+		  <form>
+		    <fieldset>
+		        <legend>Elige un color</legend>
+		        <label>
+		          <input type="radio" name="color" value="azul"> Azul</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color" value="negro"> Negro</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color" value="amarillo"> Amarillo</input>
+		        </label>
+		    </fieldset>
+		      <fieldset>
+		        <legend>Elige un color</legend>
+		        <label>
+		          <input type="radio" name="color1" value="azul"> Azul</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color1" value="negro"> Negro</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color1" value="amarillo"> Amarillo</input>
+		        </label>
+		    </fieldset>
+		      <fieldset>
+		        <legend>Elige un color</legend>
+		        <label>
+		          <input type="radio" name="color2" value="azul"> Azul</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color2" value="negro"> Negro</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color2" value="amarillo"> Amarillo</input>
+		        </label>
+		    </fieldset>
+		      <fieldset>
+		        <legend>Elige un color</legend>
+		        <label>
+		          <input type="radio" name="color3" value="azul"> Azul</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color3" value="negro"> Negro</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color3" value="amarillo"> Amarillo</input>
+		        </label>
+		    </fieldset>
+		      <fieldset>
+		        <legend>Elige un color</legend>
+		        <label>
+		          <input type="radio" name="color4" value="azul"> Azul</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color4" value="negro"> Negro</input>
+		        </label>
+		        <label>
+		            <input type="radio" name="color4" value="amarillo"> Amarillo</input>
+		        </label>
+		    </fieldset>
+		    
+		  </form>
+		</div>
+	</center>
+		<div class="box-footer">
+			<center>
+	             <h:commandButton action="calificar" class="boton_2" id="btn" value="Confirmar" data-dismiss="modal" />
+	        </center>
+	    </div>
+	</h:form>
+    </main>
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="resources/template/site/js/script.js"></script>
 </body> 
 </html>

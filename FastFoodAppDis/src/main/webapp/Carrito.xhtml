@@ -64,37 +64,30 @@
 		<h:dataTable value ="#{platoControler.pedidos}" var="pedido"
 		rendered="#{not empty platoControler.pedidos}" cellspacing="10" width="50%" >
 			<h:column>
-				<f:facet name="header">Precio</f:facet>
-				#{pedido.codigo}
-			</h:column>
-			<h:column>
 				<f:facet name="header">Imagne</f:facet>
 				<img src="data:image/png;base64,#{platoControler.pdao.convertir(pedido.plato.imagen)}" />
 			</h:column>
-	       
+			<h:column>
+				<f:facet name="header">Descripcion</f:facet>
+				#{pedido.plato.descripcion}
+			</h:column>
 			<h:column>
 				<f:facet name="header">Precio</f:facet>
 				#{pedido.plato.precio}
 			</h:column>
 			<h:column>
-				<f:facet name="header">Descripcion</f:facet>
-				#{pedido.usuario.nombre}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Apellido</f:facet>
-				<p>$ #{pedido.usuario.apellido}</p>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Acciones</f:facet>
-				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
+				<f:facet name="header"></f:facet>
+				<h:commandButton action="#{pedidoControler.Boorar(pedido.codigo)}" value="Borrar" />
 			</h:column>
  
 		</h:dataTable>
 	</center>
+		<div>
+			<h:outputLabel class="btn btn-info pull-center" value="#{pedidoControler.cantidad()}" for="tipo"/>
+		</div>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="Buscar" class="btn btn-info pull-center" id="btn" value="Buscar Plato" data-dismiss="modal" />
+	             <h:commandButton action="Buscar" class="btn btn-info pull-center" id="btn" value="Realizar el pedido" data-dismiss="modal" />
 	        </center>
 	    </div>
 	</h:form>

@@ -18,6 +18,58 @@
     <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
     <script src="resources/template/site/js/device.min.js"></script> 
 </head>
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+
+	<style type="text/css">
+	  .boton_21{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_21:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+	
 
  <header>
 
@@ -26,7 +78,7 @@
 
                 <div class="brand">
                     <h1 class="brand_name">
-                        <a href="./">Fast Food</a>
+                        <a href="#">Fast Food</a>
                     </h1>
                 </div>
 
@@ -65,7 +117,7 @@
 		<h:dataTable value ="#{platoControler.platos}" var="plato"
 		rendered="#{not empty platoControler.platos}" cellspacing="10" width="50%" >
 			<h:column>
-				<f:facet name="header">Imagne</f:facet>
+				<f:facet name="header"></f:facet>
 				<img src="data:image/png;base64,#{platoControler.pdao.convertir(plato.imagen)}" />
 			</h:column>
 	       
@@ -83,23 +135,23 @@
 			</h:column>
 			
 			<h:column>
-				<f:facet name="header">Acciones</f:facet>
-				<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar"/>
+				<f:facet name="header"></f:facet>
+				<h:commandButton action="#{platoControler.listadatosEditar(plato.codigo)}" value="Editar" class="boton_21"/>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Acciones</f:facet>
-				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" />
+				<f:facet name="header"></f:facet>
+				<h:commandButton action="#{platoControler.Boorar(plato.codigo)}" value="Borrar" class="boton_21" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Acciones</f:facet>
-				<h:commandButton action="#{platoControler.listadatosU(plato.codigo)}" value="Ir Lugar" />
+				<f:facet name="header"></f:facet>
+				<h:commandButton action="#{platoControler.listadatosU(plato.codigo)}" value="Ir Lugar" class="boton_21"/>
 			</h:column>
  
 		</h:dataTable>
 	</center>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="Registra_Plato" class="btn btn-info pull-center" id="btn" value="Registrar Nuevo Plato" data-dismiss="modal" />
+	             <h:commandButton action="Registra_Plato" class="boton_2" id="btn" value="Registrar Nuevo Plato" data-dismiss="modal" />
 	        </center>
 	    </div>
 	</h:form>

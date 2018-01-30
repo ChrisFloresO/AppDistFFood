@@ -92,7 +92,7 @@ public class UsuarioControler
 		boolean t =v.validacionCedula(usuario.getCedula());
 		System.out.println(t+"y");
 		if(t==false) {
-			return null;
+			return "Logeo";
 		} else 
 		{
 			usuario.setRol(3);
@@ -108,10 +108,10 @@ public class UsuarioControler
 		boolean t =v.validacionCedula(usuario.getCedula());
 		System.out.println(t+"y");
 		if(t==false) {
-			return null;
+			return "UsuarioR";
 		} else 
 		{
-			usuario.setRol(3);
+			usuario.setRol(2);
 			udao.guardar(usuario);
 			loadUsuarios();
 			return "UsuarioL";

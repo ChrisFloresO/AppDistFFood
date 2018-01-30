@@ -21,6 +21,7 @@ public class PedidoControler
 	private Pedido pedido;
 	private List<Pedido> pedidos;
 	private int id;
+	private double cantidad;
 
 
 	@Inject
@@ -74,6 +75,14 @@ public class PedidoControler
 		loadPedidos();
 	}
 	
+
+	public double getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
 
 	/**
 	 * este metod permite guardar una calificacion al momento de llamar al objeto pdao
@@ -140,6 +149,16 @@ public class PedidoControler
 	{
 		pedido = pdao.leer(codigo);
 		return "Pedido";
+	}
+	public void cantidad() 
+	{
+		for (int i = 0; i < pedidos.size(); i++) 
+		{
+			double x= pedidos.get(i).getPlato().getPrecio();
+			cantidad=cantidad+x;
+			System.out.println(cantidad);
+			
+		}
 	}
 	
 	

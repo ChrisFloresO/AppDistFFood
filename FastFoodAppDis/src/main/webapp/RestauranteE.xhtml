@@ -30,6 +30,32 @@
 			padding: 0;
 		}
 	</style>
+	
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
 
 	<style>
   		.textbox
@@ -80,7 +106,7 @@
                             <a href="Home.xhtml">Home</a>
                         </li>
                          <li >
-                            <a href="Registra_Plato.xhtml">Registra Restaurante</a>
+                            <a href="RestauranteR.xhtml">Registra Restaurante</a>
                         </li>
                         <li class="active">
                             <a href="RestauranteL.xhtml">Edita Restaurante</a>
@@ -132,10 +158,7 @@
                   	<h:message for="telefono" errorClass ="Invalid"/>
                   </div>
                 </div>
-		<h2><em></em>Editar Datos Ubicacion</h2>	
-	<h:commandButton action="#{restaurantControler.addUbicacione()}" value="Anadir Sucursal" >
-			<f:ajax render="Restaurante" execute="@all"></f:ajax>
-			</h:commandButton>
+		<h2><em></em>Editar Datos Ubicacion</h2>
 				
 			<h:dataTable value ="#{restaurantControler.restaurante.ubicaciones}" var ="ubicacion" id= "Restaurante">
 				
@@ -153,7 +176,7 @@
 				</h:column>
 				</h:dataTable>
 				<div class="box-footer">
-              	<h:commandButton action="#{restaurantControler.Actualizar()}" class="btn btn-info pull-center" id="btn1" value="ACTUALIZAR" />
+              	<h:commandButton action="#{restaurantControler.guardar()}" class="boton_2" id="btn1" value="ACTUALIZAR" />
               </div>
 				
 		          </div>           

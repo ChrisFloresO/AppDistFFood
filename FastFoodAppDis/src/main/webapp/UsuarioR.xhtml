@@ -45,7 +45,32 @@
 	  border-color: #FBFFAD;
 	  }
 	 </style>
-
+	 
+	 <style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
 <body> 
  <header>
 
@@ -125,17 +150,9 @@
                   	<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="contrasena"  class="textbox"  size="50"/>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 btn btn-info pull-center">Rol</label>
-                  <span class="ui-inputgroup-addon"><i class="fa fa-gears" ></i></span>
-                  <div class="col-sm-10">
-                  	<h:inputText value="#{usuarioControler.usuario.rol}" class="textbox"  size="50" id="rol"/>
-					<h:message for="rol" errorClass ="Invalid"/>
-                  </div>
-              </div>
               <!-- /.box-body -->
               <div class="box-footer">
-              	<h:commandButton action="#{usuarioControler.Guardar()}" class="btn btn-info pull-center" id="btn" value="REGISTRAR USUARIO" />
+              	<h:commandButton action="#{usuarioControler.Guardar1()}" class="boton_2" id="btn" value="REGISTRAR USUARIO" />
               </div>
               
               <!-- /.box-footer -->

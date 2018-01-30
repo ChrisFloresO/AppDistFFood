@@ -49,6 +49,32 @@
 		  }
  	</style>
  	
+ 	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+ 	
  	<style>
  	#responsive-form{
 		 max-width:600px /*-- change this to get your desired form width --*/;
@@ -201,7 +227,7 @@
 			   			 <f:selectItem itemValue="3" itemLabel="comida tradicional" />                      
 					</h:selectOneMenu>
 					<h:message  for="tipo"/>
-						<h:commandButton action="#{platoControler.doRead()}" class="btn btn-info pull-center" id="btn" value="Buscar" >
+						<h:commandButton action="#{platoControler.doRead()}" class="boton_2" id="btn" value="Buscar" >
               	 		 	<f:ajax execute="buscar" render = "tablas" />
           				</h:commandButton>
                   </div>
@@ -215,11 +241,11 @@
               
               <h:outputText value="No existe registros" 
 	rendered="#{empty platoControler.platos}"/>
-	<br />
+	<br/>
 		 <center>
 	<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas" cellspacing="10" width="70%" >
 		<h:column>
-		<f:facet name="header">Plato</f:facet>
+		<f:facet name="header"></f:facet>
 			<div >
 			<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
 			</div>
@@ -246,13 +272,13 @@
 		</h:column>
 		
 		<h:column>
-			<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo,usuarioControler.codigo)}" value="Pedir"/>
+			<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo,usuarioControler.codigo)}" value="Pedir" class="boton_2" />
 		</h:column>
 		<h:column>
-			<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo,usuarioControler.codigo)}" value="Calificar"/>
+			<h:commandButton action="#{platoControler.listadatosU(busquedas.codigo)}" value="Ir Lugar" class="boton_2" />	
 		</h:column>
-		<h:column>
-			<h:commandButton action="#{platoControler.listadatosU(busquedas.codigo)}" value="Ir Lugar" />	
+			<h:column>
+			<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo,usuarioControler.codigo)}" value="Calificar" class="boton_2" />
 		</h:column>
 		
 		</h:dataTable>

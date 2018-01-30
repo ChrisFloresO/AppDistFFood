@@ -48,6 +48,31 @@
 	  }
 	 </style>
 
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
 
 <body> 
  <header>
@@ -125,7 +150,7 @@
 	</h:panelGrid>
 		
               <div class="box-footer">
-              	<h:commandButton action="#{calificacionControler.guardar()}" class="btn btn-info pull-center" id="btn" value="Realizar Voto" />
+              	<h:commandButton action="#{calificacionControler.guardar()}" id="btn" value="Calificar" class="boton_2"/>
               </div>
               <!-- /.box-footer -->
         
