@@ -23,8 +23,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
 @Table(name="tbl_restaurante")
 @NamedQuery(name="Restaurante.findAll", query="SELECT r FROM Restaurante r")

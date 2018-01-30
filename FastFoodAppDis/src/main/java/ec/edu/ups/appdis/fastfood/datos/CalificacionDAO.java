@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.appdis.fastfood.modelo.Calificacion;
-import ec.edu.ups.appdis.fastfood.modelo.Plato;
 
 /**
  * 

@@ -45,6 +45,32 @@
 	  border-color: #FBFFAD;
 	  }
 	 </style>
+	 
+	  <style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
 
 <body> 
 <header>
@@ -115,14 +141,9 @@
 		<h:inputText value="#{usuarioControler.usuario.contrasena}" id="contrasena" class="textbox"  size="50" />
 		<h:message  for="contrasena"/>
 		
-		<h:outputLabel class="btn btn-info pull-center" value="Rol" for="rol"/>
-		<h:inputText value="#{usuarioControler.usuario.rol}" id="rol" class="textbox"  size="50" />
-		<h:message  for="rol"/>
-		
-		
 	</h:panelGrid>
 	 <div class="box-footer">
-              	<h:commandButton action="#{usuarioControler.Guardar1()}" class="btn btn-info pull-center" id="btn" value="ACTUALIZAR DATOS" />
+              	<h:commandButton action="#{usuarioControler.Guardar1()}" class="boton_2" id="btn" value="ACTUALIZAR DATOS" />
               </div>
 	
 </h:form>

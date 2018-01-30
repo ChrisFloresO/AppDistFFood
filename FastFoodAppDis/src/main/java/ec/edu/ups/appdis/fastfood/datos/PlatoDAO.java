@@ -137,13 +137,6 @@ public class PlatoDAO {
 	 */
 	public void guardar(Plato plato)
 	{
-		/*if(plato.getNombre().equals("")||plato.getDescripcion().equals("")||plato.getImagen().equals("")||plato.getPrecio()<=0.0)
-		{
-			
-			System.out.println("campos vacios");
-		}
-		else
-		{	*/
 		Plato pl = leer(plato.getCodigo());
 		try {
 		if (pl == null) {
@@ -169,7 +162,6 @@ public class PlatoDAO {
 		}
 				
 		}
-	//}
 	
 	/**
 	 * Este metodo permite transformar un arreglo de byte a string para poder mostrar la foto al cliente resiviendo como parametro el arreglo de byte.

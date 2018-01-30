@@ -56,31 +56,32 @@
 		  border-color: #FBFFAD;
 		  }
  	</style>
- 	<style>
-	  .button
-		  {
-		  border: 1px solid #DBE1EB;
-		  font-size: 18px;
-		  font-family: Arial, Verdana;
-		  padding-left: 7px;
-		  padding-right: 7px;
-		  padding-top: 5px;
-		  padding-bottom: 5px;
-		  border-radius: 4px;
-		  -moz-border-radius: 4px;
-		  -webkit-border-radius: 4px;
-		  -o-border-radius: 4px;
-		  background: #a95858;;
-		  color: #FFFFFF;
-		  }
-	  
-	  .button:hover
-		  {
-		  background: #a95858;
-		  color: #FFFFFF;
-		  border-color: #a95858;;
+ 
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
 	  }
- </style>
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
 </h:head>
 
 <body> 
@@ -297,8 +298,7 @@
 							</h:column>
 						</h:dataTable>
 						<div class="box-footer">
-							<h:commandButton action="#{restaurantControler.guardar()}"
-								class="btn btn-info pull-center" id="btn1" value="GUARDAR" />
+							<h:commandButton action="#{restaurantControler.guardar()}" class="boton_2" id="btn1" value="GUARDAR" />
 						</div>
 
 					</div>
