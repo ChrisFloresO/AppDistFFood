@@ -98,7 +98,7 @@ public class UsuarioControler
 			usuario.setRol(3);
 			udao.guardar(usuario);
 			loadUsuarios();
-			return "Home";
+			return "Encuesta";
 		}
 	}
 	
@@ -114,7 +114,7 @@ public class UsuarioControler
 			usuario.setRol(2);
 			udao.guardar(usuario);
 			loadUsuarios();
-			return "UsuarioL";
+			return "Lista_Plato";
 		}
 	}
 	
@@ -166,7 +166,7 @@ public class UsuarioControler
 	 * y retorna un String (RestauranteR, RestauranteL, Inicio, null).
 	 * @return
 	 */
-	@SuppressWarnings({ })
+	@SuppressWarnings({"rawtypes" })
 	public String listar(){
 		
 		usuarios = udao.listadoUsuario();
@@ -247,6 +247,7 @@ public class UsuarioControler
 		//System.out.println(this.usuario.getClave());
 		return "cambiar_contrasenia";
 	}
+ 
     public String editarPerfil(int correo){
 		Usuario usuario = udao.leer(correo);
 		this.usuario  = usuario;

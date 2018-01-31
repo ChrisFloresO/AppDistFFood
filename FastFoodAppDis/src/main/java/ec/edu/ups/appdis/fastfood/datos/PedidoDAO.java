@@ -38,13 +38,13 @@ public class PedidoDAO
 
 
 	public void borrar (int codigo) {
+		System.out.println(codigo);
 		em.remove(leer(codigo));
 	}
 
 
 	public Pedido leer (int codigo) {
-		Pedido p =em.find(Pedido.class, codigo);
-		return p;	
+		return em.find(Pedido.class, codigo);
 	}
 	
 	public List<Pedido> listadoPedidos()

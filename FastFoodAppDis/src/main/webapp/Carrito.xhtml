@@ -19,6 +19,58 @@
     <script src="resources/template/site/js/device.min.js"></script> 
 </head>
 
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+
+	<style type="text/css">
+	  .boton_21{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_21:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+	
 <header>
 
         <div id="stuck_container" class="stuck_container">
@@ -26,7 +78,7 @@
 
                 <div class="brand">
                     <h1 class="brand_name">
-                        <a href="./">Fast Food</a>
+                        <a href="#">Fast Food</a>
                     </h1>
                 </div>
 
@@ -64,6 +116,10 @@
 		<h:dataTable value ="#{platoControler.pedidos}" var="pedido"
 		rendered="#{not empty platoControler.pedidos}" cellspacing="10" width="50%" >
 			<h:column>
+				<f:facet name="header">Codigo</f:facet>
+				#{pedido.codigo}
+			</h:column>
+			<h:column>
 				<f:facet name="header">Imagne</f:facet>
 				<img src="data:image/png;base64,#{platoControler.pdao.convertir(pedido.plato.imagen)}" />
 			</h:column>
@@ -76,18 +132,20 @@
 				#{pedido.plato.precio}
 			</h:column>
 			<h:column>
-				<f:facet name="header"></f:facet>
-				<h:commandButton action="#{pedidoControler.Boorar(pedido.codigo)}" value="Borrar" />
+				<h:commandButton action="#{platoControler.Borrar1(pedido.codigo)}" value="Borrar" class="boton_21" id="btn1" />
 			</h:column>
- 
+              	 		 	
 		</h:dataTable>
 	</center>
 		<div>
-			<h:outputLabel class="btn btn-info pull-center" value="#{pedidoControler.cantidad()}" for="tipo"/>
+		<center>
+			<h:outputLabel class="btn btn-info pull-center" value="Total de la compra:" for="nombre"/>
+			<h:outputLabel class="btn btn-info pull-center" value="#{pedidoControler.cantidad}" for="tipo"/>
+		</center>
 		</div>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="Buscar" class="btn btn-info pull-center" id="btn" value="Realizar el pedido" data-dismiss="modal" />
+	             <h:commandButton action="Buscar" class="boton_2" id="btn" value="Realizar el pedido" data-dismiss="modal" />
 	        </center>
 	    </div>
 	</h:form>
