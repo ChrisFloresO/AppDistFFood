@@ -149,9 +149,9 @@
                 	<em>Restaurantes</em>
                 </h2>
                 	<p:dataGrid var="res" value="#{restaurantControler.restaurantes}" columns="3" layout="grid"
-				        rows="12" paginator="true" id="rest"
+				        rows="6" paginator="true" id="rest"
 				        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				        rowsPerPageTemplate="6,12,16">
+				        rowsPerPageTemplate="3,6,9">
 				 
 				        <p:panel header="#{res.nombre}" style="text-align:center">
 				            <h:panelGrid columns="1" style="width:100%">

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<meta charset="UTF-8"></meta>
+  <title>Logueate</title>
+  
+	<link rel="stylesheet prefetch" href="http://fonts.googleapis.com/css?family=Open+Sans:600"/>
+	<link rel="stylesheet" href="resources/assets/css/style_login.css"/>
+</h:head> 
+<body > 
+<div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab">Registrarse</label>
+		<div class="login-form">
+			<h:form>
+				<div class="group">
+					<label for="user" class="label">Nombre</label>
+					 <h:inputText value="#{usuarioControler.usuario.nombre}" id="user" type="text" class="input" />	 
+				</div>
+				<div class="group">
+					<label for="user" class="label">Apellido</label>
+					<h:inputText value="#{usuarioControler.usuario.apellido}" id="apellido" type="text" class="input" />
+				</div>
+				<div class="group">
+					<label for="user" class="label">Cedula</label>
+					 <h:inputText value="#{usuarioControler.usuario.cedula}" id="ced" type="text" class="input" />	 
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Correo Electrónico</label>
+					<h:inputText value="#{usuarioControler.usuario.email}" id="email" type="text" class="input" />
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Contraseña</label>
+					<h:inputSecret value="#{usuarioControler.usuario.contrasena}" id="pass" type="password" class="input" data-type="password"/>
+				</div>
+				<div class="group">
+				<h:commandButton value="Registrarse" action="#{usuarioControler.Guardar()}" class="button"/>
+				</div>
+				
+			</h:form>
+		</div>
+	</div>
+</div>
+</body> 
+</html>

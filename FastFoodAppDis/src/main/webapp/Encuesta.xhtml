@@ -44,7 +44,7 @@
 	    text-decoration: none;
 	  }
 	</style>
-
+	
 <header>
 
         <div id="stuck_container" class="stuck_container">
@@ -86,73 +86,106 @@
 	<center>
 		<div>
 		  <form>
-		    <fieldset>
-		        <legend>Elige un color</legend>
-		        <label>
-		          <input type="radio" name="color" value="azul"> Azul</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color" value="negro"> Negro</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color" value="amarillo"> Amarillo</input>
-		        </label>
-		    </fieldset>
-		      <fieldset>
-		        <legend>Elige un color</legend>
-		        <label>
-		          <input type="radio" name="color1" value="azul"> Azul</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color1" value="negro"> Negro</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color1" value="amarillo"> Amarillo</input>
-		        </label>
-		    </fieldset>
-		      <fieldset>
-		        <legend>Elige un color</legend>
-		        <label>
-		          <input type="radio" name="color2" value="azul"> Azul</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color2" value="negro"> Negro</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color2" value="amarillo"> Amarillo</input>
-		        </label>
-		    </fieldset>
-		      <fieldset>
-		        <legend>Elige un color</legend>
-		        <label>
-		          <input type="radio" name="color3" value="azul"> Azul</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color3" value="negro"> Negro</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color3" value="amarillo"> Amarillo</input>
-		        </label>
-		    </fieldset>
-		      <fieldset>
-		        <legend>Elige un color</legend>
-		        <label>
-		          <input type="radio" name="color4" value="azul"> Azul</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color4" value="negro"> Negro</input>
-		        </label>
-		        <label>
-		            <input type="radio" name="color4" value="amarillo"> Amarillo</input>
-		        </label>
-		    </fieldset>
-		    
+		   <h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas rapidas:" for="voto"/>
+                <div>
+                   	<img src="resources/dist/imagenes/papas_fritas.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/pizza.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/Hamburguesa.jpg" alt=""/>
+               </div>
+               <div>
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto"  >
+		  			 <f:selectItem itemValue="3" itemLabel="papas fritas" />
+		   			 <f:selectItem itemValue="2" itemLabel="pizza" /> 
+		   			 <f:selectItem itemValue="1" itemLabel="hamburguesa" />                      
+				</h:selectOneMenu>
+				<h:message  for="voto"/>
+				</div>
+		 </form>
+		 <form>
+		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas tradicionales" for="voto1"/>
+				 <div>
+                   	<img src="resources/dist/imagenes/papas_locas.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/alitas_de_pollo.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/cuy_con_papas.jpg" alt=""/>
+               </div>
+               <div>
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto1"  >
+		  			 <f:selectItem itemValue="3" itemLabel="papas locas" />
+		   			 <f:selectItem itemValue="2" itemLabel="alitas de pollo" /> 
+		   			 <f:selectItem itemValue="1" itemLabel="cuy con papas" />                      
+				</h:selectOneMenu>
+				<h:message  for="voto1"/>
+				</div>
+		</form>
+		<form>
+		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas de mariscos" for="voto2"/>
+			   <div>
+                   	<img src="resources/dist/imagenes/ceviche_peruano.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/sopa_marinera.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/encebollado_mixto.jpg" alt=""/>
+               </div>
+               <div>
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto2"  >
+		  			 <f:selectItem itemValue="3" itemLabel="ceviche peruano" />
+		   			 <f:selectItem itemValue="2" itemLabel="sopa marinera" /> 
+		   			 <f:selectItem itemValue="1" itemLabel="encebollado mixto" />                      
+				</h:selectOneMenu>
+				<h:message  for="voto2"/>
+				</div>
+		</form>
+		<form>
+		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas vegetarianas:" for="voto3"/>
+			   <div>
+                   	<img src="resources/dist/imagenes/ensalada.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/ensalada_cesar.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/albondigas.jpg" alt=""/>
+               </div>
+               <div> 
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto3" >
+		  			 <f:selectItem itemValue="3" itemLabel="ensalada normal" />
+		   			 <f:selectItem itemValue="2" itemLabel="ensalada Cesar" /> 
+		   			 <f:selectItem itemValue="1" itemLabel="albondigas vegetarianas" />                    
+				</h:selectOneMenu>
+				<h:message  for="voto3"/>
+				</div>
+		</form>
+		<form>
+		<h:outputLabel class="btn btn-info pull-center" value="Gustos en postres" for="voto4"/>
+			    <div>
+                   	<img src="resources/dist/imagenes/helado_de_chocolate.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/torta_tres_leches.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/brownie.jpg" alt=""/>
+               </div>
+               <div> 
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto4"  >
+		  			 <f:selectItem itemValue="3" itemLabel="Helado de chocolate" />
+		   			 <f:selectItem itemValue="2" itemLabel="torta de 3 leches" /> 
+		   			 <f:selectItem itemValue="1" itemLabel="brownie" />                        
+				</h:selectOneMenu>
+				<h:message  for="voto4"/>
+				</div>
+		</form>
+		<form>
+		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comida China" for="voto5"/>
+			    <div>
+                   	<img src="resources/dist/imagenes/chaulafan_de_pollo.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/sushi.jpg" alt=""/>
+                   	<img src="resources/dist/imagenes/bacon-ramen-6.jpg" alt=""/>
+               </div>
+               <div> 
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto5"  >
+		  			 <f:selectItem itemValue="3" itemLabel="Chaulafan" />
+		   			 <f:selectItem itemValue="2" itemLabel="sushi" /> 
+		   			 <f:selectItem itemValue="1" itemLabel="Ramen" />                        
+				</h:selectOneMenu>
+				<h:message  for="voto5"/>
+				</div>
 		  </form>
 		</div>
 	</center>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="calificar" class="boton_2" id="btn" value="Confirmar" data-dismiss="modal" />
+	             <h:commandButton action="calificar" class="boton_2" id="boton" value="Confirmar" data-dismiss="modal" />
 	        </center>
 	    </div>
 	</h:form>

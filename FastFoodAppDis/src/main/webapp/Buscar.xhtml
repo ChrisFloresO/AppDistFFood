@@ -181,23 +181,26 @@
     <center>
      <h2><em>Platos</em>Recomendados</h2> 
            <div >
-			<p:carousel value="#{platoControler.predicciones}" headerText="Responsive" var="pre" itemStyle="text-align:center" responsive="true">
+			<p:carousel value="#{platoControler.predicciones}" var="pre" itemStyle="text-align:center" responsive="true">
         	<p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
  
-	            <h:outputText value="Id:" />
-	            <h:outputText value="#{pre.id}" />
-	 
-	            <h:outputText value="Year" />
+	            <h:outputText value="Plato" />
 	            <h:outputText value="#{pre.item}" />
 	 
-	            <h:outputText value="Color:" />
+	            <h:outputText value="Descripcion:" />
 	            <h:outputText value="#{pre.prediccion}" style="color:#{car.color}"/>
 	 
-	            <h:outputText value="Price" />
-	            <h:outputText value="$#{pre.usuario}" />
+	            <h:outputText value="Precio" />
+	            <h:outputText value="$#{pre.item}" />
 	            
-	            <h:outputText value="Imagen:" />
-            <h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(pre.imagen)}" />
+	            <h:outputText value="" />
+            	<h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(pre.imagen)}" />
+            	
+            	<h:outputText value="" />
+            	<h:commandButton action="#{platoControler.listadatosB(pre.item,usuarioControler.codigo)}" value="Pedir" class="boton_2" />
+            	
+            	<h:outputText value="" />
+            	<h:commandButton action="#{platoControler.listadatosU(pre.item)}" value="Ir Lugar" class="boton_2" />
         </p:panelGrid>
  
         <f:facet name="footer">

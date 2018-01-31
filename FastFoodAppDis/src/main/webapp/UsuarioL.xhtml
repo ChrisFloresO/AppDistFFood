@@ -18,6 +18,32 @@
     <script src="resources/template/site/js/device.min.js"></script> 
 </head>
 
+	<style type="text/css">
+	  .boton_21{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_21:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+
 <body> 
  <header>
 
@@ -84,10 +110,10 @@
 		</h:column>
 	
 		<h:column class="btn-wr">
-			<h:commandButton action="#{usuarioControler.listadatosEditar(usuario.id)}" value="Editar"/>
+			<h:commandButton action="#{usuarioControler.listadatosEditar(usuario.id)}" value="Editar" class="boton_21"/>
 		</h:column>
 		<h:column>
-			<h:commandButton action="#{usuarioControler.Borrar(usuario.id)}" value="Borrar" />
+			<h:commandButton action="#{usuarioControler.Borrar(usuario.id)}" value="Borrar" class="boton_21"/>
 		</h:column>
 	
 	</h:dataTable>

@@ -153,6 +153,15 @@ public class PlatoControler
 		pdao.borrar(codigo);
 		loadPlatos();
 	}
+	
+	public void Borrar1(int codigo) {
+		System.out.println("aqui en el borrar"+codigo);
+		pedao.borrar(codigo);
+	}
+	
+	public void name() {
+		System.out.println("aqui");
+	}
 
 	public Pedido getPedido() {
 		return pedido;
@@ -341,16 +350,10 @@ public class PlatoControler
 		return "Carrito";
 	}
 
-	public String doRead() {
-		System.out.println("este sale"+nombre);
-		if(nombre==null && tipo!=null) {
-			platos = pdao.listadoPlatospr(nombre);
-			System.out.println(platos);
-		}else
-		{
-			platos = pdao.listadoPlatospr(nombre);
-			System.out.println(platos);
-		}
+	public String doRead() 
+	{
+		platos = pdao.listadoPlatospr(nombre);
+		System.out.println(platos.size());
 		
 		return null;
 	}

@@ -3,12 +3,12 @@ package ec.edu.ups.appdis.fastfood.controlador;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
-import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 
 /**
@@ -31,6 +31,7 @@ public class PedidoControler
 	public void init() {
 		pedido= new Pedido();
 		loadPedidos();
+		cantidad();
 	}
 	
 	public void loadPedidos() {
@@ -70,9 +71,15 @@ public class PedidoControler
 		this.pdao = pdao;
 	}
 
-	public void Boorar(int codigo) {
+	public void Borrar(int codigo) {
+		System.out.println("aqui en el borrar"+codigo);
 		pdao.borrar(codigo);
 		loadPedidos();
+	}
+	
+	
+	public void name() {
+		System.out.println("aqui");
 	}
 	
 
@@ -92,6 +99,7 @@ public class PedidoControler
 	 * 
 	 * @return Lista_P
 	 */
+	@SuppressWarnings("unused")
 	public String guardar() 
 	{
 		
@@ -156,10 +164,13 @@ public class PedidoControler
 		{
 			double x= pedidos.get(i).getPlato().getPrecio();
 			cantidad=cantidad+x;
-			System.out.println(cantidad);
 			
 		}
 	}
 	
+    @PreDestroy
+	public void close(){
+		System.out.println("Cerrando Pedido");
+	}
 	
 }
