@@ -97,6 +97,7 @@ public class UsuarioControler
 		{
 			usuario.setRol(3);
 			udao.guardar(usuario);
+			sesion.setUsuario(usuario);
 			loadUsuarios();
 			return "Encuesta";
 		}

@@ -83,9 +83,7 @@
             </div>
     </div> 
       <h:form>
-	<center>
-		<div>
-		  <form>
+    	<center>
 		   <h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas rapidas:" for="voto"/>
                 <div>
                    	<img src="resources/dist/imagenes/papas_fritas.jpg" alt=""/>
@@ -93,15 +91,12 @@
                    	<img src="resources/dist/imagenes/Hamburguesa.jpg" alt=""/>
                </div>
                <div>
-				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto"  >
-		  			 <f:selectItem itemValue="3" itemLabel="papas fritas" />
-		   			 <f:selectItem itemValue="2" itemLabel="pizza" /> 
-		   			 <f:selectItem itemValue="1" itemLabel="hamburguesa" />                      
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.n2}" id="voto"  >
+		  			 <f:selectItem itemValue="4" itemLabel="papas fritas" />
+		   			 <f:selectItem itemValue="5" itemLabel="pizza" /> 
+		   			 <f:selectItem itemValue="6" itemLabel="hamburguesa" />                      
 				</h:selectOneMenu>
-				<h:message  for="voto"/>
 				</div>
-		 </form>
-		 <form>
 		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas tradicionales" for="voto1"/>
 				 <div>
                    	<img src="resources/dist/imagenes/papas_locas.jpg" alt=""/>
@@ -109,15 +104,13 @@
                    	<img src="resources/dist/imagenes/cuy_con_papas.jpg" alt=""/>
                </div>
                <div>
-				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto1"  >
-		  			 <f:selectItem itemValue="3" itemLabel="papas locas" />
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.n1}" id="voto1"  >
+		  			 <f:selectItem itemValue="1" itemLabel="papas locas" />
 		   			 <f:selectItem itemValue="2" itemLabel="alitas de pollo" /> 
-		   			 <f:selectItem itemValue="1" itemLabel="cuy con papas" />                      
+		   			 <f:selectItem itemValue="3" itemLabel="cuy con papas" />                      
 				</h:selectOneMenu>
 				<h:message  for="voto1"/>
 				</div>
-		</form>
-		<form>
 		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas de mariscos" for="voto2"/>
 			   <div>
                    	<img src="resources/dist/imagenes/ceviche_peruano.jpg" alt=""/>
@@ -125,15 +118,13 @@
                    	<img src="resources/dist/imagenes/encebollado_mixto.jpg" alt=""/>
                </div>
                <div>
-				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto2"  >
-		  			 <f:selectItem itemValue="3" itemLabel="ceviche peruano" />
-		   			 <f:selectItem itemValue="2" itemLabel="sopa marinera" /> 
-		   			 <f:selectItem itemValue="1" itemLabel="encebollado mixto" />                      
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.n3}" id="voto2"  >
+		  			 <f:selectItem itemValue="7" itemLabel="ceviche peruano" />
+		   			 <f:selectItem itemValue="8" itemLabel="sopa marinera" /> 
+		   			 <f:selectItem itemValue="9" itemLabel="encebollado mixto" />                      
 				</h:selectOneMenu>
 				<h:message  for="voto2"/>
 				</div>
-		</form>
-		<form>
 		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comidas vegetarianas:" for="voto3"/>
 			   <div>
                    	<img src="resources/dist/imagenes/ensalada.jpg" alt=""/>
@@ -141,15 +132,13 @@
                    	<img src="resources/dist/imagenes/albondigas.jpg" alt=""/>
                </div>
                <div> 
-				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto3" >
-		  			 <f:selectItem itemValue="3" itemLabel="ensalada normal" />
-		   			 <f:selectItem itemValue="2" itemLabel="ensalada Cesar" /> 
-		   			 <f:selectItem itemValue="1" itemLabel="albondigas vegetarianas" />                    
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.n4}" id="voto3" >
+		  			 <f:selectItem itemValue="10" itemLabel="ensalada normal" />
+		   			 <f:selectItem itemValue="11" itemLabel="ensalada Cesar" /> 
+		   			 <f:selectItem itemValue="12" itemLabel="albondigas vegetarianas" />                    
 				</h:selectOneMenu>
 				<h:message  for="voto3"/>
 				</div>
-		</form>
-		<form>
 		<h:outputLabel class="btn btn-info pull-center" value="Gustos en postres" for="voto4"/>
 			    <div>
                    	<img src="resources/dist/imagenes/helado_de_chocolate.jpg" alt=""/>
@@ -157,15 +146,13 @@
                    	<img src="resources/dist/imagenes/brownie.jpg" alt=""/>
                </div>
                <div> 
-				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto4"  >
-		  			 <f:selectItem itemValue="3" itemLabel="Helado de chocolate" />
-		   			 <f:selectItem itemValue="2" itemLabel="torta de 3 leches" /> 
-		   			 <f:selectItem itemValue="1" itemLabel="brownie" />                        
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.n5}" id="voto4"  >
+		  			 <f:selectItem itemValue="13" itemLabel="Helado de chocolate" />
+		   			 <f:selectItem itemValue="14" itemLabel="torta de 3 leches" /> 
+		   			 <f:selectItem itemValue="15" itemLabel="brownie" />                        
 				</h:selectOneMenu>
 				<h:message  for="voto4"/>
 				</div>
-		</form>
-		<form>
 		<h:outputLabel class="btn btn-info pull-center" value="Gustos en comida China" for="voto5"/>
 			    <div>
                    	<img src="resources/dist/imagenes/chaulafan_de_pollo.jpg" alt=""/>
@@ -173,21 +160,19 @@
                    	<img src="resources/dist/imagenes/bacon-ramen-6.jpg" alt=""/>
                </div>
                <div> 
-				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto5"  >
-		  			 <f:selectItem itemValue="3" itemLabel="Chaulafan" />
-		   			 <f:selectItem itemValue="2" itemLabel="sushi" /> 
-		   			 <f:selectItem itemValue="1" itemLabel="Ramen" />                        
+				<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.n6}" id="voto5"  >
+		  			 <f:selectItem itemValue="16" itemLabel="Chaulafan" />
+		   			 <f:selectItem itemValue="17" itemLabel="sushi" /> 
+		   			 <f:selectItem itemValue="18" itemLabel="Ramen" />                        
 				</h:selectOneMenu>
 				<h:message  for="voto5"/>
 				</div>
-		  </form>
-		</div>
-	</center>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="calificar" class="boton_2" id="boton" value="Confirmar" data-dismiss="modal" />
+	             <h:commandButton action="#{calificacionControler.encuesta()}" class="boton_2" id="boton" value="Confirmar" data-dismiss="modal" />
 	        </center>
 	    </div>
+	    </center>
 	</h:form>
     </main>
      <footer>
