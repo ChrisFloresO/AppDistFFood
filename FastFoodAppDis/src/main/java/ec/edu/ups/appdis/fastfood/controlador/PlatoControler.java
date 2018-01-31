@@ -86,7 +86,6 @@ public class PlatoControler
 			int codigo =predicciones.get(i).getItem();
 			System.out.println(codigo);
 			platosR =pdao.listadoPlatospr(codigo);
-			System.out.println(platosR.get(i).getNombre());
 			
 		}
 		

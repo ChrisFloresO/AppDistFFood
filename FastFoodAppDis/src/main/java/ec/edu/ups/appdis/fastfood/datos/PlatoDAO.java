@@ -67,6 +67,9 @@ public class PlatoDAO {
 		return em.find(Plato.class, codigo);
 	}
 	
+	public Plato leer1(String nombre) {
+		return em.find(Plato.class, nombre);
+	}
 
 	public List<Plato> listadoPlatos() {
 		String jppql = "SELECT p FROM Plato p";
