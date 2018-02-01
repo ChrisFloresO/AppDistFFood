@@ -65,6 +65,13 @@ public class PlatosWBSRest
 	}
 	
 	@GET
+	@Path("/listarp")
+	@Produces("application/json")
+	public List<Plato> getPlatos(){
+		return pdao.listadoPlatos();
+	}
+	
+	@GET
 	@Path("/buscar")
 	@Produces("application/json")
 	public List<Plato> getPlatosB(@QueryParam("nombre") String nombre){

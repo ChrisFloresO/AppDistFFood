@@ -327,26 +327,33 @@ public class PlatoControler
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	public String listadatosB(int codigo , int codus) {
-		System.out.println(codigo);
-		System.out.println(codus);
-		plato = pdao.leer(codigo);
-		System.out.println(plato.getNombre());
-		usuario = usdao.leer(codus);
-		System.out.println(usuario.getNombre());
-		pedido.setPlato(plato);
-		pedido.setUsuario(usuario);
-		try {
-			pedao.guardar(pedido);
-			loadPedidos();
-		} catch (Exception e) {
-			String errorMessage = getRootErrorMessage(e);
-			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
-			// facesContext.addMessage(null, m);
-			return null;
-		}
+	public String listadatosB(int codigo , int codus) 
+	{
+		if(codus>0) 
+		{
+			System.out.println(codigo);
+			System.out.println(codus);
+			plato = pdao.leer(codigo);
+			System.out.println(plato.getNombre());
+			usuario = usdao.leer(codus);
+			System.out.println(usuario.getNombre());
+			pedido.setPlato(plato);
+			pedido.setUsuario(usuario);
+			try {
+				pedao.guardar(pedido);
+				loadPedidos();
+			} catch (Exception e) {
+				String errorMessage = getRootErrorMessage(e);
+				FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Registration unsuccessful");
+				// facesContext.addMessage(null, m);
+				return null;
+			}
 
-		return "Carrito";
+			return "Carrito";
+			
+		}else
+			return "Logeo";
+		
 	}
 
 	public String doRead() 
@@ -367,10 +374,14 @@ public class PlatoControler
 	 */
 	public String listadatosC(int codigo, int codus) 
 	{
-		plato = pdao.leer(codigo);
-		usuario = usdao.leer(codus);
-		sesion.setPlato(plato);
-		return "Calificacion";
+		if(codus>0) {
+			plato = pdao.leer(codigo);
+			usuario = usdao.leer(codus);
+			sesion.setPlato(plato);
+			return "Calificacion";
+		}else
+			return "Logeo";
+		
 	}
 
 	/**
