@@ -46,7 +46,13 @@ public class RestauranteWBSRest {
 	@Path("listar")
 	@Produces("application/json")
 	public List<Restaurante> getRestaurante(){
-		return rdao.listadoRestaurantes();
+		//return 
+		List<Restaurante> lista = rdao.listadoRestaurantes();
+		for (Restaurante restaurante : lista) {
+			restaurante.setPlatos(null);
+			
+		}
+		return lista;
 	}
 	
 
