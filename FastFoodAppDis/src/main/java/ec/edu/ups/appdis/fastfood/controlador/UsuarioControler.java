@@ -106,17 +106,11 @@ public class UsuarioControler
 	@SuppressWarnings("static-access")
 	public String Guardar1()
 	{
-		boolean t =v.validacionCedula(usuario.getCedula());
-		System.out.println(t+"y");
-		if(t==false) {
-			return "UsuarioR";
-		} else 
-		{
 			usuario.setRol(2);
 			udao.guardar(usuario);
 			loadUsuarios();
-			return "Lista_Plato";
-		}
+			return "UsuarioL";
+		
 	}
 	
 	/**
