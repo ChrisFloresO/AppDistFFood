@@ -67,9 +67,15 @@ public class PlatosWBSRest
 	@GET
 	@Path("/listarp")
 	@Produces("application/json")
-	public List<Plato> getPlatos(){
-		return pdao.listadoPlatos();
+	public List<Plato> getPlatos(){		 
+		List<Plato> lista = pdao.listadoPlatos();
+		for (Plato plato : lista) {
+			plato.setCalificaciones(null);
+			plato.setPedidos(null);	
+		}
+		return lista;
 	}
+	
 	
 	@GET
 	@Path("/buscar")
