@@ -130,8 +130,7 @@ public class Plato
 	@Override
 	public String toString() {
 		return "Plato [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + ", calificaciones="
-				+ calificaciones +"]";
+				+ ", imagen=" + Arrays.toString(imagen) + ", restaurante=" + restaurante + "]";
 	}
 	
 	

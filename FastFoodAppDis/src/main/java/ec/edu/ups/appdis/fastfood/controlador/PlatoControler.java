@@ -8,11 +8,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import ec.edu.ups.appdis.fastfood.datos.DetalleDAO;
 import ec.edu.ups.appdis.fastfood.datos.PedidoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PlatoDAO;
 import ec.edu.ups.appdis.fastfood.datos.PrediccionesDao;
 import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
 import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
+import ec.edu.ups.appdis.fastfood.modelo.Detalle;
 import ec.edu.ups.appdis.fastfood.modelo.Pedido;
 import ec.edu.ups.appdis.fastfood.modelo.Plato;
 import ec.edu.ups.appdis.fastfood.modelo.Predicciones;
@@ -27,6 +29,7 @@ public class PlatoControler
 	private List<Plato> platos;
 	private List<Plato> platosR;
 	private List<Pedido> pedidos;
+	private List<Detalle> detalles;
 	private List<Predicciones> predicciones;
 	private String id;
 	private String nombre;
@@ -35,9 +38,13 @@ public class PlatoControler
 	private Restaurante restaurante;
 	private Pedido pedido;
 	private Usuario usuario;
+	private Detalle detalle;
 
 	@Inject
 	private PlatoDAO pdao;
+	
+	@Inject
+	private DetalleDAO dedao;
 	
 	@Inject
 	private RestaurantDAO rdao;
@@ -62,13 +69,19 @@ public class PlatoControler
 		plato = new Plato();
 		pedido= new Pedido();
 		usuario = new Usuario();
+		detalle= new Detalle();
 		loadPlatos();
 		loadPrediccion();
+		loadDetalles();
 	}
 
 	//getters and setters
 	public void loadPlatos() {
 		platos = pdao.listadoPlatos();
+	}
+	
+	public void loadDetalles() {
+		detalles = dedao.listadoDetalles();
 	}
 	
 	public void loadPedidos() {
@@ -91,6 +104,10 @@ public class PlatoControler
 		
 	}
 
+	public void BorrarD(int cedula) {
+		dedao.borrar(cedula);
+		loadDetalles();
+	}
 
 	public List<Plato> getPlatosR() {
 		return platosR;
@@ -98,6 +115,14 @@ public class PlatoControler
 
 	public List<Pedido> getPedidos() {
 		return pedidos;
+	}
+
+	public List<Detalle> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<Detalle> detalles) {
+		this.detalles = detalles;
 	}
 
 	public void setPedidos(List<Pedido> pedidos) {
@@ -313,7 +338,6 @@ public class PlatoControler
 	 */
 	public String listadatosEditar(int codigo) {
 		plato = pdao.leer(codigo);
-		System.out.println("ceunca"+ plato.getNombre());
 		return "Editar_Plato";
 	}
 
@@ -398,5 +422,41 @@ public class PlatoControler
 		System.out.println(restaurante.getCodigo());
 		return "IrLugar";
 	}
-
+	
+	public String registrar () 
+	{
+		String nusuario = null;
+		String descr = null;
+		double cantidadd = 0;
+		List<Pedido> listapredcciones = pedao.listadoPedidos();
+		for (int k = 0; k < listapredcciones.size(); k++) 
+		{
+			nusuario=listapredcciones.get(k).getUsuario().getNombre();
+			descr =descr+listapredcciones.get(k).getPlato().getNombre();
+			cantidadd =cantidadd+listapredcciones.get(k).getPlato().getPrecio();
+			System.out.println("1"+listapredcciones.get(k));
+			pedao.borrar(listapredcciones.get(k).getCodigo());
+		}
+		System.out.println(nusuario);
+		System.out.println(descr);
+		System.out.println(cantidadd);
+		detalle.setUsuario(nusuario);
+		detalle.setDetalle(descr);
+		detalle.setCantidad(cantidadd);
+		dedao.guardar(detalle);
+		return "Buscar";
+		
+		
+	}
+/*	public String salir () 
+	{
+		List<Pedido> listapredcciones = pedao.listadoPedidos();
+		for (int k = 0; k < listapredcciones.size(); k++) 
+		{
+			System.out.println("1"+listapredcciones.get(k));
+			pedao.borrar(listapredcciones.get(k).getCodigo());
+		}
+		return "Home";
+	}
+*/
 }

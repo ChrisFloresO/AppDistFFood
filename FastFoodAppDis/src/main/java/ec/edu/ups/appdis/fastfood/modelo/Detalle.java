@@ -2,9 +2,9 @@ package ec.edu.ups.appdis.fastfood.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -16,22 +16,22 @@ import javax.validation.constraints.NotNull;
 public class Detalle 
 {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name = "det_codigo",nullable = false) 
 	private int codigo;
 
 	@NotNull
+	@Column (name="det_usuario")
+	private String usuario;
+	
+	
+	@NotNull
+	@Column (name="det_detalle")
+	private String detalle;
+	
+	@NotNull
 	@Column (name="det_cantidad")
-	private int cantidad;
-	
-	//bi-directional many-to-one association to Ordene
-	@ManyToOne
-	@JoinColumn(name="codigo", insertable=false, updatable=false)
-	private Pedido pedido;
-	
-	//bi-directional many-to-one association to Producto
-	@ManyToOne
-	@JoinColumn(name="plt_codigo")
-	private Plato plato;
+	private double cantidad;
 
 	public int getCodigo() {
 		return codigo;
@@ -41,42 +41,36 @@ public class Detalle
 		this.codigo = codigo;
 	}
 
-	public int getCantidad() {
+	public double getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(double cantidad) {
 		this.cantidad = cantidad;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
 	}
 
 	@Override
 	public String toString() {
-		return "Detalle [codigo=" + codigo + ", cantidad=" + cantidad + ", pedido=" + pedido + "]";
-	}	
-	
-	public String aumentar() 
-	{
-		this.cantidad=cantidad +1;
-		return null;
-		
+		return "Detalle [codigo=" + codigo + ", usuario=" + usuario + ", detalle=" + detalle + ", cantidad=" + cantidad
+				+ "]";
 	}
-	
-	public String disminuir() 
-	{
-		if(cantidad>0) {
-		this.cantidad=cantidad -1;
-		}else
-			this.cantidad=0;
-		return null;
-		
-	}
+
+
 
 }
