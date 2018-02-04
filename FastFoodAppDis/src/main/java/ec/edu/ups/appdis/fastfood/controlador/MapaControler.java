@@ -1,24 +1,10 @@
 package ec.edu.ups.appdis.fastfood.controlador;
 
-
-
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.model.SelectItem;
-import javax.inject.Inject;
-
-import ec.edu.ups.appdis.fastfood.datos.RestaurantDAO;
-import ec.edu.ups.appdis.fastfood.datos.UsuarioDAO;
 import ec.edu.ups.appdis.fastfood.modelo.Restaurante;
 import ec.edu.ups.appdis.fastfood.modelo.Ubicacion;
-import ec.edu.ups.appdis.fastfood.modelo.Usuario;
 
 
 

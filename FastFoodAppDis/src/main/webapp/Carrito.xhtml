@@ -93,6 +93,9 @@
                         <li class="active">
                             <a href="Carrito.xhtml">Carrito </a>
                         </li>
+                        <li>
+                            <a href="Home.xhtml">Cerrar Sesion</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -145,7 +148,7 @@
 		</div>
 		<div class="box-footer">
 			<center>
-	             <h:commandButton action="Buscar" class="boton_2" id="btn" value="Realizar el pedido" data-dismiss="modal" />
+	             <h:commandButton action="#{platoControler.registrar()}" class="boton_2" id="btn" value="Realizar el pedido" data-dismiss="modal" />
 	        </center>
 	    </div>
 	</h:form>

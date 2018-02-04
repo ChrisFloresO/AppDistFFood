@@ -35,7 +35,7 @@ public class PrediccionesDao {
 		Predicciones centroide = EM.find(Predicciones.class, id);
 		return centroide;
 	}
-	//Este metodo nos sirve para hacer un select y obtener todo las marcas
+	//Este metodo nos sirve para hacer un select y obtener todo las platos
 	public List<Predicciones> listadoPredicciones() {
 		String  jpql = "SELECT pre FROM Predicciones pre";
 		Query query = EM.createQuery(jpql, Predicciones.class);
@@ -43,7 +43,7 @@ public class PrediccionesDao {
 		return predicciones;
 	}
 	
-	//Este metodo nos sirve para hacer un select y obtener todo las marcas
+	//Este metodo nos sirve para hacer un select y obtener todo los platos
 	public List<Predicciones> listPrediccionesUsua(int idUsuario) {
 		String  jpql = "SELECT pre FROM Predicciones pre WHERE pre.usuario= :idUsuario";
 		Query query = EM.createQuery(jpql, Predicciones.class);

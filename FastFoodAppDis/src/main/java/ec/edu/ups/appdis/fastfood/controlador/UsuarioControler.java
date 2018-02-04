@@ -6,7 +6,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import ec.edu.ups.appdis.fastfood.crud.util.FCM;
@@ -177,12 +179,11 @@ public class UsuarioControler
 			System.out.println(codigo);
 			if(listadoLogin.get(i).getRol()==1){
 				System.out.println("administrador");
-				sesion.setUsuario(listadoLogin.get(i));
 				return "RestauranteR";
 			}else
 				if(listadoLogin.get(i).getRol()==2){
 					sesion.setUsuario(listadoLogin.get(i));
-					return "RestauranteL";
+					return "Lista_Plato";
 				}else
 					if(listadoLogin.get(i).getRol()==3) 
 					{

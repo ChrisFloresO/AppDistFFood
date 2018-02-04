@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -19,8 +20,9 @@ import ec.edu.ups.appdis.fastfood.modelo.Ubicacion;
  */
 
 @ManagedBean
-@SessionScoped
-public class RestaurantControler {
+@RequestScoped
+public class RestaurantControler 
+{
 	private Restaurante restaurante;
 	private List<Restaurante> restaurantes;
 	private int id;
@@ -98,8 +100,8 @@ public class RestaurantControler {
 		try 
 		{
 			rdao.guardar(restaurante);
-			
 			loadRestaurantes();
+			restaurante= null;
 		}
 		catch(Exception e)
 		{
